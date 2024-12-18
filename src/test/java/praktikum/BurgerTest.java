@@ -7,8 +7,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+
 
 public class BurgerTest {
 
@@ -24,8 +23,8 @@ public class BurgerTest {
         Bun expectedBun = testBun;
 
         burger.setBuns(testBun);
-        Bun actualBun = burger.bun;
 
+        Bun actualBun = burger.bun;
         assertEquals(expectedBun, actualBun);
     }
 
@@ -49,22 +48,54 @@ public class BurgerTest {
         Ingredient expectedIngredient = ingredient;
 
         burger.addIngredient(expectedIngredient);
-        Ingredient actualIngredient = burger.ingredients.get(0);
 
+        Ingredient actualIngredient = burger.ingredients.get(0);
         assertEquals(expectedIngredient, actualIngredient);
     }
 
-    @Test // Изолированный юнит тест метода removeIngredient — проверяем состояние списка после удаления
+    @Test // Изолированный юнит тест метода removeIngredient: проверяем, что размер списка уменьшается после удаления элемента.
+// В тесте используется замокированный объект ingredient, который добавляется и затем удаляется.
     public void testRemoveIngredient() {
         Burger burger = new Burger();
         burger.addIngredient(ingredient);
 
         burger.removeIngredient(0);
-
         int expectedSize = 0;
-        int actualSize = burger.ingredients.size();
 
+        int actualSize = burger.ingredients.size();
         assertEquals(expectedSize, actualSize);
+    }
+
+    @Test // Изолированный юнит тест метода moveIngredient — проверяем, что элемент списка перемещается на указанный индекс
+    public void testMoveIngredient() {
+        Burger burger = new Burger();
+        burger.addIngredient(ingredient);
+        burger.addIngredient(Mockito.mock(Ingredient.class));
+        burger.addIngredient(Mockito.mock(Ingredient.class));
+        Ingredient expectedIngredient = ingredient;
+
+        burger.moveIngredient(0, 2);
+
+        Ingredient actualIngredient = burger.ingredients.get(2);
+        assertEquals(expectedIngredient, actualIngredient);
+    }
+
+
+    @Test // изолированный юнит тест с фиктивными ценами и моками
+    public void testGetPrice() {
+        Burger burger = new Burger();
+        Mockito.when(bun.getPrice()).thenReturn(50f);
+        Ingredient ingredient2 = Mockito.mock(Ingredient.class);
+        Mockito.when(ingredient.getPrice()).thenReturn(20f);
+        Mockito.when(ingredient2.getPrice()).thenReturn(30f);
+        burger.setBuns(bun);
+        burger.addIngredient(ingredient);
+        burger.addIngredient(ingredient2);
+        float expectedPrice = 50f * 2 + 20f + 30f;
+
+        float actualPrice = burger.getPrice();
+
+        assertEquals(expectedPrice, actualPrice);
     }
 
 
