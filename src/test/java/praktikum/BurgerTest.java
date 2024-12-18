@@ -1,8 +1,10 @@
 package praktikum;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,11 @@ public class BurgerTest {
     Bun bun;
     @Mock
     Ingredient ingredient;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test // изолированный юнит тест метода setBuns c фиктивными аргументами
     public void testSetBuns() {
@@ -95,7 +102,7 @@ public class BurgerTest {
 
         float actualPrice = burger.getPrice();
 
-        assertEquals(expectedPrice, actualPrice);
+        assertEquals(expectedPrice, actualPrice,0.01f);
     }
 
 
