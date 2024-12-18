@@ -1,6 +1,7 @@
 package praktikum;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -11,34 +12,63 @@ import static org.mockito.Mockito.verify;
 
 public class BurgerTest {
 
+    @Mock
+    Bun bun;
+    @Mock
+    Ingredient ingredient;
+
     @Test // изолированный юнит тест метода setBuns c фиктивными аргументами
     public void testSetBuns() {
         Burger burger = new Burger();
         Bun testBun = new Bun("Fake bun", 777);
+        Bun expectedBun = testBun;
+
         burger.setBuns(testBun);
-        assertEquals(testBun, burger.bun);
+        Bun actualBun = burger.bun;
+
+        assertEquals(expectedBun, actualBun);
     }
 
-    @Test //изолированный юнит-тест метода addIngredient с помощью spy и mock — проверяем вызов метода add()
+    @Test // Изолированный юнит-тест метода addIngredient с помощью mock и spy — проверяем вызов метода add()
     // Этот тест фокусируется на проверке взаимодействия (behavior test)
-      //нужен для полного покрытия функциональности сценария теста!
+    // Нужен для полного покрытия функциональности сценария теста!
     public void testAddIngredientWithVerify() {
         Burger burger = new Burger();
-        burger.ingredients = spy(new ArrayList<>());
-        Ingredient mockIngredient = Mockito.mock(Ingredient.class);
-        burger.addIngredient(mockIngredient);
-        verify(burger.ingredients).add(mockIngredient);
+        burger.ingredients = Mockito.spy(new ArrayList<>());
+        Ingredient expectedIngredient = ingredient;
+
+        burger.addIngredient(expectedIngredient);
+
+        Mockito.verify(burger.ingredients).add(expectedIngredient);
     }
 
-    @Test // Изолированный юнит-тест метода addIngredient с помощью mock — проверяем состояние списка после вызова
+    @Test// Изолированный юнит-тест метода addIngredient с помощью mock — проверяем состояние списка после вызова
     // Этот тест фокусируется на проверке результата выполнения метода (state test)
     public void testAddIngredientWithMock() {
         Burger burger = new Burger();
-        burger.ingredients = new ArrayList<>();
-        Ingredient mockIngredient = Mockito.mock(Ingredient.class);
-        burger.addIngredient(mockIngredient);
-        assertEquals(1, burger.ingredients.size());
+        Ingredient expectedIngredient = ingredient;
+
+        burger.addIngredient(expectedIngredient);
+        Ingredient actualIngredient = burger.ingredients.get(0);
+
+        assertEquals(expectedIngredient, actualIngredient);
     }
+
+    @Test // Изолированный юнит тест метода removeIngredient — проверяем состояние списка после удаления
+    public void testRemoveIngredient() {
+        Burger burger = new Burger();
+        burger.addIngredient(ingredient);
+
+        burger.removeIngredient(0);
+
+        int expectedSize = 0;
+        int actualSize = burger.ingredients.size();
+
+        assertEquals(expectedSize, actualSize);
+    }
+
+
+
 
 
 
