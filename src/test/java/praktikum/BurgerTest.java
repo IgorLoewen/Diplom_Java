@@ -1,27 +1,24 @@
 package praktikum;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.Assert.assertEquals;
 
+@RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
 
     @Mock
     Bun bun;
     @Mock
     Ingredient ingredient;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test // изолированный юнит тест метода setBuns c фиктивными аргументами
     public void testSetBuns() {
@@ -106,10 +103,34 @@ public class BurgerTest {
     }
 
 
+    @Test // Изолированный юнит-тест метода getReceipt.
+    // Проверяет, что метод корректно формирует строку чека с булочкой, ингредиентами и итоговой ценой.
+    // Используются фиктивные данные и моки для полного контроля над зависимостями.
+    public void testGetReceipt() {
+        // Подготовка
+        Burger burger = new Burger();
+        Mockito.when(bun.getName()).thenReturn("Fake Bun");
+        Mockito.when(bun.getPrice()).thenReturn(50f);
+        Mockito.when(ingredient.getType()).thenReturn(IngredientType.FILLING);
+        Mockito.when(ingredient.getName()).thenReturn("hot sauce");
+        Mockito.when(ingredient.getPrice()).thenReturn(80f);
+        burger.setBuns(bun);
+        burger.addIngredient(ingredient);
+        String expectedReceipt = String.format(
+                "(==== %s ====)%n" +
+                        "= %s %s =%n" +
+                        "(==== %s ====)%n" +
+                        "%nPrice: %f%n",
+                "Fake Bun",
+                "filling", "hot sauce",
+                "Fake Bun",
+                50f * 2 + 80f
+        );
 
+        String actualReceipt = burger.getReceipt();
 
-
-
+        assertEquals(expectedReceipt, actualReceipt);
+    }
 
 
 }
