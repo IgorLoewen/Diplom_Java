@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.11.0</version>
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -36,29 +36,31 @@
             <version>0.8.10</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <artifactId>junit-jupiter</artifactId>
-            <groupId>org.junit.jupiter</groupId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Surefire Plugin для запуска тестов -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
 
-            <!-- Jacoco Maven Plugin для покрытия кода -->
+            <!-- JaCoCo Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.10</version>
                 <executions>
+                    <!-- Подключение агента JaCoCo -->
                     <execution>
                         <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!-- Генерация отчета -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -66,7 +68,6 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-                            <!-- Указываем директорию для отчёта -->
                             <outputDirectory>${project.basedir}/docs</outputDirectory>
                         </configuration>
                     </execution>
