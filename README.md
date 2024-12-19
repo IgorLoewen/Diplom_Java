@@ -63,7 +63,7 @@
    ```
    docs/index.html
    ```
-   Или откройте онлайн-отчет Jacoco по адресу: [https://igorloewen.github.io/Diplom_Java/](https://igorloewen.github.io/Diplom_Java/) для просмотра покрытия кода.
+   Или откройте онлайн-отчет Jacoco по адресу: https://igorloewen.github.io/Diplom_Java/ для просмотра покрытия кода.
 
 3. **Откройте отчет:**
 
