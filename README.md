@@ -63,6 +63,7 @@
    ```
    docs/index.html
    ```
+   Или откройте онлайн-отчет Jacoco по адресу: [https://igorloewen.github.io/Diplom_Java/](https://igorloewen.github.io/Diplom_Java/) для просмотра покрытия кода.
 
 3. **Откройте отчет:**
 
@@ -81,26 +82,10 @@
 ```
 ├── src
 │   ├── main
-│   │   └── java
-│   │       └── praktikum
-│   │           ├── Bun.java
-│   │           ├── Burger.java
-│   │           ├── Database.java
-│   │           ├── Ingredient.java
-│   │           ├── IngredientType.java
-│   │           └── Praktikum.java
-│   └── test
-│       └── java
-│           └── praktikum
-│               ├── AvailableBunsTest.java
-│               ├── AvailableIngredientsTest.java
-│               ├── BunTest.java
-│               ├── BurgerTest.java
-│               ├── IngredientTest.java
-│               └── IngredientTypeTest.java
+│   ├── test
 ├── docs
-│   └── index.html
-└── pom.xml
+├── pom.xml
+└── README.md
 ```
 
 ## Пример вывода программы
