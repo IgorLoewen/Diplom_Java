@@ -24,16 +24,17 @@ public class AvailableIngredientsTest {
     @Parameterized.Parameters
     public static Object[][] data() {
         return new Object[][]{
-                {IngredientType.SAUCE, "hot sauce", 100f, 0},
-                {IngredientType.SAUCE, "sour cream", 200f, 1},
-                {IngredientType.SAUCE, "chili sauce", 300f, 2},
-                {IngredientType.FILLING, "cutlet", 100f, 3},
-                {IngredientType.FILLING, "dinosaur", 200f, 4},
-                {IngredientType.FILLING, "sausage", 300f, 5}
+                {IngredientType.SAUCE, "hot sauce", 100, 0},
+                {IngredientType.SAUCE, "sour cream", 200, 1},
+                {IngredientType.SAUCE, "chili sauce", 300, 2},
+                {IngredientType.FILLING, "cutlet", 100, 3},
+                {IngredientType.FILLING, "dinosaur", 200, 4},
+                {IngredientType.FILLING, "sausage", 300, 5}
         };
     }
 
-    @Test
+    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
+          // проверяющий, что тип ингредиента соответствует ожидаемому значению
     public void testAvailableIngredientType() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);
@@ -43,7 +44,8 @@ public class AvailableIngredientsTest {
         assertEquals(expectedType, actualType);
     }
 
-    @Test
+    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
+          // проверяющий, что имя ингредиента соответствует ожидаемому значению
     public void testAvailableIngredientName() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);
@@ -53,7 +55,8 @@ public class AvailableIngredientsTest {
         assertEquals(expectedName, actualName);
     }
 
-    @Test
+    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
+          // проверяющий, что цена ингредиента соответствует ожидаемому значению
     public void testAvailableIngredientPrice() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);

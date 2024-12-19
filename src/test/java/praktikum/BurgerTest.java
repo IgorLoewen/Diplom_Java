@@ -88,14 +88,14 @@ public class BurgerTest {
     @Test // изолированный юнит тест с фиктивными ценами и моками
     public void testGetPrice() {
         Burger burger = new Burger();
-        Mockito.when(bun.getPrice()).thenReturn(50f);
+        Mockito.when(bun.getPrice()).thenReturn(11f);
         Ingredient ingredient2 = Mockito.mock(Ingredient.class);
-        Mockito.when(ingredient.getPrice()).thenReturn(20f);
-        Mockito.when(ingredient2.getPrice()).thenReturn(30f);
+        Mockito.when(ingredient.getPrice()).thenReturn(22f);
+        Mockito.when(ingredient2.getPrice()).thenReturn(33f);
         burger.setBuns(bun);
         burger.addIngredient(ingredient);
         burger.addIngredient(ingredient2);
-        float expectedPrice = 50f * 2 + 20f + 30f;
+        float expectedPrice = 11f * 2 + 22f + 33f;
 
         float actualPrice = burger.getPrice();
 
@@ -110,10 +110,10 @@ public class BurgerTest {
         // Подготовка
         Burger burger = new Burger();
         Mockito.when(bun.getName()).thenReturn("Fake Bun");
-        Mockito.when(bun.getPrice()).thenReturn(50f);
+        Mockito.when(bun.getPrice()).thenReturn(44f);
         Mockito.when(ingredient.getType()).thenReturn(IngredientType.FILLING);
         Mockito.when(ingredient.getName()).thenReturn("hot sauce");
-        Mockito.when(ingredient.getPrice()).thenReturn(80f);
+        Mockito.when(ingredient.getPrice()).thenReturn(55f);
         burger.setBuns(bun);
         burger.addIngredient(ingredient);
         String expectedReceipt = String.format(
@@ -124,7 +124,7 @@ public class BurgerTest {
                 "Fake Bun",
                 "filling", "hot sauce",
                 "Fake Bun",
-                50f * 2 + 80f
+                44f * 2 + 55f
         );
 
         String actualReceipt = burger.getReceipt();

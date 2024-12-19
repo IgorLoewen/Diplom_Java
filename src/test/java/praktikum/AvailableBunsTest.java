@@ -22,13 +22,13 @@ public class AvailableBunsTest {
     @Parameterized.Parameters
     public static Object[][] data() {
         return new Object[][]{
-                {"black bun", 100f, 0},
-                {"white bun", 200f, 1},
-                {"red bun", 300f, 2}
+                {"black bun", 100, 0},
+                {"white bun", 200, 1},
+                {"red bun", 300, 2}
         };
     }
 
-    @Test
+    @Test // Изолированный юнит-тест метода availableBuns(), проверяющий имя булочки из предопределённого списка по индексу
     public void testAvailableBunName() {
         Database database = new Database();
         Bun actualBun = database.availableBuns().get(index);
@@ -38,7 +38,7 @@ public class AvailableBunsTest {
         assertEquals(expectedName, actualName);
     }
 
-    @Test
+    @Test // Изолированный юнит-тест метода availableBuns(), проверяющий имя цену из предопределённого списка по индексу
     public void testAvailableBunPrice() {
         Database database = new Database();
         Bun actualBun = database.availableBuns().get(index);
