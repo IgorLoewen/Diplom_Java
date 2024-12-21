@@ -7,31 +7,24 @@ import static io.restassured.RestAssured.given;
 
 public class UserSteps {
 
-    private String accessToken;
+    public String accessToken;
 
     @Step("Создание уникального пользователя с заданным телом запроса")
     public Response createUser(String requestBody) {
-
-        Response response = given()
+        return given()
                 .header("Content-type", "application/json")
                 .body(requestBody)
                 .when()
                 .post("/api/auth/register");
-        accessToken = response.jsonPath().getString("accessToken");
-        return response;
-
     }
 
-    @Step("Логин пользователя с заданным телом запроса и получение accessToken")
+    @Step("Логин пользователя с заданным телом запроса")
     public Response loginUser(String loginRequestBody) {
-
-        Response response = given()
+        return given()
                 .header("Content-type", "application/json")
                 .body(loginRequestBody)
                 .when()
                 .post("/api/auth/login");
-        accessToken = response.jsonPath().getString("accessToken");
-        return response;
     }
 
     @Step("Удаление пользователя по accessToken")
@@ -43,6 +36,9 @@ public class UserSteps {
                 .delete("/api/auth/user");
     }
 
-
-
+    @Step("Извлечение accessToken")
+    public void getAccessTokenAfterCreate(Response response) {
+        this.accessToken = response.jsonPath().getString("accessToken");
+    }
 }
+

@@ -10,16 +10,27 @@ import static data.Data.LOGIN_REQUEST_BODY;
 import static data.Data.VALID_UNIQUE_USER_REQUEST_BODY;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class CreateUserTest extends TestsSetUp{
+public class CreateUserTest{
 
-    private final UserSteps userSteps = new UserSteps();
+    public UserSteps userSteps;
 
+    public String accessToken;
+
+    @Before
+    public void setUp() {
+        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
+       userSteps = new UserSteps();
+    }
 
     @Test
     public void uniqueUserCreating() {
-        userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY)
-                .then().statusCode(200).body("success", equalTo(true));
-        userSteps.deleteUser();
 
+        Response createResponse = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
+        createResponse.then().statusCode(200).body("success", equalTo(true));
+        userSteps.getAccessTokenAfterCreate(createResponse);
+        Response deleteResponse = userSteps.deleteUser();
+        deleteResponse.then().statusCode(202).body("success", equalTo(true));
     }
+
+
 }

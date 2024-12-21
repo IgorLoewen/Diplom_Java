@@ -1,7 +1,7 @@
 package data;
 
 public class Data {
-    public static final String email = "fукe@yaf4356fghjex.ru";
+    public static final String email = "fукe@yпdfdвыываf.ru";
     public static final String password = "12345678";
     public static final String name = "abcddcba";
 
