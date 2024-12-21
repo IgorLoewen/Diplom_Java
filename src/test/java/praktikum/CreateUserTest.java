@@ -1,5 +1,6 @@
 package praktikum;
 
+import data.Data;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -46,16 +47,52 @@ public class CreateUserTest{
 
     }
 
+    @Test // Тест с пустым email
+    public void shouldReturnErrorWhenEmailMissing() {
+
+        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(0));
+
+        response.then()
+                .statusCode(403) // Ожидаемый код ошибки
+                .body("success", equalTo(false))
+                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+    }
+
+    @Test // Тест с пустым паролем
+    public void shouldReturnErrorWhenPasswordMissing() {
+
+        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(1));
+
+        response.then()
+                .statusCode(403) // Ожидаемый код ошибки
+                .body("success", equalTo(false))
+                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+    }
+
+    @Test // Тест с пустым паролем
+    public void shouldReturnErrorWhenNameMissing() {
+
+        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(2));
+
+        response.then()
+                .statusCode(403) // Ожидаемый код ошибки
+                .body("success", equalTo(false))
+                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+    }
+
 
     @After
-    public void tearDown(){
-        userSteps.getAccessToken(response);
+    public void tearDown() {
+        if (response != null && response.jsonPath().getString("accessToken") != null) {
 
-        deleteResponse = userSteps.deleteUser();
-        deleteResponse.then()
-                .statusCode(202)
-                .body("success", equalTo(true));
-    }
+            userSteps.getAccessToken(response);
+
+            deleteResponse = userSteps.deleteUser();
+            deleteResponse.then()
+                    .statusCode(202)
+                    .body("success", equalTo(true));
+        }
+   }
 
 
 }
