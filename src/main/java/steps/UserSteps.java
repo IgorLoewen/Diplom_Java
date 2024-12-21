@@ -37,7 +37,7 @@ public class UserSteps {
     }
 
     @Step("Извлечение accessToken")
-    public void getAccessTokenAfterCreate(Response response) {
+    public void getAccessToken(Response response) {
         this.accessToken = response.jsonPath().getString("accessToken");
     }
 }
