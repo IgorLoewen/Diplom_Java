@@ -11,23 +11,24 @@ import steps.UserSteps;
 import static data.Data.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class LoginUserTest{
+public class LoginUserTest {
 
     public UserSteps userSteps;
     public Response response;
     public Response deleteResponse;
-
+    public Response uniqueUserCreating;
 
     @Before
     public void setUp() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
         userSteps = new UserSteps();
-        userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
-        response = null;
-        deleteResponse = null;
+        uniqueUserCreating = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
+        uniqueUserCreating.then()
+                .statusCode(200)
+                .body("success", equalTo(true));
     }
 
-    @Test // логин под существующим пользователем,
+    @Test // логин под существующим пользователем
     public void userLogin() {
         response = userSteps.loginUser(LOGIN_REQUEST_BODY);
 
@@ -66,20 +67,17 @@ public class LoginUserTest{
                 .body("message", equalTo("email or password are incorrect"));
     }
 
-
-
     @After
     public void tearDown() {
-        if (response != null && response.jsonPath().getString("accessToken") != null) {
-
-            userSteps.getAccessToken(response);
-
+        if (uniqueUserCreating != null && uniqueUserCreating.jsonPath().getString("accessToken") != null) {
+            userSteps.getAccessToken(uniqueUserCreating);
             deleteResponse = userSteps.deleteUser();
             deleteResponse.then()
                     .statusCode(202)
                     .body("success", equalTo(true));
         }
+        uniqueUserCreating = null;
+        response = null;
+        deleteResponse = null;
     }
-
-
 }

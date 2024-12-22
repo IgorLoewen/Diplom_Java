@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Data {
-    public static final String email = "fукe@yпdfdfghвыsdfваыываf.ru";
+    public static final String email = "fукe@dfgsw.ru";
     public static final String password = "12345678";
     public static final String name = "abcddcba";
 

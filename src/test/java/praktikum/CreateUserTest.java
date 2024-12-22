@@ -22,8 +22,6 @@ public class CreateUserTest{
     public void setUp() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
         userSteps = new UserSteps();
-        response = null;
-        deleteResponse = null;
     }
 
     @Test // создать уникального пользователя;
@@ -91,6 +89,9 @@ public class CreateUserTest{
             deleteResponse.then()
                     .statusCode(202)
                     .body("success", equalTo(true));
+
+            response = null;
+            deleteResponse = null;
         }
    }
 
