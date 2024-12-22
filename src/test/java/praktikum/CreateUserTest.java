@@ -53,9 +53,9 @@ public class CreateUserTest{
         Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(0));
 
         response.then()
-                .statusCode(403) // Ожидаемый код ошибки
+                .statusCode(403)
                 .body("success", equalTo(false))
-                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+                .body("message", equalTo("Email, password and name are required fields"));
     }
 
     @Test // Тест с пустым паролем
@@ -64,9 +64,9 @@ public class CreateUserTest{
         Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(1));
 
         response.then()
-                .statusCode(403) // Ожидаемый код ошибки
+                .statusCode(403)
                 .body("success", equalTo(false))
-                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+                .body("message", equalTo("Email, password and name are required fields"));
     }
 
     @Test // Тест с пустым именем
@@ -75,9 +75,9 @@ public class CreateUserTest{
         Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(2));
 
         response.then()
-                .statusCode(403) // Ожидаемый код ошибки
+                .statusCode(403)
                 .body("success", equalTo(false))
-                .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
+                .body("message", equalTo("Email, password and name are required fields"));
     }
 
 

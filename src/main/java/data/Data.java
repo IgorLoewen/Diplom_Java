@@ -27,5 +27,13 @@ public class Data {
             String.format("{ \"email\": \"%s\", \"password\": \"%s\", \"name\": \"\" }", email, password)
     );
 
+    // Список тел для проверки логина с неверным email и паролем
+    public static final List<String> INVALID_LOGIN_REQUEST_BODIES = Arrays.asList(
+            String.format("{ \"email\": \"wrongemail@test.com\", \"password\": \"%s\" }", password),
+            String.format("{ \"email\": \"%s\", \"password\": \"wrongpassword\" }", email),
+            String.format("{ \"email\": \"wrongemail@test.com\", \"password\": \"wrongpassword\" }") // Неверные email и password
+    );
+
+
 
 }

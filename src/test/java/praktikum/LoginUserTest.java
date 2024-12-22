@@ -8,8 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import steps.UserSteps;
 
-import static data.Data.LOGIN_REQUEST_BODY;
-import static data.Data.VALID_UNIQUE_USER_REQUEST_BODY;
+import static data.Data.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class LoginUserTest{
@@ -28,13 +27,43 @@ public class LoginUserTest{
         deleteResponse = null;
     }
 
-    @Test // создать уникального пользователя;
-    public void uniqueUserCreating() {
+    @Test // логин под существующим пользователем,
+    public void userLogin() {
         response = userSteps.loginUser(LOGIN_REQUEST_BODY);
 
         response.then()
                 .statusCode(200)
                 .body("success", equalTo(true));
+    }
+
+    @Test // попытка логина с неверным email
+    public void userLoginWithWrongEmail() {
+        response = userSteps.loginUser(INVALID_LOGIN_REQUEST_BODIES.get(0));
+
+        response.then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("email or password are incorrect"));
+    }
+
+    @Test // попытка логина с неверным паролем
+    public void userLoginWithWrongPassword() {
+        response = userSteps.loginUser(INVALID_LOGIN_REQUEST_BODIES.get(1));
+
+        response.then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("email or password are incorrect"));
+    }
+
+    @Test // попытка логина с неверным паролем и логином
+    public void userLoginWithWrongPasswordAndLogin() {
+        response = userSteps.loginUser(INVALID_LOGIN_REQUEST_BODIES.get(2));
+
+        response.then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("email or password are incorrect"));
     }
 
 
