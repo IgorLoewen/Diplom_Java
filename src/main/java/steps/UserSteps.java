@@ -36,7 +36,7 @@ public class UserSteps {
                 .delete("/api/auth/user");
     }
 
-    @Step("Извлечение accessToken")
+    @Step("Извлечение accessToken ")
     public void getAccessToken(Response response) {
         this.accessToken = response.jsonPath().getString("accessToken");
     }
