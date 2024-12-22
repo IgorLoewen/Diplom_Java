@@ -16,7 +16,7 @@ public class Data {
 
     // Валидное тело для логина курьера
     public static final String LOGIN_REQUEST_BODY = String.format(
-            "{ \"login\": \"%s\", \"password\": \"%s\" }",
+            "{ \"email\": \"%s\", \"password\": \"%s\" }",
             email, password
     );
 

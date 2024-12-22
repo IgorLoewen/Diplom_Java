@@ -69,7 +69,7 @@ public class CreateUserTest{
                 .body("message", equalTo("Email, password and name are required fields")); // Сообщение сервера
     }
 
-    @Test // Тест с пустым паролем
+    @Test // Тест с пустым именем
     public void shouldReturnErrorWhenNameMissing() {
 
         Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(2));
