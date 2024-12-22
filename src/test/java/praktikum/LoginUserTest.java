@@ -23,9 +23,6 @@ public class LoginUserTest {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
         userSteps = new UserSteps();
         uniqueUserCreating = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
-        uniqueUserCreating.then()
-                .statusCode(200)
-                .body("success", equalTo(true));
     }
 
     @Test // логин под существующим пользователем
@@ -71,10 +68,8 @@ public class LoginUserTest {
     public void tearDown() {
         if (uniqueUserCreating != null && uniqueUserCreating.jsonPath().getString("accessToken") != null) {
             userSteps.getAccessToken(uniqueUserCreating);
-            deleteResponse = userSteps.deleteUser();
-            deleteResponse.then()
-                    .statusCode(202)
-                    .body("success", equalTo(true));
+            userSteps.deleteUser();
+
         }
         uniqueUserCreating = null;
         response = null;

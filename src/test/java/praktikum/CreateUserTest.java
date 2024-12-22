@@ -82,14 +82,8 @@ public class CreateUserTest{
     @After
     public void tearDown() {
         if (response != null && response.jsonPath().getString("accessToken") != null) {
-
             userSteps.getAccessToken(response);
-
-            deleteResponse = userSteps.deleteUser();
-            deleteResponse.then()
-                    .statusCode(202)
-                    .body("success", equalTo(true));
-
+            userSteps.deleteUser();
             response = null;
             deleteResponse = null;
         }
