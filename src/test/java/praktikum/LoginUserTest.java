@@ -15,7 +15,6 @@ public class LoginUserTest {
 
     public UserSteps userSteps;
     public Response response;
-    public Response deleteResponse;
     public Response uniqueUserCreating;
 
     @Before
@@ -66,13 +65,11 @@ public class LoginUserTest {
 
     @After
     public void tearDown() {
-        if (uniqueUserCreating != null && uniqueUserCreating.jsonPath().getString("accessToken") != null) {
+        if (uniqueUserCreating != null) {
             userSteps.getAccessToken(uniqueUserCreating);
             userSteps.deleteUser();
-
         }
         uniqueUserCreating = null;
         response = null;
-        deleteResponse = null;
     }
 }

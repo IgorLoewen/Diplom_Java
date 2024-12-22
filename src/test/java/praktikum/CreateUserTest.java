@@ -15,7 +15,6 @@ public class CreateUserTest{
 
     public UserSteps userSteps;
     public Response response;
-    public Response deleteResponse;
 
 
    @Before
@@ -81,13 +80,10 @@ public class CreateUserTest{
 
     @After
     public void tearDown() {
-        if (response != null && response.jsonPath().getString("accessToken") != null) {
+        if (response != null) {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
             response = null;
-            deleteResponse = null;
         }
    }
-
-
 }

@@ -40,5 +40,14 @@ public class UserSteps {
     public void getAccessToken(Response response) {
         this.accessToken = response.jsonPath().getString("accessToken");
     }
+
+    @Step("Изменение данных пользователя с авторизацией")
+    public Response editUserDataWithAuthorization () {
+        return given()
+                .header("Authorization",accessToken)
+                .header("Content-Type", "application/json")
+                .when()
+                .patch("/api/auth/user");
+    }
 }
 
