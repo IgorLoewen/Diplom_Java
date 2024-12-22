@@ -42,10 +42,11 @@ public class UserSteps {
     }
 
     @Step("Изменение данных пользователя с авторизацией")
-    public Response editUserDataWithAuthorization () {
+    public Response editUserDataWithAuthorization(String accessToken, String requestBody) {
         return given()
-                .header("Authorization",accessToken)
+                .header("Authorization",accessToken) // Передаём токен
                 .header("Content-Type", "application/json")
+                .body(requestBody)
                 .when()
                 .patch("/api/auth/user");
     }
