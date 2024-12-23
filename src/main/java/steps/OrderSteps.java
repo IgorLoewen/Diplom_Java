@@ -17,14 +17,13 @@ public class OrderSteps {
                 .post("/api/orders");
     }
 
-    @Step("Получение списка ингредиентов с сервера")
-    public Response getIngredients() {
+    @Step("Создание заказа без авторизации")
+    public Response createOrderWithoutAuthorization( String requestBody) {
         return given()
+                .header("Content-Type", "application/json")
+                .body(requestBody)
                 .when()
-                .get("/api/ingredients") // Указываем только endpoint
-                .then()
-                .statusCode(200)
-                .extract()
-                .response();
+                .post("/api/orders");
     }
+
 }

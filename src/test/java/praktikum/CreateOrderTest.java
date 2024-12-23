@@ -15,7 +15,12 @@ import java.util.Map;
 
 import static data.Data.*;
 import static io.restassured.RestAssured.given;
+import static java.util.function.Predicate.not;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.*;
 
 public class CreateOrderTest {
 
@@ -35,17 +40,40 @@ public class CreateOrderTest {
         response = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
         userSteps.getAccessToken(response);
         token = userSteps.accessToken;
-
-
-        ingredients = orderSteps.getIngredients().jsonPath().getList("data");
-        System.out.println(ingredients);
     }
 
 
-    @Test
+    @Test  // Создание заказа с авторизацией
     public void createOrderWithAuthorization(){
-        orderSteps.createOrderWithAuthorization(token,ORDER_BODIES.get(2));
 
+        orderSteps.createOrderWithAuthorization(token,ORDER_BODIES.get(5))
+
+                .then().statusCode(200)
+                .body("success", equalTo(true))
+                .body("name", notNullValue())
+                .body("order", notNullValue())
+                .body("order._id", notNullValue())
+                .body("order.owner", notNullValue())
+                .body("order.status", equalTo("done"))
+                .body("order.name", notNullValue())
+                .body("order.createdAt", notNullValue())
+                .body("order.updatedAt", notNullValue())
+                .body("order.number", notNullValue())
+                .body("order.price", notNullValue());
+    }
+
+    @Test  // Создание заказа без авторизации
+           // Отсутствует документация для этого случая
+           // Сделал проверку по факту ответа и исходя из логики, что в задании есть
+           // проверка, что бы проверить заказы не авторизированного пользователя
+    public void createOrderWithoutAuthorization(){
+
+        orderSteps.createOrderWithoutAuthorization(ORDER_BODIES.get(5))
+
+                .then().statusCode(200)
+                .body("success", equalTo(true))
+                .body("name", notNullValue())
+                .body("order", notNullValue());
     }
 
 
