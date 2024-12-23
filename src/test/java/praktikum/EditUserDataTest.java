@@ -10,6 +10,7 @@ import steps.UserSteps;
 
 import static data.Data.*;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 
 public class EditUserDataTest {
 
@@ -27,15 +28,44 @@ public class EditUserDataTest {
         token = userSteps.accessToken;
     }
 
-    @Test
+    @Test // Изменение поля email с авторизацией
     public void editUserDataWithAuthorizationEmailChange(){
         userSteps.editUserDataWithAuthorization(token,USER_DATA_UPDATE_BODIES.get(0))
+
                 .then()
                 .statusCode(200)
                 .body("success", equalTo(true))
                 .body("user.email", equalTo("pomenyali@pomenyalkin.ru"))
                 .body("user.name", equalTo(name));
+    }
 
+    @Test // Изменение поля пароль с авторизацией и проверка через логин,
+          // так как смену пароля нельзя проверить в теле ответа!
+    public void editUserDataWithAuthorizationPasswordChange(){
+
+        String passwordJson = USER_DATA_UPDATE_BODIES.get(1);
+        String newPassword = passwordJson.split(":")[1].replaceAll("[\"{} ]", "");
+
+
+        userSteps.editUserDataWithAuthorization(token,USER_DATA_UPDATE_BODIES.get(1))
+
+                .then()
+                .statusCode(200)
+                .body("success", equalTo(true))
+                .body("user.email", equalTo(email))
+                .body("user.name", equalTo(name));
+
+           //Тело с новым паролем для логина!
+        String loginRequestBody = String.format(
+                "{ \"email\": \"%s\", \"password\": \"%s\" }",
+                email, newPassword
+        );
+
+            userSteps.loginUser(loginRequestBody)
+
+                    .then()
+                    .statusCode(200)
+                    .body("success", equalTo(true));
     }
 
 
