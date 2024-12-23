@@ -68,6 +68,17 @@ public class EditUserDataTest {
                     .body("success", equalTo(true));
     }
 
+    @Test // Изменение поля имя с авторизацией
+    public void editUserDataWithAuthorizationNameChange(){
+        userSteps.editUserDataWithAuthorization(token,USER_DATA_UPDATE_BODIES.get(2))
+
+                .then()
+                .statusCode(200)
+                .body("success", equalTo(true))
+                .body("user.email", equalTo(email))
+                .body("user.name", equalTo("Pomenyalkin"));
+    }
+
 
 
 
