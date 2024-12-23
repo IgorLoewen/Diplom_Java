@@ -34,4 +34,12 @@ public class OrderSteps {
                 .get("/api/orders");
 
     }
+
+    @Step("Получение списка заказов без авторизации")
+    public Response getFullOrderListNotAuthorizedUser() {
+        return given()
+                .when()
+                .get("/api/orders/all");
+
+    }
 }

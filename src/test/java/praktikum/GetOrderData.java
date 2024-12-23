@@ -45,8 +45,21 @@ public class GetOrderData {
     }
 
 
+    @Test // Проверка получения всех заказов - не авторизованный пользователь,
+    public void getFullOrderListForNotAuthorizedUser() {
 
-    @After
+        orderSteps.getFullOrderListNotAuthorizedUser()
+
+                .then()
+                .statusCode(200)
+                .body("success", equalTo(true))
+                .body("orders", notNullValue())
+                .body("total", notNullValue())
+                .body("totalToday", notNullValue());
+    }
+
+
+        @After
     public void tearDown() {
         if (response != null) {
             userSteps.getAccessToken(response);
