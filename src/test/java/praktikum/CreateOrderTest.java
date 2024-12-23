@@ -28,8 +28,6 @@ public class CreateOrderTest {
     public Response response;
     public String token;
     public OrderSteps orderSteps;
-    private  List<Map<String, Object>> ingredients;
-
 
 
     @Before

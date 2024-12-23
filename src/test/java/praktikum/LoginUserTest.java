@@ -1,6 +1,5 @@
 package praktikum;
 
-import data.Data;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;

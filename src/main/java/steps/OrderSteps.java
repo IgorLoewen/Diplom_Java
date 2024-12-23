@@ -10,7 +10,7 @@ public class OrderSteps {
     @Step("Создание заказа с авторизацией")
     public Response createOrderWithAuthorization(String accessToken, String requestBody) {
         return given()
-                .header("Authorization",accessToken)
+                .header("Authorization", accessToken)
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .when()
@@ -18,7 +18,7 @@ public class OrderSteps {
     }
 
     @Step("Создание заказа без авторизации")
-    public Response createOrderWithoutAuthorization( String requestBody) {
+    public Response createOrderWithoutAuthorization(String requestBody) {
         return given()
                 .header("Content-Type", "application/json")
                 .body(requestBody)
@@ -26,4 +26,12 @@ public class OrderSteps {
                 .post("/api/orders");
     }
 
+    @Step("Получение списка заказов c авторизацией")
+    public Response getOrderListAuthorizedUser(String token) {
+        return given()
+                .header("Authorization", token)
+                .when()
+                .get("/api/orders");
+
+    }
 }
