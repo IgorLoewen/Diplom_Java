@@ -14,6 +14,8 @@ public class OrderSteps {
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .when()
-                .patch("/api/orders");
+                .post("/api/orders");
+
+
     }
 }
