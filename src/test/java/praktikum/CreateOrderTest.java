@@ -44,6 +44,8 @@ public class CreateOrderTest {
 
 
     @Test  // Создание заказа с авторизацией
+    // Надо будет уточнить серую зону.  По заданию нужно сделать 2 теста. Один с авторизацией, жругой с ингридиентами.
+    // или я что то не понимаю или это одно и тоже. Надо уточнить
     public void createOrderWithAuthorization(){
 
         orderSteps.createOrderWithAuthorization(token,ORDER_BODIES.get(5))
@@ -74,6 +76,25 @@ public class CreateOrderTest {
                 .body("success", equalTo(true))
                 .body("name", notNullValue())
                 .body("order", notNullValue());
+    }
+
+    @Test  // Создание заказа без ингридиентов
+    public void createOrderWithoutIngredients(){
+
+        orderSteps.createOrderWithAuthorization(token,EMPTY_INGREDIENTS)
+
+                .then().statusCode(400)
+                .body("success", equalTo(false))
+                .body("message", equalTo("Ingredient ids must be provided"));
+    }
+
+    @Test  // Создание заказа с неверным Hash ингридиента
+           // СЕРАЯ ЗОНА.  НАС УЧИЛИ ЧТО МЫ НИКОГДА 500 не ожидаем!!!!!
+    public void createOrderWithWrongHashForIngredients(){
+
+        orderSteps.createOrderWithAuthorization(token,INVALID_HASH_INGREDIENT)
+
+                .then().statusCode(500);
     }
 
 

@@ -51,5 +51,12 @@ public class Data {
             "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa79\", \"61c0c5a71d1f82001bdaaa7a\", \"61c0c5a71d1f82001bdaaa6e\"] }"
     );
 
+    // Переменная для заказа без ингридиентов
+    public static final String EMPTY_INGREDIENTS = "{ \"ingredients\": [] }";
+
+    // Переменная с невалидным Hash ингредиента
+    public static final String INVALID_HASH_INGREDIENT = "{ \"ingredients\": [\"60d3b41abdacasdb0026a733c6\"] }";
+
+
 
 }
