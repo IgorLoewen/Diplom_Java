@@ -44,7 +44,7 @@ public class UserSteps {
     @Step("Изменение данных пользователя с авторизацией")
     public Response editUserDataWithAuthorization(String accessToken, String requestBody) {
         return given()
-                .header("Authorization",accessToken) // Передаём токен
+                .header("Authorization",accessToken)
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .when()
@@ -59,5 +59,14 @@ public class UserSteps {
                 .when()
                 .patch("/api/auth/user");
     }
+
+    @Step("Создание тела запроса для логина с новым паролем")
+    public String createLoginRequestBody(String email, String newPassword) {
+        return String.format(
+                "{ \"email\": \"%s\", \"password\": \"%s\" }",
+                email, newPassword
+        );
+    }
+
 }
 

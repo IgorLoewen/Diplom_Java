@@ -1,5 +1,6 @@
 package praktikum;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -54,12 +55,9 @@ public class EditUserDataTest {
                 .body("user.email", equalTo(email))
                 .body("user.name", equalTo(name));
 
-           //Тело с новым паролем для логина!
-        String loginRequestBody = String.format(
-                "{ \"email\": \"%s\", \"password\": \"%s\" }",
-                email, newPassword
-        );
 
+        String loginRequestBody = userSteps.createLoginRequestBody(email, newPassword);
+               // проверка логина с помененным паролем
             userSteps.loginUser(loginRequestBody)
 
                     .then()
