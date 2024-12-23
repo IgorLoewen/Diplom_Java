@@ -41,6 +41,15 @@ public class Data {
             String.format("{ \"name\": \"Pomenyalkin\"}", name)
     );
 
+    // Список тел заказов с ингредиентами
+    public static final List<String> ORDER_BODIES = Arrays.asList(
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa6d\"] }",
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa6f\", \"61c0c5a71d1f82001bdaaa70\"] }",
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa71\", \"61c0c5a71d1f82001bdaaa72\", \"61c0c5a71d1f82001bdaaa73\"] }",
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa74\", \"61c0c5a71d1f82001bdaaa75\", \"61c0c5a71d1f82001bdaaa6c\", \"61c0c5a71d1f82001bdaaa76\", \"61c0c5a71d1f82001bdaaa77\"] }",
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa78\"] }",
+            "{ \"ingredients\": [\"61c0c5a71d1f82001bdaaa79\", \"61c0c5a71d1f82001bdaaa7a\", \"61c0c5a71d1f82001bdaaa6e\"] }"
+    );
 
 
 }
