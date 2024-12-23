@@ -15,7 +15,16 @@ public class OrderSteps {
                 .body(requestBody)
                 .when()
                 .post("/api/orders");
+    }
 
-
+    @Step("Получение списка ингредиентов с сервера")
+    public Response getIngredients() {
+        return given()
+                .when()
+                .get("/api/ingredients") // Указываем только endpoint
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
     }
 }
