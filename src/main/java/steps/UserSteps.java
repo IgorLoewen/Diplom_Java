@@ -50,5 +50,14 @@ public class UserSteps {
                 .when()
                 .patch("/api/auth/user");
     }
+
+    @Step("Изменение данных пользователя без авторизации")
+    public Response editUserDataWithoutAuthorization(String requestBody) {
+        return given()
+                .header("Content-Type", "application/json")
+                .body(requestBody)
+                .when()
+                .patch("/api/auth/user");
+    }
 }
 

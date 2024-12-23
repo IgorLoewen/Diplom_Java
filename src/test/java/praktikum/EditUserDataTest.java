@@ -1,6 +1,5 @@
 package praktikum;
 
-import data.Data;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -10,13 +9,13 @@ import steps.UserSteps;
 
 import static data.Data.*;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertEquals;
+
 
 public class EditUserDataTest {
 
     public UserSteps userSteps;
     public Response response;
-    public String token;;
+    public String token;
 
 
     @Before
@@ -80,6 +79,40 @@ public class EditUserDataTest {
     }
 
 
+    @Test // Изменение поля email без авторизации
+    public void editUserDataWithoutAuthorizationEmailChange(){
+        userSteps.editUserDataWithoutAuthorization(USER_DATA_UPDATE_BODIES.get(0))
+
+                .then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("You should be authorised"));
+
+    }
+
+    @Test // Изменение поля пароль без авторизации
+    public void editUserDataWithoutAuthorizationPasswordChange(){
+        userSteps.editUserDataWithoutAuthorization(USER_DATA_UPDATE_BODIES.get(1))
+
+                .then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("You should be authorised"));
+
+    }
+
+    @Test // Изменение поля имя без авторизации
+    public void editUserDataWithoutAuthorizationNameChange(){
+        userSteps.editUserDataWithoutAuthorization(USER_DATA_UPDATE_BODIES.get(2))
+
+                .then()
+                .statusCode(401)
+                .body("success", equalTo(false))
+                .body("message", equalTo("You should be authorised"));
+
+    }
+
+
 
 
     @After
@@ -88,6 +121,7 @@ public class EditUserDataTest {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
             response = null;
+            token = null;
         }
     }
 }
