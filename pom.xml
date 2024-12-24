@@ -21,26 +21,34 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.4.0</version>
+            <version>4.12.1</version>
+            <exclusions>
+                <!-- Исключение ненужных зависимостей -->
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
+        <!-- Guava -->
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>4.4.0</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>32.0.1-jre</version>
         </dependency>
 
-        <!-- Allure JUnit 4 -->
+        <!-- Allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>2.21.0</version>
         </dependency>
 
-        <!-- Allure Commons -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
@@ -54,7 +62,7 @@
             <version>5.3.0</version>
         </dependency>
 
-        <!-- SLF4J API (обновленная версия) -->
+        <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -64,18 +72,17 @@
 
     <build>
         <plugins>
-            <!-- Maven Surefire Plugin для запуска тестов -->
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <!-- Указываем дефолтный путь для Allure results -->
+                        <!-- Allure results path -->
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <properties>
-                        <!-- Добавляем Allure listener -->
                         <property>
                             <name>listener</name>
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
@@ -84,6 +91,12 @@
                 </configuration>
             </plugin>
 
+            <!-- Allure Maven Plugin -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+            </plugin>
         </plugins>
     </build>
 </project>
