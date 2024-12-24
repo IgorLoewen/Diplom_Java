@@ -1,8 +1,11 @@
 package praktikum.test.ui;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import pages.MainPage;
 
+@RunWith(Parameterized.class)
 public class OpenMainPageTest extends TestsSetUp {
 
     public OpenMainPageTest(String browser) {

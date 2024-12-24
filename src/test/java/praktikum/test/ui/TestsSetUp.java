@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 
-@RunWith(Parameterized.class)
+
 public abstract class TestsSetUp {
     protected WebDriver driver;
     protected WebDriverWait wait;
