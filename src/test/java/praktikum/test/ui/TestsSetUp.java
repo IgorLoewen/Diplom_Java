@@ -1,4 +1,4 @@
-package tests;
+package praktikum.test.ui;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,7 +1,6 @@
-package praktikum;
+package praktikum.test.ui;
 
 import org.junit.Test;
-import tests.TestsSetUp;
 import pages.MainPage;
 
 public class OpenMainPageTest extends TestsSetUp {
