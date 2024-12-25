@@ -24,6 +24,7 @@
 /build/
 # Игнорируем всю папку target
 /target/
+.allure
 
 # Temporary files
 *.tmp

@@ -6,28 +6,32 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BrowserChoose {
 
+
     public static WebDriver createDriver(String browser) {
+
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 
+
         ChromeOptions options = new ChromeOptions();
-        addCommonArguments(options); // Общие аргументы для всех браузеров
+        addCommonArguments(options);
 
-        if (browser.equalsIgnoreCase("chrome")) {
-            // Специфичные настройки для Chrome
-            options.addArguments("--disable-features=FederatedCredentialManagement");
-
-        } else if (browser.equalsIgnoreCase("yandex")) {
-            // Специфичные настройки для Yandex
-            options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
-
-        } else {
-            throw new IllegalArgumentException("Unsupported browser: " + browser);
+        // Выбор браузера
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                configureChrome(options); // Специфичные настройки для Chrome
+                break;
+            case "yandex":
+                configureYandex(options); // Специфичные настройки для Yandex
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
 
+        // Возвращаем настроенный ChromeDriver
         return new ChromeDriver(options);
     }
 
-    // Общие аргументы для всех браузеров
+    // Добавляем общие аргументы для всех браузеров
     private static void addCommonArguments(ChromeOptions options) {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-blink-features=AutomationControlled");
@@ -43,5 +47,15 @@ public class BrowserChoose {
         options.addArguments("--disable-background-networking");
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-autofill-keyboard-accessory-view[8]");
+    }
+
+    // Настройки для Chrome
+    private static void configureChrome(ChromeOptions options) {
+        options.addArguments("--disable-features=FederatedCredentialManagement");
+    }
+
+    // Настройки для Yandex
+    private static void configureYandex(ChromeOptions options) {
+        options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
     }
 }

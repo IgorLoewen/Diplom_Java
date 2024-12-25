@@ -2,7 +2,6 @@ package praktikum.test.ui;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,11 +16,10 @@ import java.util.Collection;
 public abstract class TestsSetUp {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    private String browser;
+    private final String browser;
 
     public TestsSetUp(String browser) {
-        // Если передан браузер через параметры — используем его, иначе берем из System.getProperty
-        this.browser = System.getProperty("browser", browser);
+        this.browser = browser;
     }
 
     @Parameterized.Parameters(name = "Browser: {0}")
