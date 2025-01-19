@@ -2,6 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import models.UserModel;
 
 import static io.restassured.RestAssured.given;
 
@@ -10,10 +11,10 @@ public class UserSteps {
     public String accessToken;
 
     @Step("Создание уникального пользователя с заданным телом запроса")
-    public Response createUser(String requestBody) {
+    public Response createUser(UserModel userModel) {
         return given()
                 .header("Content-type", "application/json")
-                .body(requestBody)
+                .body(userModel)
                 .when()
                 .post("/api/auth/register");
     }
