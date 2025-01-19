@@ -13,6 +13,7 @@ import steps.UserSteps;
 
 import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.apache.http.HttpStatus.*;
 
 @Epic("Создание пользователя")
 public class CreateUserTest {
@@ -27,26 +28,26 @@ public class CreateUserTest {
         userSteps = new UserSteps();
     }
 
+    @Test
     @DisplayName("Создание уникального пользователя")
     @Description("Этот тест проверяет возможность создания пользователя с валидными данными.")
-    @Test
     public void uniqueUserCreating() {
         response = userSteps.createUser(UserData.getValidUser());
 
         response.then()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", equalTo(true));
     }
 
+    @Test
     @DisplayName("Создание дублирующегося пользователя")
     @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка.")
-    @Test
     public void duplicateUserCreationReturnsError() {
         response = userSteps.createUser(UserData.getValidUser());
 
         Response responseSecondCreation = userSteps.createUser(UserData.getValidUser());
         responseSecondCreation.then()
-                .statusCode(403)
+                .statusCode(SC_FORBIDDEN)
                 .body("success", equalTo(false))
                 .body("message", equalTo("User already exists"));
 

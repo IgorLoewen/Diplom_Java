@@ -15,6 +15,7 @@ import steps.UserSteps;
 
 import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.apache.http.HttpStatus.*;
 
 @Epic("Создание пользователя")
 @RunWith(Parameterized.class)
@@ -42,16 +43,16 @@ public class InvalidUserCreationParameterizedTest {
         userSteps = new UserSteps();
     }
 
+    @Test
     @DisplayName("Создание пользователя с отсутствующим обязательным полем")
     @Description("Этот тест проверяет, что при попытке создать пользователя с отсутствующим email, паролем или именем возвращается ошибка.")
-    @Test
     public void shouldReturnErrorForInvalidUser() {
 
         response = userSteps.createUser(UserData.getInvalidLoginRequests().get(index));
 
 
         response.then()
-                .statusCode(403) // Ожидаем статус 403
+                .statusCode(SC_FORBIDDEN)
                 .body("success", equalTo(false))
                 .body("message", equalTo("Email, password and name are required fields"));
     }
