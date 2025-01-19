@@ -20,10 +20,10 @@ public class UserSteps {
     }
 
     @Step("Логин пользователя с заданным телом запроса")
-    public Response loginUser(String loginRequestBody) {
+    public Response loginUser(UserModel userModel) {
         return given()
                 .header("Content-type", "application/json")
-                .body(loginRequestBody)
+                .body(userModel)
                 .when()
                 .post("/api/auth/login");
     }
