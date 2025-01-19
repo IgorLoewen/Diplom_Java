@@ -28,7 +28,7 @@ public class OrderModel {
 
     @Override
     public String toString() {
-        // Удобный вывод информации об объекте
+
         return "OrderModel{" +
                 "ingredients=" + ingredients +
                 '}';

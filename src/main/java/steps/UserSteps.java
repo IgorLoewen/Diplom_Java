@@ -43,20 +43,20 @@ public class UserSteps {
     }
 
     @Step("Изменение данных пользователя с авторизацией")
-    public Response editUserDataWithAuthorization(String accessToken, String requestBody) {
+    public Response editUserDataWithAuthorization(String accessToken, UserModel userModel) {
         return given()
                 .header("Authorization",accessToken)
                 .header("Content-Type", "application/json")
-                .body(requestBody)
+                .body(userModel)
                 .when()
                 .patch("/api/auth/user");
     }
 
     @Step("Изменение данных пользователя без авторизации")
-    public Response editUserDataWithoutAuthorization(String requestBody) {
+    public Response editUserDataWithoutAuthorization(UserModel userModel) {
         return given()
                 .header("Content-Type", "application/json")
-                .body(requestBody)
+                .body(userModel)
                 .when()
                 .patch("/api/auth/user");
     }

@@ -46,7 +46,7 @@ public class UserModel {
 
     @Override
     public String toString() {
-        // Удобный вывод информации об объекте
+
         return "UserModel{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
