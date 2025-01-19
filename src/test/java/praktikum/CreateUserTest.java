@@ -1,17 +1,13 @@
 package praktikum;
 
-import data.Data;
-import data.OrderData;
 import data.UserData;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import models.OrderModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import steps.UserSteps;
 
-import static data.Data.VALID_UNIQUE_USER_REQUEST_BODY;
 import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -19,6 +15,7 @@ public class CreateUserTest{
 
     public UserSteps userSteps;
     public Response response;
+
 
 
    @Before
@@ -36,17 +33,17 @@ public class CreateUserTest{
                 .body("success", equalTo(true));
     }
 
-//    @Test // создать пользователя, который уже зарегистрирован;
-//    public void duplicateUserCreationReturnsError() {
-//        response = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
-//
-//        Response responseSecondCreation = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
-//        responseSecondCreation.then()
-//                .statusCode(403)
-//                .body("success", equalTo(false))
-//                .body("message", equalTo("User already exists"));
-//
-//    }
+    @Test // создать пользователя, который уже зарегистрирован;
+    public void duplicateUserCreationReturnsError() {
+        response = userSteps.createUser(UserData.getValidUser());
+
+        Response responseSecondCreation = userSteps.createUser(UserData.getValidUser());
+        responseSecondCreation.then()
+                .statusCode(403)
+                .body("success", equalTo(false))
+                .body("message", equalTo("User already exists"));
+
+    }
 //
 //    @Test // Тест с пустым email
 //    public void shouldReturnErrorWhenEmailMissing() {
