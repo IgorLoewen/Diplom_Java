@@ -2,26 +2,27 @@ package steps;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import models.OrderModel;
 
 import static io.restassured.RestAssured.given;
 
 public class OrderSteps {
 
     @Step("Создание заказа с авторизацией")
-    public Response createOrderWithAuthorization(String accessToken, String requestBody) {
+    public Response createOrderWithAuthorization(String accessToken, OrderModel orderModel) {
         return given()
                 .header("Authorization", accessToken)
                 .header("Content-Type", "application/json")
-                .body(requestBody)
+                .body(orderModel)
                 .when()
                 .post("/api/orders");
     }
 
     @Step("Создание заказа без авторизации")
-    public Response createOrderWithoutAuthorization(String requestBody) {
+    public Response createOrderWithoutAuthorization(OrderModel orderModel) {
         return given()
                 .header("Content-Type", "application/json")
-                .body(requestBody)
+                .body(orderModel)
                 .when()
                 .post("/api/orders");
     }
