@@ -1,6 +1,9 @@
 package praktikum;
 
 import data.UserData;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -11,20 +14,22 @@ import steps.UserSteps;
 import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class CreateUserTest{
+@Epic("Создание пользователя")
+public class CreateUserTest {
 
     public UserSteps userSteps;
     public Response response;
 
 
-
-   @Before
+    @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
         userSteps = new UserSteps();
     }
 
-    @Test // создать уникального пользователя;
+    @DisplayName("Создание уникального пользователя")
+    @Description("Этот тест проверяет возможность создания пользователя с валидными данными.")
+    @Test
     public void uniqueUserCreating() {
         response = userSteps.createUser(UserData.getValidUser());
 
@@ -33,7 +38,9 @@ public class CreateUserTest{
                 .body("success", equalTo(true));
     }
 
-    @Test // создать пользователя, который уже зарегистрирован;
+    @DisplayName("Создание дублирующегося пользователя")
+    @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка.")
+    @Test
     public void duplicateUserCreationReturnsError() {
         response = userSteps.createUser(UserData.getValidUser());
 
@@ -44,39 +51,6 @@ public class CreateUserTest{
                 .body("message", equalTo("User already exists"));
 
     }
-//
-//    @Test // Тест с пустым email
-//    public void shouldReturnErrorWhenEmailMissing() {
-//
-//        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(0));
-//
-//        response.then()
-//                .statusCode(403)
-//                .body("success", equalTo(false))
-//                .body("message", equalTo("Email, password and name are required fields"));
-//    }
-//
-//    @Test // Тест с пустым паролем
-//    public void shouldReturnErrorWhenPasswordMissing() {
-//
-//        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(1));
-//
-//        response.then()
-//                .statusCode(403)
-//                .body("success", equalTo(false))
-//                .body("message", equalTo("Email, password and name are required fields"));
-//    }
-//
-//    @Test // Тест с пустым именем
-//    public void shouldReturnErrorWhenNameMissing() {
-//
-//        Response response = userSteps.createUser(Data.INVALID_USER_REQUEST_BODIES.get(2));
-//
-//        response.then()
-//                .statusCode(403)
-//                .body("success", equalTo(false))
-//                .body("message", equalTo("Email, password and name are required fields"));
-//    }
 
 
     @After
@@ -86,5 +60,5 @@ public class CreateUserTest{
             userSteps.deleteUser();
             response = null;
         }
-   }
+    }
 }
