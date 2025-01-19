@@ -30,7 +30,7 @@ public class EditUserDataWithoutAuthorizationTest {
         this.userData = userData;
     }
 
-    @Parameterized.Parameters(name = "Тест с набором данных: {0}")
+    @Parameterized.Parameters(name = "Тест с набором данных для изменения данных пользователя без авторизации: {0}")
     public static List<UserModel> userData() {
 
         return UserData.getUserDataUpdateBodies();
@@ -44,7 +44,7 @@ public class EditUserDataWithoutAuthorizationTest {
 
     @Test
     @DisplayName("Изменение данных пользователя без авторизации")
-    @Description("Этот тест проверяет, что при попытке изменить данные пользователя без авторизации возвращается ошибка.")
+    @Description("Этот тест проверяет, что при попытке изменить данные пользователя без авторизации возвращается ошибка")
     public void shouldReturnErrorWhenEditingWithoutAuthorization() {
 
         Response response = userSteps.editUserDataWithoutAuthorization(userData);

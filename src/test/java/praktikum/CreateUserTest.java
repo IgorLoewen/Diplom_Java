@@ -30,7 +30,7 @@ public class CreateUserTest {
 
     @Test
     @DisplayName("Создание уникального пользователя")
-    @Description("Этот тест проверяет возможность создания пользователя с валидными данными.")
+    @Description("Этот тест проверяет возможность создания пользователя с валидными данными")
     public void uniqueUserCreating() {
         response = userSteps.createUser(UserData.getValidUser());
 
@@ -41,7 +41,7 @@ public class CreateUserTest {
 
     @Test
     @DisplayName("Создание дублирующегося пользователя")
-    @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка.")
+    @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка")
     public void duplicateUserCreationReturnsError() {
         response = userSteps.createUser(UserData.getValidUser());
 
@@ -52,7 +52,6 @@ public class CreateUserTest {
                 .body("message", equalTo("User already exists"));
 
     }
-
 
     @After
     public void tearDown() {

@@ -45,7 +45,7 @@ public class InvalidUserCreationParameterizedTest {
 
     @Test
     @DisplayName("Создание пользователя с отсутствующим обязательным полем")
-    @Description("Этот тест проверяет, что при попытке создать пользователя с отсутствующим email, паролем или именем возвращается ошибка.")
+    @Description("Этот тест проверяет, что при попытке создать пользователя с отсутствующим email, паролем или именем возвращается ошибка")
     public void shouldReturnErrorForInvalidUser() {
 
         response = userSteps.createUser(UserData.getInvalidUserRequests().get(index));

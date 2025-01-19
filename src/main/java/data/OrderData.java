@@ -10,7 +10,8 @@ public class OrderData {
     // Main URL
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
 
-    // Список тел заказов с ингредиентами
+   /**         Список тел заказов с ингредиентами.
+    Больше тел, чем по заданию — это просто практика для меня    */
     public static List<OrderModel> getOrderBodies() {
         return Arrays.asList(
                 new OrderModel(List.of("61c0c5a71d1f82001bdaaa6d")),

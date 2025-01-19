@@ -30,7 +30,7 @@ public class InvalidUserLoginParameterizedTest {
         this.index = index;
     }
 
-    @Parameterized.Parameters(name = "Тест - логин с некорректными данными, индекс: {0}")
+    @Parameterized.Parameters(name = "Тест - логин с неверным логином и паролем, индекс: {0}")
     public static Object[] invalidUserIndices() {
 
         return new Object[]{0, 1, 2};
@@ -45,7 +45,7 @@ public class InvalidUserLoginParameterizedTest {
 
     @Test
     @DisplayName("Попытка логина с некорректными данными")
-    @Description("Этот тест проверяет, что при логине с пустым email, паролем или именем возвращается ошибка.")
+    @Description("Этот тест проверяет, что при логине с пустым email, паролем или именем возвращается ошибка")
     public void userLoginWithInvalidData() {
 
         response = userSteps.loginUser(UserData.getInvalidLoginRequests().get(index));

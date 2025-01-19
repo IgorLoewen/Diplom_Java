@@ -33,7 +33,7 @@ public class EditUserDataWithAuthorizationTest {
 
     @Test
     @DisplayName("Изменение email с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить email пользователя с авторизацией. Ожидаемый статус ответа: 200.")
+    @Description("Этот тест проверяет, что можно изменить email пользователя с авторизацией")
     public void editUserDataWithAuthorizationEmailChange() {
 
         userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(0))
@@ -47,7 +47,7 @@ public class EditUserDataWithAuthorizationTest {
 
     @Test
     @DisplayName("Изменение пароля с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить пароль пользователя с авторизацией. Ожидаемый статус ответа: 200.")
+    @Description("Этот тест проверяет, что можно изменить пароль пользователя с авторизацией")
     public void editUserDataWithAuthorizationPasswordChange() {
 
         userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(1))
@@ -61,7 +61,7 @@ public class EditUserDataWithAuthorizationTest {
 
     @Test
     @DisplayName("Изменение имени с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить имя пользователя с авторизацией. Ожидаемый статус ответа: 200.")
+    @Description("Этот тест проверяет, что можно изменить имя пользователя с авторизацией")
     public void editUserDataWithAuthorizationNameChange() {
 
         userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(2))
