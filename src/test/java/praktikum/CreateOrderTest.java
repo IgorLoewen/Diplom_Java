@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static data.Data.*;
+import static data.OrderData.BASE_URL;
 import static io.restassured.RestAssured.given;
 import static java.util.function.Predicate.not;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -32,7 +33,7 @@ public class CreateOrderTest {
 
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
+        RestAssured.baseURI = BASE_URL;
         userSteps = new UserSteps();
         orderSteps = new OrderSteps();
         response = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);

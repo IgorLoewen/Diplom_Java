@@ -8,6 +8,7 @@ import org.junit.Test;
 import steps.UserSteps;
 
 import static data.Data.*;
+import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 
@@ -20,7 +21,7 @@ public class EditUserDataTest {
 
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
+        RestAssured.baseURI = BASE_URL;
         userSteps = new UserSteps();
         response = userSteps.createUser(VALID_UNIQUE_USER_REQUEST_BODY);
         userSteps.getAccessToken(response);
