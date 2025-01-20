@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import pages.LoginPage;
 import pages.MainPage;
 import pages.RegisterPage;
 import steps.UserSteps;
@@ -45,7 +46,7 @@ public class RegistrationTest extends TestsSetUp {
         registerPage.enterPassword(driver, UserData.PASSWORD);
         registerPage.clickRegisterButton(driver);
 
-        String expectedUrl = MainPage.BASE_URL + "login";
+        String expectedUrl = LoginPage.LOGIN_URL;
 
         assertEquals("URL после регистрации должен указывать на страницу логина", expectedUrl, driver.getCurrentUrl());
     }
