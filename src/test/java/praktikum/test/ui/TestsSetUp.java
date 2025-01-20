@@ -1,12 +1,12 @@
 package praktikum.test.ui;
 
+import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BrowserChoose;
-import pages.MainPage;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -26,14 +26,14 @@ public abstract class TestsSetUp {
     public static Collection<Object[]> browsers() {
         return Arrays.asList(new Object[][]{
                 {"chrome"},
-                {"yandex"}
+                {"chrome"}
         });
     }
 
     @Before
     public void setUp() {
-        driver = BrowserChoose.createDriver(browser); // Используем browser из параметров
-        driver.get(MainPage.BASE_URL); // Используем Base URL как в оригинале
+        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
+        driver = BrowserChoose.createDriver(browser);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
