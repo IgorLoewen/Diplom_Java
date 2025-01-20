@@ -6,14 +6,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BrowserChoose {
 
-
     public static WebDriver createDriver(String browser) {
 
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 
+        setDriverPath(browser.toLowerCase());
 
         ChromeOptions options = new ChromeOptions();
         addCommonArguments(options);
+
 
         switch (browser.toLowerCase()) {
             case "chrome":
@@ -27,6 +27,19 @@ public class BrowserChoose {
         }
 
         return new ChromeDriver(options);
+    }
+
+    private static void setDriverPath(String browser) {
+        switch (browser) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                break;
+            case "yandex":
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver-yandex");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
     }
 
     private static void addCommonArguments(ChromeOptions options) {

@@ -9,22 +9,17 @@ import java.time.Duration;
 
 public class RegisterPage {
 
-    // ========================= Константы =========================
-    // Конкатенация BASE_URL с относительным путем
+    // ========================= URL =========================
     public static final String REGISTER_URL = MainPage.BASE_URL + "register";
 
-
-    // ========================= Локаторы элементов =========================
-    // Поле "Имя"
+    // ========================= Локаторы =========================
     private static final By NAME_INPUT = By.xpath("//input[@name='name' and @type='text']");
-    // Поле "Email"
     private static final By EMAIL_INPUT = By.xpath("(//input[@type='text'])[2]");
-    // Поле "Пароль"
     private static final By PASSWORD_INPUT = By.xpath("//input[@name='Пароль' and @type='password']");
-    // Кнопка "Зарегистрироваться"
     private static final By REGISTER_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Зарегистрироваться']");
+    private static final By PASSWORD_ERROR_TEXT = By.cssSelector("p.input__error.text_type_main-default");
 
-    // Методы взаимодействия
+    // ========================= Методы =========================
     public void enterName(WebDriver driver, String name) {
         driver.findElement(NAME_INPUT).sendKeys(name);
     }
@@ -36,12 +31,20 @@ public class RegisterPage {
     public void enterPassword(WebDriver driver, String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
+
     public void clickRegisterButton(WebDriver driver) {
         driver.findElement(REGISTER_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
-    public static final By PASSWORD_ERROR_TEXT = By.xpath("//p[contains(text(), 'Некорректный пароль')]");
+    public void clickRegisterButtonWithoutWait(WebDriver driver) {
+        driver.findElement(REGISTER_BUTTON).click();
+    }
 
+    public String getPasswordErrorMessage(WebDriver driver) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT))
+                .getText();
+    }
 }

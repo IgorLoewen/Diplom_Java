@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.LoginPage;
-import pages.MainPage;
 import pages.RegisterPage;
 import steps.UserSteps;
 
@@ -51,12 +50,36 @@ public class RegistrationTest extends TestsSetUp {
         assertEquals("URL после регистрации должен указывать на страницу логина", expectedUrl, driver.getCurrentUrl());
     }
 
+
+    @Test
+    @Description("Тест проверяет сообщения об ошибке при вводе некорректного пароля")
+    @DisplayName("Проверка ошибок для некорректного пароля")
+    public void testErrorsForInvalidPasswords() {
+        RegisterPage registerPage = new RegisterPage();
+
+
+        registerPage.enterName(driver, UserData.NAME);
+        registerPage.enterEmail(driver, UserData.EMAIL);
+        registerPage.enterPassword(driver, "123");
+        registerPage.clickRegisterButtonWithoutWait(driver);
+
+
+        String actualErrorMessage = registerPage.getPasswordErrorMessage(driver);
+
+        assertEquals("Некорректный пароль", actualErrorMessage);
+    }
+
+
     @After
     @Step("Очистка данных после теста")
     @Description("Удаляет пользователя, созданного в ходе теста")
     public void cleanUpAfterUserRegistration() {
         Response loginResponse = userSteps.loginUser(UserData.getValidLogin());
         userSteps.getAccessToken(loginResponse);
-        userSteps.deleteUser();
+
+        if (userSteps.accessToken != null) {
+            userSteps.deleteUser();
+        }
     }
+
 }

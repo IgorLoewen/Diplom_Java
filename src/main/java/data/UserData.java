@@ -8,7 +8,7 @@ import java.util.List;
 public class UserData {
 
     // Основные данные для пользователя
-    public static final String EMAIL = "asdfadssdaxssdрfdsd@fg.ru";
+    public static final String EMAIL = "asdfadssdafffxssdрfdsd@fg.ru";
     public static final String PASSWORD = "12345dfg678";
     public static final String NAME = "abcddcdfgba";
 
