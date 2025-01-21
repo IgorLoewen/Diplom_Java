@@ -43,7 +43,9 @@ public abstract class TestsSetUp {
     @DisplayName("Завершение тестового окружения")
     public void tearDown() {
         if (driver != null) {
+            driver.close();
             driver.quit();
         }
     }
+
 }

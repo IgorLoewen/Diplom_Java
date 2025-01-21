@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
     // ========================= Константы =========================
@@ -24,7 +28,10 @@ public class LoginPage {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
+
     public void clickLoginButton(WebDriver driver) {
         driver.findElement(LOGIN_BUTTON).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe(MainPage.BASE_URL));
     }
 }

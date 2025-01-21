@@ -63,7 +63,6 @@ public class RegistrationTest extends TestsSetUp {
         registerPage.enterPassword(driver, "123");
         registerPage.clickRegisterButtonWithoutWait(driver);
 
-
         String actualErrorMessage = registerPage.getPasswordErrorMessage(driver);
 
         assertEquals("Некорректный пароль", actualErrorMessage);
