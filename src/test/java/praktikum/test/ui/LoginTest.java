@@ -51,7 +51,6 @@ public class LoginTest extends TestsSetUp {
         loginPage.clickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
-
         assertEquals(expectedUrl, driver.getCurrentUrl());
 
     }
@@ -69,7 +68,6 @@ public class LoginTest extends TestsSetUp {
         loginPage.clickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
-
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
@@ -89,7 +87,6 @@ public class LoginTest extends TestsSetUp {
         loginPage.clickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
-
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 

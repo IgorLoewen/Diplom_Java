@@ -46,7 +46,6 @@ public class RegistrationTest extends TestsSetUp {
         registerPage.clickRegisterButton(driver);
 
         String expectedUrl = LoginPage.LOGIN_URL;
-
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
@@ -64,7 +63,6 @@ public class RegistrationTest extends TestsSetUp {
         registerPage.clickRegisterButtonWithoutWait(driver);
 
         String actualErrorMessage = registerPage.getPasswordErrorMessage(driver);
-
         assertEquals("Некорректный пароль", actualErrorMessage);
     }
 
