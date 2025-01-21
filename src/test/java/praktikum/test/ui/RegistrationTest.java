@@ -47,7 +47,7 @@ public class RegistrationTest extends TestsSetUp {
 
         String expectedUrl = LoginPage.LOGIN_URL;
 
-        assertEquals("URL после регистрации должен указывать на страницу логина", expectedUrl, driver.getCurrentUrl());
+        assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
 

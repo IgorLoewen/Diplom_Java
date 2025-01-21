@@ -18,6 +18,7 @@ public class LoginPage {
     private static final By PASSWORD_INPUT = By.xpath("//input[@class='text input__textfield text_type_main-default' and @type='password' and @name='Пароль']");
     private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти']");
     private static final By FORGOT_PASSWORD_BUTTON = By.xpath("//a[@class='Auth_link__1fOlj' and text()='Восстановить пароль']");
+    private static final By REGISTER_LINK = By.xpath("//a[contains(@class, 'Auth_link__1fOlj') and @href='/register']");
 
     // ========================= Методы =========================
     public void enterEmail(WebDriver driver, String email) {
@@ -33,5 +34,9 @@ public class LoginPage {
         driver.findElement(LOGIN_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe(MainPage.BASE_URL));
+    }
+
+    public void clickRegisterButton(WebDriver driver) {
+        driver.findElement(REGISTER_LINK).click();
     }
 }

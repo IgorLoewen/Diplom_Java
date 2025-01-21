@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.LoginPage;
 import pages.MainPage;
+import pages.RegisterPage;
 import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
@@ -33,16 +34,18 @@ public class LoginTest extends TestsSetUp {
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
-        driver.get(LoginPage.LOGIN_URL);
+        driver.get(MainPage.BASE_URL);
         loginResponse = userSteps.createUser(UserData.getValidUser());
     }
 
     @Test
     @Description("Тест проверяет вход по кнопке «Войти в аккаунт» через главную страницу")
     @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной")
-    public void testErrorsForInvalidPasswords() {
+    public void testLoginFromEnterToAccountButton() {
         LoginPage loginPage = new LoginPage();
+        MainPage mainPage = new MainPage();
 
+        mainPage.clickLoginButton(driver);
         loginPage.enterEmail(driver, UserData.EMAIL);
         loginPage.enterPassword(driver, UserData.PASSWORD);
         loginPage.clickLoginButton(driver);
@@ -51,6 +54,43 @@ public class LoginTest extends TestsSetUp {
 
         assertEquals(expectedUrl, driver.getCurrentUrl());
 
+    }
+
+    @Test
+    @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице")
+    @DisplayName("Проверка входа через кнопку «Личный кабинет»")
+    public void testLoginWithPersonalCabinetButton() {
+        LoginPage loginPage = new LoginPage();
+        MainPage mainPage = new MainPage();
+
+        mainPage.clickToLoginFromPersonalAccount(driver);
+        loginPage.enterEmail(driver, UserData.EMAIL);
+        loginPage.enterPassword(driver, UserData.PASSWORD);
+        loginPage.clickLoginButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test
+    @Description("Тест проверяет успешность входа через кнопку в форме регистрации")
+    @DisplayName("Проверка входа через регистрацию")
+    public void testLoginThroughRegistrationButton() {
+        RegisterPage registerPage = new RegisterPage();
+        MainPage mainPage = new MainPage();
+        LoginPage loginPage = new LoginPage();
+
+        mainPage.clickLoginButton(driver);
+        loginPage.clickRegisterButton(driver);
+        registerPage.clickEnterButton(driver);
+        loginPage.enterEmail(driver, UserData.EMAIL);
+        loginPage.enterPassword(driver, UserData.PASSWORD);
+        loginPage.clickLoginButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+
+        assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
     @After

@@ -18,6 +18,7 @@ public class RegisterPage {
     private static final By PASSWORD_INPUT = By.xpath("//input[@name='Пароль' and @type='password']");
     private static final By REGISTER_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Зарегистрироваться']");
     private static final By PASSWORD_ERROR_TEXT = By.cssSelector("p.input__error.text_type_main-default");
+    private static final By LOGIN_LINK = By.xpath("//a[contains(@class, 'Auth_link__1fOlj') and @href='/login']");
 
     // ========================= Методы =========================
     public void enterName(WebDriver driver, String name) {
@@ -46,5 +47,9 @@ public class RegisterPage {
         return new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT))
                 .getText();
+    }
+
+    public void clickEnterButton(WebDriver driver) {
+        driver.findElement(LOGIN_LINK).click();
     }
 }
