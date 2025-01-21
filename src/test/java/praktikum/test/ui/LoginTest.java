@@ -56,7 +56,7 @@ public class LoginTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице")
+    @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице и сразу проверяет переход с главной страницы в кабинет")
     @DisplayName("Проверка входа через кнопку «Личный кабинет»")
     public void testLoginWithPersonalCabinetButton() {
         LoginPage loginPage = new LoginPage();
@@ -81,6 +81,25 @@ public class LoginTest extends TestsSetUp {
 
         mainPage.clickLoginButton(driver);
         loginPage.clickRegisterButton(driver);
+        registerPage.clickEnterButton(driver);
+        loginPage.enterEmail(driver, UserData.EMAIL);
+        loginPage.enterPassword(driver, UserData.PASSWORD);
+        loginPage.clickLoginButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test
+    @Description("Тест проверяет успешность входа в систему через кнопку, расположенную в форме восстановления пароля. Сценарий включает проверку корректности работы кнопки, переходов и ввода учетных данных")
+    @DisplayName("Проверка входа через кнопку в форме восстановления пароля")
+    public void testLoginThroughRecoveryPasswortTemplate() {
+        RegisterPage registerPage = new RegisterPage();
+        MainPage mainPage = new MainPage();
+        LoginPage loginPage = new LoginPage();
+
+        mainPage.clickLoginButton(driver);
+        loginPage.clickRecoveryPasswordButton(driver);
         registerPage.clickEnterButton(driver);
         loginPage.enterEmail(driver, UserData.EMAIL);
         loginPage.enterPassword(driver, UserData.PASSWORD);

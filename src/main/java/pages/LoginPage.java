@@ -39,4 +39,8 @@ public class LoginPage {
     public void clickRegisterButton(WebDriver driver) {
         driver.findElement(REGISTER_LINK).click();
     }
+
+    public void clickRecoveryPasswordButton(WebDriver driver) {
+        driver.findElement(FORGOT_PASSWORD_BUTTON).click();
+    }
 }

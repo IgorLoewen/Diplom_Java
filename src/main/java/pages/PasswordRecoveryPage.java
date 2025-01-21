@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PasswordRecoveryPage  {
+public class PasswordRecoveryPage {
     // ========================= Константы =========================
 
     // ========================= URL =========================
