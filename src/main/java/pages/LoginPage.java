@@ -4,15 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    // Конкатенация BASE_URL с относительным путем
+    // ========================= Константы =========================
+
+    // ========================= URL =========================
     public static final String LOGIN_URL = MainPage.BASE_URL + "login";
 
-    // Локаторы элементов
-    private static final By EMAIL_INPUT = By.id("email"); // Замените на актуальный локатор
-    private static final By PASSWORD_INPUT = By.id("password");
-    private static final By LOGIN_BUTTON = By.id("login-button");
+    // ========================= Локаторы =========================
+    private static final By EMAIL_INPUT = By.xpath("//input[@class='text input__textfield text_type_main-default' and @type='text' and @name='name']");
+    private static final By PASSWORD_INPUT = By.xpath("//input[@class='text input__textfield text_type_main-default' and @type='password' and @name='Пароль']");
+    private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти']");
+    private static final By FORGOT_PASSWORD_BUTTON = By.xpath("//a[@class='Auth_link__1fOlj' and text()='Восстановить пароль']");
 
-    // Методы взаимодействия
+    // ========================= Методы =========================
     public void enterEmail(WebDriver driver, String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }

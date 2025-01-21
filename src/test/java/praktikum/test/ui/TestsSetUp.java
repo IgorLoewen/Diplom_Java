@@ -1,7 +1,6 @@
 package praktikum.test.ui;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.junit.After;
@@ -26,14 +25,9 @@ public abstract class TestsSetUp {
 
     @Parameterized.Parameters(name = "Browser: {0}")
     public static Collection<Object[]> browsers() {
-        return Arrays.asList(new Object[][]{
-                {"chrome"},
-                {"yandex"}
-        });
+        return Arrays.asList(new Object[][]{{"chrome"}, {"yandex"}});
     }
 
-    @Step("Выбор браузера: {browser}")
-    private void logBrowserSetup(String browser) {}
 
     @Before
     @Description("Настройка драйвера и базового URL для тестов")
@@ -41,7 +35,6 @@ public abstract class TestsSetUp {
     public void setUp() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
         driver = BrowserChoose.createDriver(browser);
-        logBrowserSetup(browser);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 

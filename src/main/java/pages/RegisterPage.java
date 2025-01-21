@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegisterPage {
-
+    // ========================= Константы =========================
     // ========================= URL =========================
     public static final String REGISTER_URL = MainPage.BASE_URL + "register";
 
