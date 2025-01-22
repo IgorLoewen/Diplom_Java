@@ -9,15 +9,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import pages.LoginPage;
 import pages.MainPage;
-import pages.RegisterPage;
 import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
 
 
-@Epic("Логин пользователя")
+@Epic("Навигация авторизированного пользователя по сайту")
 @RunWith(Parameterized.class)
 public class NaviTest extends TestsSetUp {
 
@@ -29,33 +27,31 @@ public class NaviTest extends TestsSetUp {
     }
 
     @Before
-    @Step("Подготовка окружения для теста")
-    @Description("Создаёт окружение, открывает страницу логина, инициализирует UserSteps и создается новый пользователь")
+    @Step("Инициализация тестового окружения, создание пользователя и установка токена")
+    @Description("Выполняет инициализацию окружения для теста: создаёт уникального пользователя через API, авторизует его, извлекает accessToken, передаёт токен в localStorage браузера и обновляет сессию для тестов.")
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
         driver.get(MainPage.BASE_URL);
         userSteps.createUser(UserData.getValidUser());
-
-
+        loginResponse = userSteps.loginUser(UserData.getValidLogin());
+        userSteps.getAccessToken(loginResponse);
+        userSteps.setTokenInLocalStorage(driver, userSteps.accessToken);
+        driver.navigate().refresh();
     }
+
 
     @Test
     @Description("Тест проверяет, что по клику на кнопку «Личный кабинет» осуществляется переход в личный кабинет")
-    @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для зарегистрированного пользователя")
+    @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
     public void testNavigateToPersonalCabinet() {
-        LoginPage loginPage = new LoginPage();
+
         MainPage mainPage = new MainPage();
 
-        mainPage.clickToLoginFromPersonalAccount(driver);
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
-        loginPage.clickLoginButton(driver);
         mainPage.clickToPersonalAccountFromMainPage(driver);
 
         String expectedUrl = MainPage.PROFILE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
-
     }
 
     @After

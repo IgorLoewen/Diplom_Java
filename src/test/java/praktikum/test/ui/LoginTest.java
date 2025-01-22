@@ -117,7 +117,6 @@ public class LoginTest extends TestsSetUp {
         if (loginResponse != null) {
             userSteps.getAccessToken(loginResponse);
             userSteps.deleteUser();
-            loginResponse = null;
         }
     }
 }

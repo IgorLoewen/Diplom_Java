@@ -3,6 +3,8 @@ package steps;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.UserModel;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 import static io.restassured.RestAssured.given;
 
@@ -68,5 +70,12 @@ public class UserSteps {
                 email, newPassword
         );
     }
+
+    @Step("Передача токена в localStorage браузера")
+    public void setTokenInLocalStorage(WebDriver driver, String token) {
+        ((JavascriptExecutor) driver).executeScript(
+                "window.localStorage.setItem('accessToken', arguments[0]);", token);
+    }
+
 
 }
