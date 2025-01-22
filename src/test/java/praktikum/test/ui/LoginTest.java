@@ -40,7 +40,7 @@ public class LoginTest extends TestsSetUp {
 
     @Test
     @Description("Тест проверяет вход по кнопке «Войти в аккаунт» через главную страницу")
-    @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной")
+    @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной и так же проверка логина")
     public void testLoginFromEnterToAccountButton() {
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
@@ -57,7 +57,7 @@ public class LoginTest extends TestsSetUp {
 
     @Test
     @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице и сразу проверяет переход с главной страницы в кабинет")
-    @DisplayName("Проверка входа через кнопку «Личный кабинет»")
+    @DisplayName("Проверка входа через кнопку «Личный кабинет» и так же проверка логина")
     public void testLoginWithPersonalCabinetButton() {
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
@@ -73,7 +73,7 @@ public class LoginTest extends TestsSetUp {
 
     @Test
     @Description("Тест проверяет успешность входа через кнопку в форме регистрации")
-    @DisplayName("Проверка входа через регистрацию")
+    @DisplayName("Проверка входа через регистрацию и так же проверка логина")
     public void testLoginThroughRegistrationButton() {
         RegisterPage registerPage = new RegisterPage();
         MainPage mainPage = new MainPage();
@@ -92,7 +92,7 @@ public class LoginTest extends TestsSetUp {
 
     @Test
     @Description("Тест проверяет успешность входа в систему через кнопку, расположенную в форме восстановления пароля. Сценарий включает проверку корректности работы кнопки, переходов и ввода учетных данных")
-    @DisplayName("Проверка входа через кнопку в форме восстановления пароля")
+    @DisplayName("Проверка входа через кнопку в форме восстановления пароля и так же проверка логина")
     public void testLoginThroughRecoveryPasswortTemplate() {
         RegisterPage registerPage = new RegisterPage();
         MainPage mainPage = new MainPage();
@@ -111,7 +111,7 @@ public class LoginTest extends TestsSetUp {
 
     @After
     @Step("Очистка данных после теста")
-    @Description("Удаляет пользователя, созданный перед началом теста")
+    @Description("Удаляет пользователя, созданного перед началом теста")
     public void tearDown() {
         super.tearDown();
         if (loginResponse != null) {
