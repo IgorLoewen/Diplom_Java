@@ -14,8 +14,6 @@ public class MainPage {
     // ========================= URL =========================
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site/";
 
-    public static final String PROFILE_URL = "https://stellarburgers.nomoreparties.site/account/profile";
-
     // ========================= Локаторы =========================
     private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти в аккаунт']");
     private static final By PERSONAL_ACCOUNT_LINK = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");

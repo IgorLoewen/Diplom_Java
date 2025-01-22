@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.MainPage;
+import pages.ProfilePage;
 import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
@@ -50,7 +51,22 @@ public class NaviTest extends TestsSetUp {
 
         mainPage.clickToPersonalAccountFromMainPage(driver);
 
-        String expectedUrl = MainPage.PROFILE_URL;
+        String expectedUrl = ProfilePage.PROFILE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test
+    @Description("Тест проверяет, что по клику на кнопку «Конструктор» осуществляется переход из личного кабинета в конструктор")
+    @DisplayName("Переход из личного кабинета в конструктор через кнопку «Конструктор»")
+    public void testNavigateToConstructorFromPersonalCabinet() {
+
+        ProfilePage profilePage = new ProfilePage();
+        MainPage mainPage = new MainPage();
+
+        mainPage.clickToPersonalAccountFromMainPage(driver);
+        profilePage.clickToConstructorButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
