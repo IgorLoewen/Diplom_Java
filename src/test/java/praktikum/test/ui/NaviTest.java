@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 import pages.ProfilePage;
 import steps.UserSteps;
@@ -47,9 +48,7 @@ public class NaviTest extends TestsSetUp {
     @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
     public void testNavigateToPersonalCabinet() {
 
-        MainPage mainPage = new MainPage();
-
-        mainPage.clickToPersonalAccountFromMainPage(driver);
+        navigateToPersonalAccount(driver);
 
         String expectedUrl = ProfilePage.PROFILE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -61,9 +60,8 @@ public class NaviTest extends TestsSetUp {
     public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
 
         ProfilePage profilePage = new ProfilePage();
-        MainPage mainPage = new MainPage();
+        navigateToPersonalAccount(driver);
 
-        mainPage.clickToPersonalAccountFromMainPage(driver);
         profilePage.clickToConstructorButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
@@ -76,9 +74,8 @@ public class NaviTest extends TestsSetUp {
     public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
 
         ProfilePage profilePage = new ProfilePage();
-        MainPage mainPage = new MainPage();
+        navigateToPersonalAccount(driver);
 
-        mainPage.clickToPersonalAccountFromMainPage(driver);
         profilePage.clickToLogoButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
@@ -95,4 +92,10 @@ public class NaviTest extends TestsSetUp {
             userSteps.deleteUser();
         }
     }
+
+    private void navigateToPersonalAccount(WebDriver driver) {
+        MainPage mainPage = new MainPage();
+        mainPage.clickToPersonalAccountFromMainPage(driver);
+    }
+
 }
