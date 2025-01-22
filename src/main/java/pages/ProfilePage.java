@@ -19,10 +19,17 @@ public class ProfilePage {
 
     private static final By PERSONAL_ACCOUNT_LINK = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
 
+    private static final By STELLAR_BURGER_LOGO = By.xpath("//div[contains(@class, 'AppHeader_header__logo__2D0X2')]");
 
     // ========================= Методы =========================
     public void clickToConstructorButton(WebDriver driver) {
         driver.findElement(CONSTRUCTOR_BUTTON).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
+    }
+
+    public void clickToLogoButton(WebDriver driver) {
+        driver.findElement(STELLAR_BURGER_LOGO).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
     }
