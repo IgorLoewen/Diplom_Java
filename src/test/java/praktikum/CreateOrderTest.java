@@ -99,7 +99,5 @@ public class CreateOrderTest {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
         }
-        response = null;
-        token = null;
     }
 }

@@ -66,7 +66,5 @@ public class GetOrderDataTest {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
         }
-        response = null;
-        token = null;
     }
 }

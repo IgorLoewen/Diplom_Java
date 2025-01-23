@@ -58,7 +58,6 @@ public class CreateUserTest {
         if (response != null) {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
-            response = null;
         }
     }
 }

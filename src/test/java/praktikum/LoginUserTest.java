@@ -46,7 +46,5 @@ public class LoginUserTest {
             userSteps.getAccessToken(uniqueUserCreating);
             userSteps.deleteUser();
         }
-        uniqueUserCreating = null;
-        response = null;
     }
 }

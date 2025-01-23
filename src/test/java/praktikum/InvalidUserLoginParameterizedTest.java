@@ -63,7 +63,5 @@ public class InvalidUserLoginParameterizedTest {
             userSteps.getAccessToken(uniqueUserCreating);
             userSteps.deleteUser();
         }
-        uniqueUserCreating = null;
-        response = null;
     }
 }

@@ -78,8 +78,6 @@ public class EditUserDataWithAuthorizationTest {
         if (response != null) {
             userSteps.getAccessToken(response);
             userSteps.deleteUser();
-            response = null;
-            token = null;
         }
     }
 }

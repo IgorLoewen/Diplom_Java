@@ -7,9 +7,9 @@ import java.util.List;
 
 public class UserData {
     // Основные данные для пользователя
-    public static final String EMAIL = "fукses@dfk4dfdsw.ru";
+    public static final String EMAIL = "fукses@dfk4dfsw.ru";
     public static final String PASSWORD = "12345678";
-    public static final String NAME = "abcddcba";
+    public static final String NAME = "abcddcbab";
 
     // Валидное тело для создания уникального пользователя
     public static UserModel getValidUser() {

@@ -57,10 +57,4 @@ public class InvalidUserCreationParameterizedTest {
                 .body("message", equalTo("Email, password and name are required fields"));
     }
 
-    @After
-    public void tearDown() {
-        if (response != null) {
-            response = null;
-        }
-    }
 }
