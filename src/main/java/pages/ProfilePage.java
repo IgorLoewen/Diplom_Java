@@ -17,7 +17,7 @@ public class ProfilePage {
     // ========================= Локаторы =========================
     private static final By CONSTRUCTOR_BUTTON = By.xpath("//p[contains(@class, 'AppHeader_header__linkText__3q_va') and contains(@class, 'ml-2') and text()='Конструктор']");
 
-    private static final By PERSONAL_ACCOUNT_LINK = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
+    private static final By LOGOUT_BUTTON = By.xpath("//button[contains(@class, 'Account_button__14Yp3') and text()='Выход']");
 
     private static final By STELLAR_BURGER_LOGO = By.xpath("//div[contains(@class, 'AppHeader_header__logo__2D0X2')]");
 
@@ -29,6 +29,12 @@ public class ProfilePage {
     }
 
     public void clickToLogoButton(WebDriver driver) {
+        driver.findElement(STELLAR_BURGER_LOGO).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
+    }
+
+    public void clickLogoutButton(WebDriver driver) {
         driver.findElement(STELLAR_BURGER_LOGO).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));

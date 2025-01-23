@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import pages.MainPage;
 import pages.ProfilePage;
 import steps.UserSteps;
@@ -83,19 +84,19 @@ public class NaviTest extends TestsSetUp {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-//    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
-//    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
-//    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
-//    public void testLogoutFromPersonalCabinet() throws InterruptedException {
-//
-//        ProfilePage profilePage = new ProfilePage();
-//        navigateToPersonalCabinet(driver);
-//
-//        profilePage.clickToLogoButton(driver);
-//        Thread.sleep(30000);
-//
-//
-//    }
+    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
+    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
+    public void testLogoutFromPersonalCabinet() throws InterruptedException {
+
+        ProfilePage profilePage = new ProfilePage();
+        navigateToPersonalCabinet(driver);
+
+        profilePage.clickLogoutButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
 
     @After
     @Step("Очистка данных после теста")
