@@ -30,7 +30,7 @@ public class NaviTest extends TestsSetUp {
 
     @Before
     @Step("Инициализация тестового окружения, создание пользователя и установка токена")
-    @Description("Выполняет инициализацию окружения для теста: создаёт уникального пользователя через API, авторизует его, извлекает accessToken, передаёт токен в localStorage браузера и обновляет сессию для тестов.")
+    @Description("Выполняет инициализацию окружения для теста: создаёт уникального пользователя через API, авторизует его, извлекает accessToken и refreshToken, передаёт токены в localStorage браузера и обновляет сессию для тестов.")
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
@@ -39,6 +39,7 @@ public class NaviTest extends TestsSetUp {
         loginResponse = userSteps.loginUser(UserData.getValidLogin());
         userSteps.getAccessToken(loginResponse);
         userSteps.setTokenInLocalStorage(driver, userSteps.accessToken);
+        userSteps.setRefreshTokenInLocalStorage(driver, userSteps.refreshToken);
         driver.navigate().refresh();
     }
 
@@ -48,7 +49,7 @@ public class NaviTest extends TestsSetUp {
     @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
     public void testNavigateToPersonalCabinet() {
 
-        navigateToPersonalAccount(driver);
+        navigateToPersonalCabinet(driver);
 
         String expectedUrl = ProfilePage.PROFILE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -60,7 +61,7 @@ public class NaviTest extends TestsSetUp {
     public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
 
         ProfilePage profilePage = new ProfilePage();
-        navigateToPersonalAccount(driver);
+        navigateToPersonalCabinet(driver);
 
         profilePage.clickToConstructorButton(driver);
 
@@ -74,13 +75,27 @@ public class NaviTest extends TestsSetUp {
     public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
 
         ProfilePage profilePage = new ProfilePage();
-        navigateToPersonalAccount(driver);
+        navigateToPersonalCabinet(driver);
 
         profilePage.clickToLogoButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
+
+//    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+//    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
+//    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
+//    public void testLogoutFromPersonalCabinet() throws InterruptedException {
+//
+//        ProfilePage profilePage = new ProfilePage();
+//        navigateToPersonalCabinet(driver);
+//
+//        profilePage.clickToLogoButton(driver);
+//        Thread.sleep(30000);
+//
+//
+//    }
 
     @After
     @Step("Очистка данных после теста")
@@ -93,9 +108,10 @@ public class NaviTest extends TestsSetUp {
         }
     }
 
-    private void navigateToPersonalAccount(WebDriver driver) {
+    private void navigateToPersonalCabinet(WebDriver driver) {
         MainPage mainPage = new MainPage();
         mainPage.clickToPersonalAccountFromMainPage(driver);
     }
 
 }
+

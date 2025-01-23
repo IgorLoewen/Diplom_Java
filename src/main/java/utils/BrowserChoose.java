@@ -57,6 +57,7 @@ public class BrowserChoose {
         options.addArguments("--disable-background-networking");
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-autofill-keyboard-accessory-view[8]");
+        options.addArguments("--user-agent=CustomUserAgent");
     }
 
     private static void configureChrome(ChromeOptions options) {
