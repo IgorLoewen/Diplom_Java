@@ -24,6 +24,7 @@
 /build/
 # Игнорируем всю папку target
 /target/
+.allure/
 # Exclude temporary JaCoCo files but allow reports
 **/jacoco.exec
 
