@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.MainPage;
 import pages.RegisterPage;
@@ -42,13 +43,11 @@ public class LoginTest extends TestsSetUp {
     @Description("Тест проверяет вход по кнопке «Войти в аккаунт» через главную страницу")
     @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной и так же проверка логина")
     public void testLoginFromEnterToAccountButton() {
-        LoginPage loginPage = new LoginPage();
+
         MainPage mainPage = new MainPage();
 
         mainPage.clickLoginButton(driver);
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
-        loginPage.clickLoginButton(driver);
+        enterEmailPasswordAndClickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -59,13 +58,10 @@ public class LoginTest extends TestsSetUp {
     @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице и сразу проверяет переход с главной страницы в кабинет")
     @DisplayName("Проверка входа через кнопку «Личный кабинет» и так же проверка логина")
     public void testLoginWithPersonalCabinetButton() {
-        LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
 
         mainPage.clickToLoginFromPersonalAccount(driver);
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
-        loginPage.clickLoginButton(driver);
+        enterEmailPasswordAndClickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -82,9 +78,7 @@ public class LoginTest extends TestsSetUp {
         mainPage.clickLoginButton(driver);
         loginPage.clickRegisterButton(driver);
         registerPage.clickEnterButton(driver);
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
-        loginPage.clickLoginButton(driver);
+        enterEmailPasswordAndClickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -101,9 +95,7 @@ public class LoginTest extends TestsSetUp {
         mainPage.clickLoginButton(driver);
         loginPage.clickRecoveryPasswordButton(driver);
         registerPage.clickEnterButton(driver);
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
-        loginPage.clickLoginButton(driver);
+        enterEmailPasswordAndClickLoginButton(driver);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
@@ -118,5 +110,13 @@ public class LoginTest extends TestsSetUp {
             userSteps.getAccessToken(loginResponse);
             userSteps.deleteUser();
         }
+
+    }
+
+    private void enterEmailPasswordAndClickLoginButton(WebDriver driver) {
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterEmail(driver, UserData.EMAIL);
+        loginPage.enterPassword(driver, UserData.PASSWORD);
+        loginPage.clickLoginButton(driver);
     }
 }

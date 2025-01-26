@@ -12,7 +12,6 @@ import java.time.Duration;
 public class ProfilePage {
 
     // ========================= Константы =========================
-
     // ========================= URL =========================
     public static final String PROFILE_URL = "https://stellarburgers.nomoreparties.site/account/profile";
 
