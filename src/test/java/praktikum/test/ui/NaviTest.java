@@ -10,8 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import pages.MainPage;
 import pages.ProfilePage;
+import pages.RegisterPage;
 import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
@@ -93,41 +95,10 @@ public class NaviTest extends TestsSetUp {
 
         profilePage.clickLogoutButton(driver);
 
-        String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
+        String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
+        String actualText = driver.findElement(RegisterPage.LOGIN_HEADER).getText();
 
-    @Test
-    @Description("Тест проверяет, что по клику на раздел «Булки» пользователь переходит к соответствующему разделу")
-    @DisplayName("Переход к разделу «Булки»")
-    public void testNavigateToBunsSection() {
-
-        MainPage.clickWithOverlayHandling(driver,MainPage.BUNS_TAB);
-
-        String expectedUrl = MainPage.BASE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
-
-    @Test
-    @Description("Тест проверяет, что по клику на раздел «Соусы» пользователь переходит к соответствующему разделу")
-    @DisplayName("Переход к разделу «Соусы»")
-    public void testNavigateToSaucesSection() {
-
-        MainPage.clickWithOverlayHandling(driver,MainPage.SAUCES_TAB);
-
-        String expectedUrl = MainPage.BASE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
-
-    @Test
-    @Description("Тест проверяет, что по клику на раздел «Начинки» пользователь переходит к соответствующему разделу")
-    @DisplayName("Переход к разделу «Начинки»")
-    public void testNavigateToFillingsSection() {
-
-                MainPage.clickWithOverlayHandling(driver,MainPage.FILLINGS_TAB);
-
-        String expectedUrl = MainPage.BASE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
+        assertEquals("Текст на странице логина после выхода не совпадает с ожидаемым значением", expectedText, actualText);
     }
 
     @After

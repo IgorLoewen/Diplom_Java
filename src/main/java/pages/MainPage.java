@@ -26,11 +26,15 @@ public class MainPage {
     public static By FILLINGS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Начинки']]");
 
 
+    public static By BUNS_HEADER = By.xpath("//h2[contains(text(), 'Булки')]");
+    public static final String EXPECTED_BUNS_HEADER_TEXT = "Булки";
 
+    public static By SAUCES_HEADER = By.xpath("//h2[contains(text(), 'Соусы')]");
+    public static final String EXPECTED_SAUCES_HEADER_TEXT = "Соусы";
 
-    private static final By BUNS_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Булки']");
-    private static final By SAUCES_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Соусы']");
-    private static final By FILLINGS_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Начинки']");
+    public static By FILLINGS_HEADER = By.xpath("//span[contains(@class, 'text') and contains(@class, 'text_type_main-default') and text()='Начинки']");
+    public static final String EXPECTED_FILLINGS_HEADER_TEXT = "Начинки";
+
 
 
     // ========================= Методы =========================
