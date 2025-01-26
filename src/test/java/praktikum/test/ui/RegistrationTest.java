@@ -45,14 +45,17 @@ public class RegistrationTest extends TestsSetUp {
         registerPage.enterPassword(driver, UserData.PASSWORD);
         registerPage.clickRegisterButton(driver);
 
-        String expectedUrl = LoginPage.LOGIN_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
+        String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
+
+        String actualText = driver.findElement(RegisterPage.LOGIN_HEADER).getText();
+
+        assertEquals("Текст на странице логина после регистрации не совпадает с ожидаемым значением", expectedText, actualText);
     }
 
 
     @Test
     @Description("Тест проверяет сообщения об ошибке при вводе некорректного пароля")
-    @DisplayName("Проверка ошибок для некорректного пароля")
+    @DisplayName("Проверка ошибки для некорректного пароля")
     public void testErrorsForInvalidPasswords() {
         RegisterPage registerPage = new RegisterPage();
 

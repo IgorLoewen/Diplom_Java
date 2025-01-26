@@ -20,6 +20,9 @@ public class RegisterPage {
     private static final By PASSWORD_ERROR_TEXT = By.cssSelector("p.input__error.text_type_main-default");
     private static final By LOGIN_LINK = By.xpath("//a[contains(@class, 'Auth_link__1fOlj') and @href='/login']");
 
+    public static By LOGIN_HEADER = By.xpath("//h2[contains(text(), 'Вход')]");
+
+
     // ========================= Методы =========================
     public void enterName(WebDriver driver, String name) {
         driver.findElement(NAME_INPUT).sendKeys(name);
@@ -35,8 +38,7 @@ public class RegisterPage {
 
     public void clickRegisterButton(WebDriver driver) {
         driver.findElement(REGISTER_BUTTON).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
     public void clickRegisterButtonWithoutWait(WebDriver driver) {
@@ -44,9 +46,7 @@ public class RegisterPage {
     }
 
     public String getPasswordErrorMessage(WebDriver driver) {
-        return new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT))
-                .getText();
+        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT)).getText();
     }
 
     public void clickEnterButton(WebDriver driver) {

@@ -13,6 +13,7 @@ public class LoginPage {
     // ========================= URL =========================
     public static final String LOGIN_URL = MainPage.BASE_URL + "login";
 
+
     // ========================= Локаторы =========================
     private static final By EMAIL_INPUT = By.xpath("//input[@class='text input__textfield text_type_main-default' and @type='text' and @name='name']");
     private static final By PASSWORD_INPUT = By.xpath("//input[@class='text input__textfield text_type_main-default' and @type='password' and @name='Пароль']");
@@ -20,6 +21,7 @@ public class LoginPage {
     private static final By FORGOT_PASSWORD_BUTTON = By.xpath("//a[@class='Auth_link__1fOlj' and text()='Восстановить пароль']");
     private static final By REGISTER_LINK = By.xpath("//a[contains(@class, 'Auth_link__1fOlj') and @href='/register']");
 
+    public static final String EXPECTED_LOGIN_TEXT = "Вход";
     // ========================= Методы =========================
     public void enterEmail(WebDriver driver, String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
