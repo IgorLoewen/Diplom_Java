@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,8 +36,13 @@ public class ProfilePage {
     }
 
     public void clickLogoutButton(WebDriver driver) {
-        driver.findElement(STELLAR_BURGER_LOGO).click();
+
+        WebElement clickButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_BUTTON));
+
+        clickButton.click();
+
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/"));
+                .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
     }
 }

@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
 import pages.MainPage;
 import pages.ProfilePage;
 import steps.UserSteps;
@@ -45,68 +44,65 @@ public class NaviTest extends TestsSetUp {
     }
 
 
-//    @Test// Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
-//    @Description("Тест проверяет, что по клику на кнопку «Личный кабинет» осуществляется переход в личный кабинет")
-//    @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
-//    public void testNavigateToPersonalCabinet() {
-//
-//        navigateToPersonalCabinet(driver);
-//
-//        String expectedUrl = ProfilePage.PROFILE_URL;
-//        assertEquals(expectedUrl, driver.getCurrentUrl());
-//    }
-//
-//    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
-//    @Description("Тест проверяет, что по клику на кнопку «Конструктор» осуществляется переход из личного кабинета в конструктор")
-//    @DisplayName("Переход из личного кабинета в конструктор через кнопку «Конструктор» для авторизованного пользователя")
-//    public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
-//
-//        ProfilePage profilePage = new ProfilePage();
-//        navigateToPersonalCabinet(driver);
-//
-//        profilePage.clickToConstructorButton(driver);
-//
-//        String expectedUrl = MainPage.BASE_URL;
-//        assertEquals(expectedUrl, driver.getCurrentUrl());
-//    }
-//
-//    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
-//    @Description("Тест проверяет, что по клику на логотип Stellar Burgers осуществляется переход из личного кабинета в конструктор")
-//    @DisplayName("Переход из личного кабинета в конструктор через логотип Stellar Burgers для авторизованного пользователя")
-//    public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
-//
-//        ProfilePage profilePage = new ProfilePage();
-//        navigateToPersonalCabinet(driver);
-//
-//        profilePage.clickToLogoButton(driver);
-//
-//        String expectedUrl = MainPage.BASE_URL;
-//        assertEquals(expectedUrl, driver.getCurrentUrl());
-//    }
-//
-//    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
-//    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
-//    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
-//    public void testLogoutFromPersonalCabinet() {
-//
-//        ProfilePage profilePage = new ProfilePage();
-//        navigateToPersonalCabinet(driver);
-//
-//        profilePage.clickLogoutButton(driver);
-//
-//        String expectedUrl = MainPage.BASE_URL;
-//        assertEquals(expectedUrl, driver.getCurrentUrl());
-//    }
+    @Test// Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Description("Тест проверяет, что по клику на кнопку «Личный кабинет» осуществляется переход в личный кабинет")
+    @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
+    public void testNavigateToPersonalCabinet() {
+
+        navigateToPersonalCabinet(driver);
+
+        String expectedUrl = ProfilePage.PROFILE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Description("Тест проверяет, что по клику на кнопку «Конструктор» осуществляется переход из личного кабинета в конструктор")
+    @DisplayName("Переход из личного кабинета в конструктор через кнопку «Конструктор» для авторизованного пользователя")
+    public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
+
+        ProfilePage profilePage = new ProfilePage();
+        navigateToPersonalCabinet(driver);
+
+        profilePage.clickToConstructorButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Description("Тест проверяет, что по клику на логотип Stellar Burgers осуществляется переход из личного кабинета в конструктор")
+    @DisplayName("Переход из личного кабинета в конструктор через логотип Stellar Burgers для авторизованного пользователя")
+    public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
+
+        ProfilePage profilePage = new ProfilePage();
+        navigateToPersonalCabinet(driver);
+
+        profilePage.clickToLogoButton(driver);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
+    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
+    public void testLogoutFromPersonalCabinet() {
+
+        ProfilePage profilePage = new ProfilePage();
+        navigateToPersonalCabinet(driver);
+
+        profilePage.clickLogoutButton(driver);
+
+        String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
 
     @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
     @Description("Тест проверяет, что по клику на раздел «Булки» пользователь переходит к соответствующему разделу")
     @DisplayName("Переход к разделу «Булки»")
     public void testNavigateToBunsSection() {
 
-        ProfilePage profilePage = new ProfilePage();
-        navigateToPersonalCabinet(driver);
-
-        profilePage.clickLogoutButton(driver);
+        MainPage.clickWithOverlayHandling(driver,MainPage.BUNS_TAB);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
