@@ -22,13 +22,15 @@ public class MainPage {
 
 
     public static By BUNS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and contains(@class, 'noselect')]");
+    public static By SAUCES_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and contains(@class, 'tab_tab_type_current__2BEPc') and contains(@class, 'noselect')]");
+    public static By FILLINGS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Начинки']]");
+
 
 
 
     private static final By BUNS_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Булки']");
     private static final By SAUCES_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Соусы']");
     private static final By FILLINGS_HEADER = By.xpath("//h2[contains(@class, 'text_type_main-medium') and text()='Начинки']");
-
 
 
     // ========================= Методы =========================
@@ -56,5 +58,4 @@ public class MainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
-
 }

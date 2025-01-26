@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,6 +39,7 @@ public class ProfilePage {
     public void clickLogoutButton(WebDriver driver) {
 
         WebElement clickButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+
                 .until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_BUTTON));
 
         clickButton.click();
@@ -45,4 +47,7 @@ public class ProfilePage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe("https://stellarburgers.nomoreparties.site/login"));
     }
+
+
+
 }

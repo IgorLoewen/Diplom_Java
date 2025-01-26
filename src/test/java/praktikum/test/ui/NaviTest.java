@@ -44,7 +44,7 @@ public class NaviTest extends TestsSetUp {
     }
 
 
-    @Test// Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Test
     @Description("Тест проверяет, что по клику на кнопку «Личный кабинет» осуществляется переход в личный кабинет")
     @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
     public void testNavigateToPersonalCabinet() {
@@ -55,7 +55,7 @@ public class NaviTest extends TestsSetUp {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Test
     @Description("Тест проверяет, что по клику на кнопку «Конструктор» осуществляется переход из личного кабинета в конструктор")
     @DisplayName("Переход из личного кабинета в конструктор через кнопку «Конструктор» для авторизованного пользователя")
     public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
@@ -69,7 +69,7 @@ public class NaviTest extends TestsSetUp {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Test
     @Description("Тест проверяет, что по клику на логотип Stellar Burgers осуществляется переход из личного кабинета в конструктор")
     @DisplayName("Переход из личного кабинета в конструктор через логотип Stellar Burgers для авторизованного пользователя")
     public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
@@ -83,7 +83,7 @@ public class NaviTest extends TestsSetUp {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Test
     @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
     @DisplayName("Выход из аккаунта через кнопку «Выйти»")
     public void testLogoutFromPersonalCabinet() {
@@ -97,12 +97,34 @@ public class NaviTest extends TestsSetUp {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-    @Test // Уточнить серую зону... нужно для авторизированного пользователя проверять или нет!!!
+    @Test
     @Description("Тест проверяет, что по клику на раздел «Булки» пользователь переходит к соответствующему разделу")
     @DisplayName("Переход к разделу «Булки»")
     public void testNavigateToBunsSection() {
 
         MainPage.clickWithOverlayHandling(driver,MainPage.BUNS_TAB);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test
+    @Description("Тест проверяет, что по клику на раздел «Соусы» пользователь переходит к соответствующему разделу")
+    @DisplayName("Переход к разделу «Соусы»")
+    public void testNavigateToSaucesSection() {
+
+        MainPage.clickWithOverlayHandling(driver,MainPage.SAUCES_TAB);
+
+        String expectedUrl = MainPage.BASE_URL;
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
+
+    @Test
+    @Description("Тест проверяет, что по клику на раздел «Начинки» пользователь переходит к соответствующему разделу")
+    @DisplayName("Переход к разделу «Начинки»")
+    public void testNavigateToFillingsSection() {
+
+                MainPage.clickWithOverlayHandling(driver,MainPage.FILLINGS_TAB);
 
         String expectedUrl = MainPage.BASE_URL;
         assertEquals(expectedUrl, driver.getCurrentUrl());
