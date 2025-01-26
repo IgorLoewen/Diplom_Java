@@ -62,7 +62,7 @@ public class RegistrationTest extends TestsSetUp {
 
         registerPage.enterName(driver, UserData.NAME);
         registerPage.enterEmail(driver, UserData.EMAIL);
-        registerPage.enterPassword(driver, "123");
+        registerPage.enterPassword(driver, "12345");
         registerPage.clickRegisterButtonWithoutWait(driver);
 
         String actualErrorMessage = registerPage.getPasswordErrorMessage(driver);
