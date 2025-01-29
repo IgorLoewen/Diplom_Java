@@ -18,8 +18,6 @@ import org.openqa.selenium.By;
 @RunWith(Parameterized.class)
 public class ConstructorPartTest extends TestsSetUp {
 
-    private UserSteps userSteps;
-
     public ConstructorPartTest(String browser) {
         super(browser);
     }
@@ -29,7 +27,6 @@ public class ConstructorPartTest extends TestsSetUp {
     @Description("Выполняет инициализацию окружения для теста")
     public void setUp() {
         super.setUp();
-        userSteps = new UserSteps();
         driver.get(MainPage.BASE_URL);
     }
 
