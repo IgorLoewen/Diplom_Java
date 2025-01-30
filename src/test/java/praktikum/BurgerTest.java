@@ -52,7 +52,7 @@ public class BurgerTest {
 
         burger.addIngredient(mockedIngredient);
 
-        assertEquals(mockedIngredient, burger.ingredients.get(0)); // Оставляем только один assert
+        assertEquals(mockedIngredient, burger.ingredients.get(0));
     }
 
     @Test // Изолированный юнит тест метода removeIngredient: проверяем, что размер списка уменьшается после удаления элемента.
