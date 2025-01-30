@@ -50,7 +50,6 @@ public class InvalidUserLoginParameterizedTest {
 
         response = userSteps.loginUser(UserData.getInvalidLoginRequests().get(index));
 
-
         response.then()
                 .statusCode(SC_UNAUTHORIZED)
                 .body("success", equalTo(false))

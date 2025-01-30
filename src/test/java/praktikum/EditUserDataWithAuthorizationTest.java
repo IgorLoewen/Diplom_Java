@@ -36,13 +36,9 @@ public class EditUserDataWithAuthorizationTest {
     @Description("Этот тест проверяет, что можно изменить email пользователя с авторизацией")
     public void editUserDataWithAuthorizationEmailChange() {
 
-        userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(0))
+        userSteps.editUserDataWithAuthorization(token, UserData.getEmailUpdate())
 
-                .then()
-                .statusCode(SC_OK)
-                .body("success", equalTo(true))
-                .body("user.email", equalTo("pomenyali@pomenyalkin.ru"))
-                .body("user.name", equalTo(UserData.NAME));
+                .then().statusCode(SC_OK).body("success", equalTo(true)).body("user.email", equalTo("pomenyali@pomenyalkin.ru")).body("user.name", equalTo(UserData.NAME));
     }
 
     @Test
@@ -50,13 +46,9 @@ public class EditUserDataWithAuthorizationTest {
     @Description("Этот тест проверяет, что можно изменить пароль пользователя с авторизацией")
     public void editUserDataWithAuthorizationPasswordChange() {
 
-        userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(1))
+        userSteps.editUserDataWithAuthorization(token, UserData.getPasswordUpdate())
 
-                .then()
-                .statusCode(SC_OK)
-                .body("success", equalTo(true))
-                .body("user.email", equalTo(UserData.EMAIL))
-                .body("user.name", equalTo(UserData.NAME));
+                .then().statusCode(SC_OK).body("success", equalTo(true)).body("user.email", equalTo(UserData.EMAIL)).body("user.name", equalTo(UserData.NAME));
     }
 
     @Test
@@ -64,14 +56,11 @@ public class EditUserDataWithAuthorizationTest {
     @Description("Этот тест проверяет, что можно изменить имя пользователя с авторизацией")
     public void editUserDataWithAuthorizationNameChange() {
 
-        userSteps.editUserDataWithAuthorization(token, UserData.getUserDataUpdateBodies().get(2))
+        userSteps.editUserDataWithAuthorization(token, UserData.getNameUpdate())
 
-                .then()
-                .statusCode(SC_OK)
-                .body("success", equalTo(true))
-                .body("user.email", equalTo(UserData.EMAIL))
-                .body("user.name", equalTo("Pomenyalkin"));
+                .then().statusCode(SC_OK).body("success", equalTo(true)).body("user.email", equalTo(UserData.EMAIL)).body("user.name", equalTo("Pomenyalkin"));
     }
+
 
     @After
     public void tearDown() {

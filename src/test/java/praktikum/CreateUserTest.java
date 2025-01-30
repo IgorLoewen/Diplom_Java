@@ -32,6 +32,7 @@ public class CreateUserTest {
     @DisplayName("Создание уникального пользователя")
     @Description("Этот тест проверяет возможность создания пользователя с валидными данными")
     public void uniqueUserCreating() {
+
         response = userSteps.createUser(UserData.getValidUser());
 
         response.then()
@@ -43,6 +44,7 @@ public class CreateUserTest {
     @DisplayName("Создание дублирующегося пользователя")
     @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка")
     public void duplicateUserCreationReturnsError() {
+
         response = userSteps.createUser(UserData.getValidUser());
 
         Response responseSecondCreation = userSteps.createUser(UserData.getValidUser());

@@ -39,7 +39,9 @@ public class GetOrderDataTest {
     @DisplayName("Получение заказов авторизованного пользователя")
     @Description("Этот тест проверяет возможность получения списка заказов конкретного пользователя с авторизацией")
     public void getOrderListForAuthorizedUser() {
+
         orderSteps.getOrderListAuthorizedUser(token)
+
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
@@ -51,7 +53,9 @@ public class GetOrderDataTest {
     @DisplayName("Получение всех заказов неавторизованным пользователем")
     @Description("Этот тест проверяет возможность получения полного списка заказов без авторизации")
     public void getFullOrderListForNotAuthorizedUser() {
+
         orderSteps.getFullOrderListNotAuthorizedUser()
+
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))

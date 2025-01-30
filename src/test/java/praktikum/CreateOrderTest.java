@@ -40,9 +40,9 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа с авторизацией и с ингредиентами")
     @Description("Этот тест проверяет возможность создания заказа с авторизацией. Проверяются все основные поля ответа, включая ID, статус и цену.")
     public void createOrderWithAuthorization() {
-        // Надо будет уточнить серую зону: по заданию нужно сделать 2 теста (с авторизацией и с ингредиентами).
-        // Или это одно и то же? Надо уточнить.
+
         orderSteps.createOrderWithAuthorization(token, OrderData.getOrderBodies().get(5))
+
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
@@ -62,9 +62,9 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа без авторизации")
     @Description("Этот тест проверяет возможность создания заказа без авторизации. Проверяется успешный ответ с полями name и order.")
     public void createOrderWithoutAuthorization() {
-        // Отсутствует документация для этого случая.
-        // Сделал проверку по факту ответа и исходя из логики, что в задании есть проверка заказов не авторизованного пользователя.
+
         orderSteps.createOrderWithoutAuthorization(OrderData.getOrderBodies().get(4))
+
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
@@ -76,7 +76,9 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа без ингредиентов")
     @Description("Этот тест проверяет, что создание заказа без указания ингредиентов возвращает ошибку с кодом 400.")
     public void createOrderWithoutIngredients() {
+
         orderSteps.createOrderWithAuthorization(token, OrderData.getEmptyIngredients())
+
                 .then()
                 .statusCode(SC_BAD_REQUEST)
                 .body("success", equalTo(false))
@@ -87,8 +89,9 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа с неверным Hash ингредиента")
     @Description("Этот тест проверяет, что создание заказа с неверным Hash ингредиента возвращает ошибку с кодом 500. Это серый случай, так как 500 обычно не ожидается.")
     public void createOrderWithWrongHashForIngredients() {
-        // СЕРАЯ ЗОНА: нас учили, что мы никогда не ожидаем 500!
+
         orderSteps.createOrderWithAuthorization(token, OrderData.getInvalidHashIngredient())
+
                 .then()
                 .statusCode(SC_INTERNAL_SERVER_ERROR);
     }

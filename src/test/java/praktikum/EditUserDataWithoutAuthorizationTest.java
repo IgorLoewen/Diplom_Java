@@ -52,6 +52,6 @@ public class EditUserDataWithoutAuthorizationTest {
         response.then()
                 .statusCode(SC_UNAUTHORIZED)
                 .body("success", equalTo(false))
-                .body("message", equalTo("You should be authorised")); // Сообщение об ошибке
+                .body("message", equalTo("You should be authorised"));
     }
 }

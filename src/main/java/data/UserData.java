@@ -47,4 +47,19 @@ public class UserData {
                 new UserModel(null, null, "Pomenyalkin")
         );
     }
+
+    public static UserModel getEmailUpdate() {
+        return new UserModel("pomenyali@pomenyalkin.ru", null, null);
+    }
+
+    public static UserModel getPasswordUpdate() {
+        return new UserModel(null, "menyaem", null);
+    }
+
+    public static UserModel getNameUpdate() {
+        return new UserModel(null, null, "Pomenyalkin");
+    }
+
+
+
 }

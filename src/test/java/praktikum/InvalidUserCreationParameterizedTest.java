@@ -50,7 +50,6 @@ public class InvalidUserCreationParameterizedTest {
 
         response = userSteps.createUser(UserData.getInvalidUserRequests().get(index));
 
-
         response.then()
                 .statusCode(SC_FORBIDDEN)
                 .body("success", equalTo(false))
