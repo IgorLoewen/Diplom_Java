@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
@@ -23,13 +24,11 @@ public class BurgerTest {
     @Test // изолированный юнит тест метода setBuns c фиктивными аргументами
     public void testSetBuns() {
         Burger burger = new Burger();
-        Bun testBun = new Bun("Fake bun", 777);
-        Bun expectedBun = testBun;
-
-        burger.setBuns(testBun);
+        Bun mockedBun = mock(Bun.class);
+        burger.setBuns(mockedBun);
 
         Bun actualBun = burger.bun;
-        assertEquals(expectedBun, actualBun);
+        assertEquals(mockedBun, actualBun);
     }
 
     @Test // Изолированный юнит-тест метода addIngredient с помощью mock и spy — проверяем вызов метода add()
@@ -74,8 +73,8 @@ public class BurgerTest {
     public void testMoveIngredient() {
         Burger burger = new Burger();
         burger.addIngredient(ingredient);
-        burger.addIngredient(Mockito.mock(Ingredient.class));
-        burger.addIngredient(Mockito.mock(Ingredient.class));
+        burger.addIngredient(mock(Ingredient.class));
+        burger.addIngredient(mock(Ingredient.class));
         Ingredient expectedIngredient = ingredient;
 
         burger.moveIngredient(0, 2);
@@ -89,7 +88,7 @@ public class BurgerTest {
     public void testGetPrice() {
         Burger burger = new Burger();
         Mockito.when(bun.getPrice()).thenReturn(11f);
-        Ingredient ingredient2 = Mockito.mock(Ingredient.class);
+        Ingredient ingredient2 = mock(Ingredient.class);
         Mockito.when(ingredient.getPrice()).thenReturn(22f);
         Mockito.when(ingredient2.getPrice()).thenReturn(33f);
         burger.setBuns(bun);
