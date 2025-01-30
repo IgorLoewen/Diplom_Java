@@ -61,13 +61,5 @@ public class UserSteps {
                 .patch("/api/auth/user");
     }
 
-    @Step("Создание тела запроса для логина с новым паролем")
-    public String createLoginRequestBody(String email, String newPassword) {
-        return String.format(
-                "{ \"email\": \"%s\", \"password\": \"%s\" }",
-                email, newPassword
-        );
-    }
-
 }
 
