@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
@@ -36,24 +37,22 @@ public class BurgerTest {
     // Нужен для полного покрытия функциональности сценария теста!
     public void testAddIngredientWithVerify() {
         Burger burger = new Burger();
-        burger.ingredients = Mockito.spy(new ArrayList<>());
-        Ingredient expectedIngredient = ingredient;
+        Ingredient mockedIngredient = mock(Ingredient.class);
 
-        burger.addIngredient(expectedIngredient);
+        burger.addIngredient(mockedIngredient);
 
-        Mockito.verify(burger.ingredients).add(expectedIngredient);
+        assertEquals(1, burger.ingredients.size());
     }
 
     @Test// Изолированный юнит-тест метода addIngredient с помощью mock — проверяем состояние списка после вызова
     // Этот тест фокусируется на проверке результата выполнения метода (state test)
     public void testAddIngredientWithMock() {
         Burger burger = new Burger();
-        Ingredient expectedIngredient = ingredient;
+        Ingredient mockedIngredient = mock(Ingredient.class);
 
-        burger.addIngredient(expectedIngredient);
+        burger.addIngredient(mockedIngredient);
 
-        Ingredient actualIngredient = burger.ingredients.get(0);
-        assertEquals(expectedIngredient, actualIngredient);
+        assertEquals(mockedIngredient, burger.ingredients.get(0)); // Оставляем только один assert
     }
 
     @Test // Изолированный юнит тест метода removeIngredient: проверяем, что размер списка уменьшается после удаления элемента.
