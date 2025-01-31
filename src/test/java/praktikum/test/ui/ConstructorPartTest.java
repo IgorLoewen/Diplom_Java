@@ -72,7 +72,7 @@ public class ConstructorPartTest extends TestsSetUp {
 
     @After
     @Step("Очистка данных после теста")
-    @Description("Удаляет пользователя, созданного перед началом теста")
+    @Description("Закрываем браузер")
     public void tearDown() {
         super.tearDown();
     }
