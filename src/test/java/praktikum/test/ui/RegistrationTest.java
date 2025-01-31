@@ -20,6 +20,9 @@ import static org.junit.Assert.assertEquals;
 public class RegistrationTest extends TestsSetUp {
 
     public UserSteps userSteps;
+    private String email;
+    private String password;
+    private String name;
 
     public RegistrationTest(String browser) {
         super(browser);
@@ -32,6 +35,10 @@ public class RegistrationTest extends TestsSetUp {
         super.setUp();
         userSteps = new UserSteps();
         driver.get(RegisterPage.REGISTER_URL);
+        var user = UserData.getValidUser();
+        email = user.getEmail();
+        password = user.getPassword();
+        name = user.getName();
     }
 
     @Test
@@ -40,9 +47,9 @@ public class RegistrationTest extends TestsSetUp {
     public void testSuccessfulRegistration() {
         RegisterPage registerPage = new RegisterPage();
 
-        registerPage.enterName(driver, UserData.NAME);
-        registerPage.enterEmail(driver, UserData.EMAIL);
-        registerPage.enterPassword(driver, UserData.PASSWORD);
+        registerPage.enterName(driver, name);
+        registerPage.enterEmail(driver, email);
+        registerPage.enterPassword(driver, password);
         registerPage.clickRegisterButton(driver);
 
         String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
@@ -60,8 +67,8 @@ public class RegistrationTest extends TestsSetUp {
         RegisterPage registerPage = new RegisterPage();
 
 
-        registerPage.enterName(driver, UserData.NAME);
-        registerPage.enterEmail(driver, UserData.EMAIL);
+        registerPage.enterName(driver, name);
+        registerPage.enterEmail(driver, email);
         registerPage.enterPassword(driver, "12345");
         registerPage.clickRegisterButtonWithoutWait(driver);
 
@@ -74,7 +81,7 @@ public class RegistrationTest extends TestsSetUp {
     @Step("Очистка данных после теста")
     @Description("Удаляет пользователя, созданного в ходе теста")
     public void cleanUpAfterUserRegistration() {
-        Response loginResponse = userSteps.loginUser(UserData.getValidLogin());
+        Response loginResponse = userSteps.loginUser(new models.UserModel(email, password, null));
         userSteps.getAccessToken(loginResponse);
 
         if (userSteps.accessToken != null) {

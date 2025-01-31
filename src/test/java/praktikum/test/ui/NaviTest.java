@@ -25,6 +25,8 @@ public class NaviTest extends TestsSetUp {
 
     public UserSteps userSteps;
     public Response loginResponse;
+    private String email;
+    private String password;
 
     public NaviTest(String browser) {
         super(browser);
@@ -37,12 +39,16 @@ public class NaviTest extends TestsSetUp {
         super.setUp();
         userSteps = new UserSteps();
         driver.get(MainPage.BASE_URL);
-        userSteps.createUser(UserData.getValidUser());
-        loginResponse = userSteps.loginUser(UserData.getValidLogin());
+        var user = UserData.getValidUser();
+        email = user.getEmail();
+        password = user.getPassword();
+        userSteps.createUser(user);
+        loginResponse = userSteps.loginUser(user);
         userSteps.getAccessToken(loginResponse);
         userSteps.setTokenInLocalStorage(driver, userSteps.accessToken);
         userSteps.setRefreshTokenInLocalStorage(driver, userSteps.refreshToken);
         driver.navigate().refresh();
+
     }
 
 

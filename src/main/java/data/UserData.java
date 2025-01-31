@@ -1,41 +1,41 @@
 package data;
 
+import com.github.javafaker.Faker;
 import models.UserModel;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static data.OrderData.BASE_URL;
+
 public class UserData {
+    private static final Faker faker = new Faker();
 
-    // Основные данные для пользователя
-    public static final String EMAIL = "Testilo@testovich.ru";
-    public static final String PASSWORD = "testITnow";
-    public static final String NAME = "abvgdejka";
+    public static final String ORDER_URL = BASE_URL + "/api/orders";
 
-    // Валидное тело для создания уникального пользователя
+    // Генерация уникального пользователя
     public static UserModel getValidUser() {
-        return new UserModel(EMAIL, PASSWORD, NAME);
-    }
-
-    // Валидное тело для логина пользователя
-    public static UserModel getValidLogin() {
-        return new UserModel(EMAIL, PASSWORD, null);
+        return new UserModel(
+                faker.internet().emailAddress(),
+                faker.internet().password(8, 16),
+                faker.name().firstName()
+        );
     }
 
     // Список тел для параметризованных тестов, где одно из полей пустое
     public static List<UserModel> getInvalidUserRequests() {
         return Arrays.asList(
-                new UserModel("", PASSWORD, NAME),
-                new UserModel(EMAIL, "", NAME),
-                new UserModel(EMAIL, PASSWORD, "")
+                new UserModel("", faker.internet().password(8, 16), faker.name().firstName()),
+                new UserModel(faker.internet().emailAddress(), "", faker.name().firstName()),
+                new UserModel(faker.internet().emailAddress(), faker.internet().password(8, 16), "")
         );
     }
 
     // Список тел для проверки логина с неверными данными
     public static List<UserModel> getInvalidLoginRequests() {
         return Arrays.asList(
-                new UserModel("wrongemail@test.com", PASSWORD, null),
-                new UserModel(EMAIL, "wrongpassword", null),
+                new UserModel("wrongemail@test.com", faker.internet().password(8, 16), null),
+                new UserModel(faker.internet().emailAddress(), "wrongpassword", null),
                 new UserModel("wrongemail@test.com", "wrongpassword", null)
         );
     }
@@ -43,9 +43,10 @@ public class UserData {
     // Список тел для обновления данных пользователя
     public static List<UserModel> getUserDataUpdateBodies() {
         return Arrays.asList(
-                new UserModel("pomenyali@pomenyalkin.ru", null, null),
-                new UserModel(null, "menyaem", null),
-                new UserModel(null, null, "Pomenyalkin")
+                new UserModel(faker.internet().emailAddress(), null, null),
+                new UserModel(null, faker.internet().password(8, 16), null),
+                new UserModel(null, null, faker.name().lastName())
         );
     }
+
 }

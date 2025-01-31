@@ -24,6 +24,8 @@ public class LoginTest extends TestsSetUp {
 
     public UserSteps userSteps;
     public Response loginResponse;
+    private String email;
+    private String password;
 
     public LoginTest(String browser) {
         super(browser);
@@ -36,7 +38,10 @@ public class LoginTest extends TestsSetUp {
         super.setUp();
         userSteps = new UserSteps();
         driver.get(MainPage.BASE_URL);
-        loginResponse = userSteps.createUser(UserData.getValidUser());
+        var user = UserData.getValidUser();
+        email = user.getEmail();
+        password = user.getPassword();
+        loginResponse = userSteps.createUser(user);
     }
 
     @Test
@@ -115,8 +120,8 @@ public class LoginTest extends TestsSetUp {
 
     private void enterEmailPasswordAndClickLoginButton(WebDriver driver) {
         LoginPage loginPage = new LoginPage();
-        loginPage.enterEmail(driver, UserData.EMAIL);
-        loginPage.enterPassword(driver, UserData.PASSWORD);
+        loginPage.enterEmail(driver, email);
+        loginPage.enterPassword(driver, password);
         loginPage.clickLoginButton(driver);
     }
 }
