@@ -14,6 +14,7 @@ import steps.UserSteps;
 
 import static data.OrderData.BASE_URL;
 import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
@@ -50,18 +51,16 @@ public class GetOrderDataTest {
     }
 
     @Test
-    @DisplayName("Получение всех заказов неавторизованным пользователем")
-    @Description("Этот тест проверяет возможность получения полного списка заказов без авторизации")
+    @DisplayName("Попытка получения заказов конкретного пользователя неавторизованным пользователем")
+    @Description("Этот тест проверяет, что неавторизованный пользователь не может получить заказы конкретного пользователя и получает ошибку 401")
     public void getFullOrderListForNotAuthorizedUser() {
 
         orderSteps.getFullOrderListNotAuthorizedUser()
 
                 .then()
-                .statusCode(SC_OK)
-                .body("success", equalTo(true))
-                .body("orders", notNullValue())
-                .body("total", notNullValue())
-                .body("totalToday", notNullValue());
+                .statusCode(SC_UNAUTHORIZED)
+                .body("success", equalTo(false))
+                .body("message", equalTo("You should be authorised"));
     }
 
     @After

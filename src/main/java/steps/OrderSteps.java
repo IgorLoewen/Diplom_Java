@@ -40,7 +40,7 @@ public class OrderSteps {
     public Response getFullOrderListNotAuthorizedUser() {
         return given()
                 .when()
-                .get("/api/orders/all");
+                .get("/api/orders");
 
     }
 }
