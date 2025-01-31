@@ -6,6 +6,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import models.UserModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,16 +45,17 @@ public class CreateUserTest {
     @DisplayName("Создание дублирующегося пользователя")
     @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка")
     public void duplicateUserCreationReturnsError() {
+        UserModel fixedUser = UserData.getValidUser();
 
-        response = userSteps.createUser(UserData.getValidUser());
+        response = userSteps.createUser(fixedUser);
 
-        Response responseSecondCreation = userSteps.createUser(UserData.getValidUser());
+        Response responseSecondCreation = userSteps.createUser(fixedUser);
         responseSecondCreation.then()
                 .statusCode(SC_FORBIDDEN)
                 .body("success", equalTo(false))
                 .body("message", equalTo("User already exists"));
-
     }
+
 
     @After
     public void tearDown() {

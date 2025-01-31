@@ -6,6 +6,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import models.UserModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,22 +19,25 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @Epic("Логин пользователя")
 public class LoginUserTest {
 
-    public UserSteps userSteps;
-    public Response response;
-    public Response uniqueUserCreating;
+    private UserSteps userSteps;
+    private Response response;
+    private Response uniqueUserCreating;
+    private UserModel fixedUser;
 
     @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
         userSteps = new UserSteps();
-        uniqueUserCreating = userSteps.createUser(UserData.getValidUser());
+        fixedUser = UserData.getValidUser();
+        uniqueUserCreating = userSteps.createUser(fixedUser);
     }
 
     @Test
     @DisplayName("Логин под существующим пользователем")
     @Description("Этот тест проверяет возможность логина с корректными данными существующего пользователя")
     public void userLogin() {
-        response = userSteps.loginUser(UserData.getValidLogin());
+
+        response = userSteps.loginUser(new UserModel(fixedUser.getEmail(), fixedUser.getPassword(), null));
 
         response.then()
                 .statusCode(SC_OK)
