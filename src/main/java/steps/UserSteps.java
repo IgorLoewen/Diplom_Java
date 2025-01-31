@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.UserModel;
 
+import static data.OrderData.*;
 import static io.restassured.RestAssured.given;
 
 public class UserSteps {
@@ -16,7 +17,7 @@ public class UserSteps {
                 .header("Content-type", "application/json")
                 .body(userModel)
                 .when()
-                .post("/api/auth/register");
+                .post(REGISTER_URL);
     }
 
     @Step("Логин пользователя с заданным телом запроса")
@@ -25,7 +26,7 @@ public class UserSteps {
                 .header("Content-type", "application/json")
                 .body(userModel)
                 .when()
-                .post("/api/auth/login");
+                .post(LOGIN_URL);
     }
 
     @Step("Удаление пользователя по accessToken")
@@ -34,7 +35,7 @@ public class UserSteps {
                 .header("Authorization",accessToken)
                 .header("Content-Type", "application/json")
                 .when()
-                .delete("/api/auth/user");
+                .delete(AUTH_URL);
     }
 
     @Step("Извлечение accessToken ")
@@ -49,7 +50,7 @@ public class UserSteps {
                 .header("Content-Type", "application/json")
                 .body(userModel)
                 .when()
-                .patch("/api/auth/user");
+                .patch(AUTH_URL);
     }
 
     @Step("Изменение данных пользователя без авторизации")
@@ -58,7 +59,7 @@ public class UserSteps {
                 .header("Content-Type", "application/json")
                 .body(userModel)
                 .when()
-                .patch("/api/auth/user");
+                .patch(AUTH_URL);
     }
 
 }

@@ -5,7 +5,13 @@ import models.UserModel;
 import java.util.Arrays;
 import java.util.List;
 
+import static data.OrderData.BASE_URL;
+
 public class UserData {
+
+    // Order URL
+    public static final String ORDER_URL = BASE_URL +"/api/orders";
+
     // Основные данные для пользователя
     public static final String EMAIL = "fукses@dfk4dfsw.ru";
     public static final String PASSWORD = "12345678";

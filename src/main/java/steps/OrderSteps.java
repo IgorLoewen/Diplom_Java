@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.OrderModel;
 
+import static data.UserData.ORDER_URL;
 import static io.restassured.RestAssured.given;
 
 public class OrderSteps {
@@ -15,7 +16,7 @@ public class OrderSteps {
                 .header("Content-Type", "application/json")
                 .body(orderModel)
                 .when()
-                .post("/api/orders");
+                .post(ORDER_URL);
     }
 
     @Step("Создание заказа без авторизации")
@@ -24,7 +25,7 @@ public class OrderSteps {
                 .header("Content-Type", "application/json")
                 .body(orderModel)
                 .when()
-                .post("/api/orders");
+                .post(ORDER_URL);
     }
 
     @Step("Получение списка заказов c авторизацией")
@@ -32,7 +33,7 @@ public class OrderSteps {
         return given()
                 .header("Authorization", token)
                 .when()
-                .get("/api/orders");
+                .get(ORDER_URL);
 
     }
 
@@ -40,7 +41,7 @@ public class OrderSteps {
     public Response getFullOrderListNotAuthorizedUser() {
         return given()
                 .when()
-                .get("/api/orders");
+                .get(ORDER_URL);
 
     }
 }

@@ -7,8 +7,12 @@ import java.util.List;
 
 public class OrderData {
 
-    // Main URL
+
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
+    public static final String REGISTER_URL = BASE_URL + "/api/auth/register";
+    public static final String LOGIN_URL = BASE_URL + "/api/auth/login";
+    public static final String AUTH_URL = BASE_URL + "/api/auth/user";
+
 
    /**         Список тел заказов с ингредиентами.
     Больше тел, чем по заданию — это просто практика для меня    */
