@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,25 +24,29 @@ public class LoginPage {
 
     public static final String EXPECTED_LOGIN_TEXT = "Вход";
     // ========================= Методы =========================
+    @Step("Ввод адреса электронной почты: {email}")
     public void enterEmail(WebDriver driver, String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
+    @Step("Ввод пароля: {password}")
     public void enterPassword(WebDriver driver, String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
-
+    @Step("Клик на кнопку «Войти в аккаунт» и ожидание перехода на главную страницу")
     public void clickLoginButton(WebDriver driver) {
         driver.findElement(LOGIN_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe(MainPage.BASE_URL));
     }
 
+    @Step("Клик на ссылку «Зарегистрироваться»")
     public void clickRegisterButton(WebDriver driver) {
         driver.findElement(REGISTER_LINK).click();
     }
 
+    @Step("Клик на кнопку «Восстановить пароль»")
     public void clickRecoveryPasswordButton(WebDriver driver) {
         driver.findElement(FORGOT_PASSWORD_BUTTON).click();
     }

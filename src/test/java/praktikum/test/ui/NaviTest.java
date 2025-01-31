@@ -118,6 +118,7 @@ public class NaviTest extends TestsSetUp {
         }
     }
 
+    @Step("Переход в личный кабинет через кнопку на главной странице")
     private void navigateToPersonalCabinet(WebDriver driver) {
         MainPage mainPage = new MainPage();
         mainPage.clickToPersonalAccountFromMainPage(driver);

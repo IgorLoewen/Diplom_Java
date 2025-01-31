@@ -118,6 +118,7 @@ public class LoginTest extends TestsSetUp {
 
     }
 
+    @Step("Ввод email и пароля, затем клик на кнопку «Войти»")
     private void enterEmailPasswordAndClickLoginButton(WebDriver driver) {
         LoginPage loginPage = new LoginPage();
         loginPage.enterEmail(driver, email);

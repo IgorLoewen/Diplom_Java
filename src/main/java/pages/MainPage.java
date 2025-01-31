@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -30,24 +31,28 @@ public class MainPage {
     private static final String ATTRIBUTE_CLASS = "class"; // Вынесено для удобства изменений
 
     // ========================= Методы =========================
+    @Step("Клик на кнопку «Войти» и ожидание перехода на страницу логина")
     public void clickLoginButton(WebDriver driver) {
         driver.findElement(LOGIN_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
+    @Step("Клик на ссылку «Личный кабинет» и ожидание перехода на страницу логина")
     public void clickToLoginFromPersonalAccount(WebDriver driver) {
         driver.findElement(PERSONAL_ACCOUNT_LINK).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
+    @Step("Клик на ссылку «Личный кабинет» с главной страницы и ожидание перехода в профиль")
     public void clickToPersonalAccountFromMainPage(WebDriver driver) {
         driver.findElement(PERSONAL_ACCOUNT_LINK).click();
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.urlToBe(ProfilePage.PROFILE_URL));
     }
 
+    @Step("Клик по элементу с обработкой перекрытия")
     public static void clickWithOverlayHandling(WebDriver driver, By locator) {
         WebElement element = driver.findElement(locator);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -60,6 +65,7 @@ public class MainPage {
      * @param expectedIndex Ожидаемый индекс активного таба (0 — Булки, 1 — Соусы, 2 — Начинки)
      * @return true, если активен только ожидаемый таб, false в противном случае
      */
+    @Step("Проверка, что активен только ожидаемый таб с индексом: {expectedIndex}")
     public static boolean isCorrectTabActive(WebDriver driver, int expectedIndex) {
         List<WebElement> tabs = driver.findElements(TABS);
 

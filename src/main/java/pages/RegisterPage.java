@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,31 +25,38 @@ public class RegisterPage {
 
 
     // ========================= Методы =========================
+    @Step("Ввод имени: {name}")
     public void enterName(WebDriver driver, String name) {
         driver.findElement(NAME_INPUT).sendKeys(name);
     }
 
+    @Step("Ввод email: {email}")
     public void enterEmail(WebDriver driver, String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
+    @Step("Ввод пароля: {password}")
     public void enterPassword(WebDriver driver, String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
+    @Step("Клик на кнопку «Зарегистрироваться» и ожидание перехода на страницу логина")
     public void clickRegisterButton(WebDriver driver) {
         driver.findElement(REGISTER_BUTTON).click();
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
+    @Step("Клик на кнопку «Зарегистрироваться» без ожидания перехода")
     public void clickRegisterButtonWithoutWait(WebDriver driver) {
         driver.findElement(REGISTER_BUTTON).click();
     }
 
+    @Step("Получение сообщения об ошибке для поля ввода пароля")
     public String getPasswordErrorMessage(WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT)).getText();
     }
 
+    @Step("Клик на ссылку «Войти»")
     public void clickEnterButton(WebDriver driver) {
         driver.findElement(LOGIN_LINK).click();
     }

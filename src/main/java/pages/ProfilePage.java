@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -27,18 +28,21 @@ public class ProfilePage {
     private static final Duration TIMEOUT = Duration.ofSeconds(10); // Время ожидания
 
     // ========================= Методы =========================
+    @Step("Клик на кнопку «Конструктор» и ожидание перехода на главную страницу")
     public void clickToConstructorButton(WebDriver driver) {
         driver.findElement(CONSTRUCTOR_BUTTON).click();
         new WebDriverWait(driver, TIMEOUT)
                 .until(ExpectedConditions.urlToBe(MAIN_PAGE_URL));
     }
 
+    @Step("Клик на логотип Stellar Burgers и ожидание перехода на главную страницу")
     public void clickToLogoButton(WebDriver driver) {
         driver.findElement(STELLAR_BURGER_LOGO).click();
         new WebDriverWait(driver, TIMEOUT)
                 .until(ExpectedConditions.urlToBe(MAIN_PAGE_URL));
     }
 
+    @Step("Клик на кнопку «Выйти» и ожидание перехода на страницу логина")
     public void clickLogoutButton(WebDriver driver) {
         WebElement clickButton = new WebDriverWait(driver, TIMEOUT)
                 .until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_BUTTON));
