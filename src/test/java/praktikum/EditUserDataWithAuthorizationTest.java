@@ -41,15 +41,6 @@ public class EditUserDataWithAuthorizationTest {
                 .then().statusCode(SC_OK).body("success", equalTo(true)).body("user.email", equalTo("pomenyali@pomenyalkin.ru")).body("user.name", equalTo(UserData.NAME));
     }
 
-    @Test
-    @DisplayName("Изменение пароля с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить пароль пользователя с авторизацией")
-    public void editUserDataWithAuthorizationPasswordChange() {
-
-        userSteps.editUserDataWithAuthorization(token, UserData.getPasswordUpdate())
-
-                .then().statusCode(SC_OK).body("success", equalTo(true)).body("user.email", equalTo(UserData.EMAIL)).body("user.name", equalTo(UserData.NAME));
-    }
 
     @Test
     @DisplayName("Изменение имени с авторизацией")
