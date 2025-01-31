@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public abstract class TestsSetUp {
+    private final String browser;
     protected WebDriver driver;
     protected WebDriverWait wait;
-    private final String browser;
 
     public TestsSetUp(String browser) {
         this.browser = browser;

@@ -17,40 +17,17 @@ public class MainPage {
 
     // ========================= URL =========================
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site/";
-
-    // ========================= Локаторы =========================
-    private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти в аккаунт']");
-    private static final By PERSONAL_ACCOUNT_LINK = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
     public static final By BUNS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Булки']]");
     public static final By SAUCES_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Соусы']]");
     public static final By FILLINGS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Начинки']]");
+    // ========================= Локаторы =========================
+    private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти в аккаунт']");
+    private static final By PERSONAL_ACCOUNT_LINK = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
     private static final By TABS = By.className("tab_tab__1SPyG");
 
     // ========================= Атрибуты =========================
     private static final String ACTIVE_TAB_CLASS = "tab_tab_type_current__2BEPc";
     private static final String ATTRIBUTE_CLASS = "class"; // Вынесено для удобства изменений
-
-    // ========================= Методы =========================
-    @Step("Клик на кнопку «Войти» и ожидание перехода на страницу логина")
-    public void clickLoginButton(WebDriver driver) {
-        driver.findElement(LOGIN_BUTTON).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
-    }
-
-    @Step("Клик на ссылку «Личный кабинет» и ожидание перехода на страницу логина")
-    public void clickToLoginFromPersonalAccount(WebDriver driver) {
-        driver.findElement(PERSONAL_ACCOUNT_LINK).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
-    }
-
-    @Step("Клик на ссылку «Личный кабинет» с главной страницы и ожидание перехода в профиль")
-    public void clickToPersonalAccountFromMainPage(WebDriver driver) {
-        driver.findElement(PERSONAL_ACCOUNT_LINK).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.urlToBe(ProfilePage.PROFILE_URL));
-    }
 
     @Step("Клик по элементу с обработкой перекрытия")
     public static void clickWithOverlayHandling(WebDriver driver, By locator) {
@@ -83,5 +60,27 @@ public class MainPage {
             }
         }
         return true;
+    }
+
+    // ========================= Методы =========================
+    @Step("Клик на кнопку «Войти» и ожидание перехода на страницу логина")
+    public void clickLoginButton(WebDriver driver) {
+        driver.findElement(LOGIN_BUTTON).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
+    }
+
+    @Step("Клик на ссылку «Личный кабинет» и ожидание перехода на страницу логина")
+    public void clickToLoginFromPersonalAccount(WebDriver driver) {
+        driver.findElement(PERSONAL_ACCOUNT_LINK).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
+    }
+
+    @Step("Клик на ссылку «Личный кабинет» с главной страницы и ожидание перехода в профиль")
+    public void clickToPersonalAccountFromMainPage(WebDriver driver) {
+        driver.findElement(PERSONAL_ACCOUNT_LINK).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlToBe(ProfilePage.PROFILE_URL));
     }
 }

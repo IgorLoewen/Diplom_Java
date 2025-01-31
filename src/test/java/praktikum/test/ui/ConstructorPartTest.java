@@ -1,6 +1,8 @@
 package praktikum.test.ui;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
@@ -8,11 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.MainPage;
-import steps.UserSteps;
 
-import static org.junit.Assert.*;
-
-import org.openqa.selenium.By;
+import static org.junit.Assert.assertTrue;
 
 @Epic("Переходы в разделе конструктора")
 @RunWith(Parameterized.class)
@@ -39,15 +38,6 @@ public class ConstructorPartTest extends TestsSetUp {
     // В JUnit 5 можно было бы объединить браузеры и табы в один параметризованный тест через @MethodSource,
     // но так как по заданию JUnit 4 ограничен в этом плане, оставляем отдельные тесты для лучшей читаемости и поддержки.
 
-    @Test
-    @Description("Тест проверяет, что по клику на раздел «Булки» активируется соответствующий таб, а остальные не активны")
-    @DisplayName("Активация таба «Булки»")
-    public void testActivateBunsTab() {
-
-        MainPage.clickWithOverlayHandling(driver, MainPage.BUNS_TAB);
-
-        assertTrue("Таб «Булки» не активировался корректно", MainPage.isCorrectTabActive(driver, 0));
-    }
 
     @Test
     @Description("Тест проверяет, что по клику на раздел «Соусы» активируется соответствующий таб, а остальные не активны")
@@ -59,6 +49,7 @@ public class ConstructorPartTest extends TestsSetUp {
         assertTrue("Таб «Соусы» не активировался корректно", MainPage.isCorrectTabActive(driver, 1));
     }
 
+
     @Test
     @Description("Тест проверяет, что по клику на раздел «Начинки» активируется соответствующий таб, а остальные не активны")
     @DisplayName("Активация таба «Начинки»")
@@ -67,6 +58,16 @@ public class ConstructorPartTest extends TestsSetUp {
         MainPage.clickWithOverlayHandling(driver, MainPage.FILLINGS_TAB);
 
         assertTrue("Таб «Начинки» не активировался корректно", MainPage.isCorrectTabActive(driver, 2));
+    }
+
+    @Test
+    @Description("Тест проверяет, что по клику на раздел «Булки» активируется соответствующий таб, а остальные не активны")
+    @DisplayName("Активация таба «Булки»")
+    public void testActivateBunsTab() {
+
+        MainPage.clickWithOverlayHandling(driver, MainPage.BUNS_TAB);
+
+        assertTrue("Таб «Булки» не активировался корректно", MainPage.isCorrectTabActive(driver, 0));
     }
 
 

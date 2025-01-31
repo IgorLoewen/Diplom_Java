@@ -34,7 +34,7 @@ public class UserSteps {
     @Step("Удаление пользователя по accessToken")
     public Response deleteUser() {
         return given()
-                .header("Authorization",accessToken)
+                .header("Authorization", accessToken)
                 .header("Content-Type", "application/json")
                 .when()
                 .delete("/api/auth/user");
@@ -46,32 +46,7 @@ public class UserSteps {
         this.refreshToken = response.jsonPath().getString("refreshToken");
     }
 
-    @Step("Изменение данных пользователя с авторизацией")
-    public Response editUserDataWithAuthorization(String accessToken, UserModel userModel) {
-        return given()
-                .header("Authorization",accessToken)
-                .header("Content-Type", "application/json")
-                .body(userModel)
-                .when()
-                .patch("/api/auth/user");
-    }
 
-    @Step("Изменение данных пользователя без авторизации")
-    public Response editUserDataWithoutAuthorization(UserModel userModel) {
-        return given()
-                .header("Content-Type", "application/json")
-                .body(userModel)
-                .when()
-                .patch("/api/auth/user");
-    }
-
-    @Step("Создание тела запроса для логина с новым паролем")
-    public String createLoginRequestBody(String email, String newPassword) {
-        return String.format(
-                "{ \"email\": \"%s\", \"password\": \"%s\" }",
-                email, newPassword
-        );
-    }
 
     @Step("Передача токена в localStorage браузера")
     public void setTokenInLocalStorage(WebDriver driver, String token) {
