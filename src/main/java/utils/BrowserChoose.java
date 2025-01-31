@@ -6,21 +6,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BrowserChoose {
 
-    public static WebDriver createDriver(String browser) {
-
-
-        setDriverPath(browser.toLowerCase());
+    public static WebDriver createDriver() {
+        String browser = System.getProperty("browser", "chrome").toLowerCase();
 
         ChromeOptions options = new ChromeOptions();
         addCommonArguments(options);
 
-
-        switch (browser.toLowerCase()) {
+        switch (browser) {
             case "chrome":
-                configureChrome(options);
+                configureChromeDriver();
                 break;
             case "yandex":
-                configureYandex(options);
+                configureYandexDriver(options);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browser);
@@ -29,17 +26,13 @@ public class BrowserChoose {
         return new ChromeDriver(options);
     }
 
-    private static void setDriverPath(String browser) {
-        switch (browser) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-                break;
-            case "yandex":
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver-yandex");
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browser);
-        }
+    private static void configureChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+    }
+
+    private static void configureYandexDriver(ChromeOptions options) {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver-yandex");
+        options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
     }
 
     private static void addCommonArguments(ChromeOptions options) {
@@ -54,17 +47,5 @@ public class BrowserChoose {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
-        options.addArguments("--disable-background-networking");
-        options.addArguments("--disable-save-password-bubble");
-        options.addArguments("--disable-autofill-keyboard-accessory-view[8]");
-        options.addArguments("--user-agent=CustomUserAgent");
-    }
-
-    private static void configureChrome(ChromeOptions options) {
-        options.addArguments("--disable-features=FederatedCredentialManagement");
-    }
-
-    private static void configureYandex(ChromeOptions options) {
-        options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
     }
 }

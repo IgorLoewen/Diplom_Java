@@ -7,26 +7,22 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import pages.MainPage;
 
 import static org.junit.Assert.assertTrue;
 
 @Epic("Переходы в разделе конструктора")
-@RunWith(Parameterized.class)
 public class ConstructorPartTest extends TestsSetUp {
 
-    public ConstructorPartTest(String browser) {
-        super(browser);
-    }
+    private MainPage mainPage;
 
     @Before
     @Step("Инициализация тестового окружения")
     @Description("Выполняет инициализацию окружения для теста")
     public void setUp() {
         super.setUp();
-        driver.get(MainPage.BASE_URL);
+        mainPage = new MainPage(driver);
+        mainPage.open();
     }
 
     // Эти тесты можно параметризировать, так как они имеют одинаковую структуру:
@@ -44,9 +40,9 @@ public class ConstructorPartTest extends TestsSetUp {
     @DisplayName("Активация таба «Соусы»")
     public void testActivateSaucesTab() {
 
-        MainPage.clickWithOverlayHandling(driver, MainPage.SAUCES_TAB);
+        mainPage.clickSaucesTab();
 
-        assertTrue("Таб «Соусы» не активировался корректно", MainPage.isCorrectTabActive(driver, 1));
+        assertTrue("Таб «Соусы» не активировался корректно", mainPage.isCorrectTabActive(1));
     }
 
 
@@ -55,9 +51,9 @@ public class ConstructorPartTest extends TestsSetUp {
     @DisplayName("Активация таба «Начинки»")
     public void testActivateFillingsTab() {
 
-        MainPage.clickWithOverlayHandling(driver, MainPage.FILLINGS_TAB);
+        mainPage.clickFillingsTab();
 
-        assertTrue("Таб «Начинки» не активировался корректно", MainPage.isCorrectTabActive(driver, 2));
+        assertTrue("Таб «Начинки» не активировался корректно", mainPage.isCorrectTabActive(2));
     }
 
     @Test
@@ -65,9 +61,9 @@ public class ConstructorPartTest extends TestsSetUp {
     @DisplayName("Активация таба «Булки»")
     public void testActivateBunsTab() {
 
-        MainPage.clickWithOverlayHandling(driver, MainPage.BUNS_TAB);
+        mainPage.clickBunsTab();
 
-        assertTrue("Таб «Булки» не активировался корректно", MainPage.isCorrectTabActive(driver, 0));
+        assertTrue("Таб «Булки» не активировался корректно", mainPage.isCorrectTabActive(0));
     }
 
 

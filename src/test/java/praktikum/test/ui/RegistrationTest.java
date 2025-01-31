@@ -9,8 +9,6 @@ import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import pages.LoginPage;
 import pages.RegisterPage;
 import steps.UserSteps;
@@ -18,17 +16,15 @@ import steps.UserSteps;
 import static org.junit.Assert.assertEquals;
 
 @Epic("Регистрация пользователя")
-@RunWith(Parameterized.class)
 public class RegistrationTest extends TestsSetUp {
 
-    public UserSteps userSteps;
+    private UserSteps userSteps;
+    private RegisterPage registerPage;
+    private LoginPage loginPage;
     private String email;
     private String password;
     private String name;
 
-    public RegistrationTest(String browser) {
-        super(browser);
-    }
 
     @Before
     @Step("Подготовка окружения для теста")
@@ -36,7 +32,9 @@ public class RegistrationTest extends TestsSetUp {
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
-        driver.get(RegisterPage.REGISTER_URL);
+        registerPage = new RegisterPage(driver);
+        loginPage = new LoginPage(driver);
+        registerPage.open();
         var user = UserData.getValidUser();
         email = user.getEmail();
         password = user.getPassword();
@@ -47,37 +45,32 @@ public class RegistrationTest extends TestsSetUp {
     @Description("Тест проверяет, что пользователь может успешно зарегистрироваться и попасть на страницу логина")
     @DisplayName("Успешная регистрация пользователя")
     public void testSuccessfulRegistration() {
-        RegisterPage registerPage = new RegisterPage();
 
-        registerPage.enterName(driver, name);
-        registerPage.enterEmail(driver, email);
-        registerPage.enterPassword(driver, password);
-        registerPage.clickRegisterButton(driver);
+        registerPage.enterName(name);
+        registerPage.enterEmail(email);
+        registerPage.enterPassword(password);
+        registerPage.clickRegisterButton();
 
         String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
-
         String actualText = driver.findElement(RegisterPage.LOGIN_HEADER).getText();
 
         assertEquals("Текст на странице логина после регистрации не совпадает с ожидаемым значением", expectedText, actualText);
     }
 
-
     @Test
     @Description("Тест проверяет сообщения об ошибке при вводе некорректного пароля")
     @DisplayName("Проверка ошибки для некорректного пароля")
     public void testErrorsForInvalidPasswords() {
-        RegisterPage registerPage = new RegisterPage();
 
+        registerPage.enterName(name);
+        registerPage.enterEmail(email);
+        registerPage.enterPassword("12345");
+        registerPage.clickRegisterButtonWithoutWait();
 
-        registerPage.enterName(driver, name);
-        registerPage.enterEmail(driver, email);
-        registerPage.enterPassword(driver, "12345");
-        registerPage.clickRegisterButtonWithoutWait(driver);
+        String actualErrorMessage = registerPage.getPasswordErrorMessage();
 
-        String actualErrorMessage = registerPage.getPasswordErrorMessage(driver);
         assertEquals("Некорректный пароль", actualErrorMessage);
     }
-
 
     @After
     @Step("Очистка данных после теста")
@@ -90,5 +83,4 @@ public class RegistrationTest extends TestsSetUp {
             userSteps.deleteUser();
         }
     }
-
 }

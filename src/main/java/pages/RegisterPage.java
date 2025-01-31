@@ -9,11 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegisterPage {
-    // ========================= Константы =========================
-    // ========================= URL =========================
     public static final String REGISTER_URL = MainPage.BASE_URL + "register";
+    public static final By LOGIN_HEADER = By.xpath("//h2[contains(text(), 'Вход')]");
 
-    // ========================= Локаторы =========================
     private static final By NAME_INPUT = By.xpath("//input[@name='name' and @type='text']");
     private static final By EMAIL_INPUT = By.xpath("(//input[@type='text'])[2]");
     private static final By PASSWORD_INPUT = By.xpath("//input[@name='Пароль' and @type='password']");
@@ -21,43 +19,52 @@ public class RegisterPage {
     private static final By PASSWORD_ERROR_TEXT = By.cssSelector("p.input__error.text_type_main-default");
     private static final By LOGIN_LINK = By.xpath("//a[contains(@class, 'Auth_link__1fOlj') and @href='/login']");
 
-    public static By LOGIN_HEADER = By.xpath("//h2[contains(text(), 'Вход')]");
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
+    public RegisterPage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
-    // ========================= Методы =========================
+    @Step("Открытие страницы регистрации")
+    public void open() {
+        driver.get(REGISTER_URL);
+    }
+
     @Step("Ввод имени: {name}")
-    public void enterName(WebDriver driver, String name) {
+    public void enterName(String name) {
         driver.findElement(NAME_INPUT).sendKeys(name);
     }
 
     @Step("Ввод email: {email}")
-    public void enterEmail(WebDriver driver, String email) {
+    public void enterEmail(String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
     @Step("Ввод пароля: {password}")
-    public void enterPassword(WebDriver driver, String password) {
+    public void enterPassword(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
     @Step("Клик на кнопку «Зарегистрироваться» и ожидание перехода на страницу логина")
-    public void clickRegisterButton(WebDriver driver) {
+    public void clickRegisterButton() {
         driver.findElement(REGISTER_BUTTON).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
+        wait.until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
     @Step("Клик на кнопку «Зарегистрироваться» без ожидания перехода")
-    public void clickRegisterButtonWithoutWait(WebDriver driver) {
+    public void clickRegisterButtonWithoutWait() {
         driver.findElement(REGISTER_BUTTON).click();
     }
 
-    @Step("Получение сообщения об ошибке для поля ввода пароля")
-    public String getPasswordErrorMessage(WebDriver driver) {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT)).getText();
+    @Step("Получение сообщения об ошибке для пароля")
+    public String getPasswordErrorMessage() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT)).getText();
     }
 
     @Step("Клик на ссылку «Войти»")
-    public void clickEnterButton(WebDriver driver) {
+    public void clickEnterButton() {
         driver.findElement(LOGIN_LINK).click();
     }
 }

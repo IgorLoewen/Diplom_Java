@@ -47,7 +47,6 @@ public class UserSteps {
     }
 
 
-
     @Step("Передача токена в localStorage браузера")
     public void setTokenInLocalStorage(WebDriver driver, String token) {
         ((JavascriptExecutor) driver).executeScript(
