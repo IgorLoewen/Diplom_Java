@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Класс с методами по работе с базой данных.
+ * Class with methods for working with the database.
  */
 public class Database {
 

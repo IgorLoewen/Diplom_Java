@@ -8,7 +8,7 @@ import static praktikum.IngredientType.FILLING;
 
 public class IngredientTest {
 
-    @Test // Изолированный юнит-тест метода getPrice(), проверяющий, что возвращается корректная цена ингредиента
+    @Test // Isolated unit test for the getPrice() method, verifying that the correct ingredient price is returned
     public void testGetPrice() {
         Ingredient ingredient = new Ingredient(FILLING, "mock ingredient", 777);
         float expectedPrice = 777;
@@ -18,7 +18,7 @@ public class IngredientTest {
         assertEquals(expectedPrice, actualPrice, 0.01f);
     }
 
-    @Test // Изолированный юнит-тест метода getName(), проверяющий, что возвращается корректное имя ингредиента
+    @Test // Isolated unit test for the getName() method, verifying that the correct ingredient name is returned
     public void testGetName() {
         Ingredient ingredient = new Ingredient(FILLING, "mock ingredient", 777);
         String expectedName = "mock ingredient";
@@ -28,7 +28,7 @@ public class IngredientTest {
         assertEquals(expectedName, actualName);
     }
 
-    @Test // Изолированный юнит-тест метода getType(), проверяющий, что возвращается корректный тип ингредиента
+    @Test // Isolated unit test for the getType() method, verifying that the correct ingredient type is returned
     public void testGetType() {
         Ingredient ingredient = new Ingredient(FILLING, "mock ingredient", 777);
         IngredientType expectedType = FILLING;

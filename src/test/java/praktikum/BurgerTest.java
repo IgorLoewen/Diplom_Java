@@ -7,12 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
@@ -22,7 +18,7 @@ public class BurgerTest {
     @Mock
     Ingredient ingredient;
 
-    @Test // изолированный юнит тест метода setBuns c фиктивными аргументами
+    @Test // Isolated unit test for the setBuns method with mock arguments
     public void testSetBuns() {
         Burger burger = new Burger();
         Bun mockedBun = mock(Bun.class);
@@ -32,9 +28,9 @@ public class BurgerTest {
         assertEquals(mockedBun, actualBun);
     }
 
-    @Test // Изолированный юнит-тест метода addIngredient с помощью mock и spy — проверяем вызов метода add()
-    // Этот тест фокусируется на проверке взаимодействия (behavior test)
-    // Нужен для полного покрытия функциональности сценария теста!
+    @Test // Isolated unit test for the addIngredient method using mock and spy — verifying the call to the add() method
+          // This test focuses on behavior verification (behavior test)
+          // Required for full test scenario coverage!
     public void testAddIngredientWithVerify() {
         Burger burger = new Burger();
         Ingredient mockedIngredient = mock(Ingredient.class);
@@ -44,8 +40,8 @@ public class BurgerTest {
         assertEquals(1, burger.ingredients.size());
     }
 
-    @Test// Изолированный юнит-тест метода addIngredient с помощью mock — проверяем состояние списка после вызова
-    // Этот тест фокусируется на проверке результата выполнения метода (state test)
+    @Test // Isolated unit test for the addIngredient method using mock — verifying the state of the list after the method call
+          // This test focuses on verifying the result of the method execution (state test)
     public void testAddIngredientWithMock() {
         Burger burger = new Burger();
         Ingredient mockedIngredient = mock(Ingredient.class);
@@ -55,8 +51,8 @@ public class BurgerTest {
         assertEquals(mockedIngredient, burger.ingredients.get(0));
     }
 
-    @Test // Изолированный юнит тест метода removeIngredient: проверяем, что размер списка уменьшается после удаления элемента.
-// В тесте используется замокированный объект ingredient, который добавляется и затем удаляется.
+    @Test // Isolated unit test for the removeIngredient method: verifying that the list size decreases after removing an element.
+          // The test uses a mocked ingredient object, which is added and then removed.
     public void testRemoveIngredient() {
         Burger burger = new Burger();
         burger.addIngredient(ingredient);
@@ -68,7 +64,8 @@ public class BurgerTest {
         assertEquals(expectedSize, actualSize);
     }
 
-    @Test // Изолированный юнит тест метода moveIngredient — проверяем, что элемент списка перемещается на указанный индекс
+    @Test
+    // Isolated unit test for the moveIngredient method — verifying that the list element moves to the specified index
     public void testMoveIngredient() {
         Burger burger = new Burger();
         burger.addIngredient(ingredient);
@@ -83,7 +80,7 @@ public class BurgerTest {
     }
 
 
-    @Test // изолированный юнит тест с фиктивными ценами и моками
+    @Test // Isolated unit test with mock prices and mocks
     public void testGetPrice() {
         Burger burger = new Burger();
         Mockito.when(bun.getPrice()).thenReturn(11f);
@@ -97,15 +94,16 @@ public class BurgerTest {
 
         float actualPrice = burger.getPrice();
 
-        assertEquals(expectedPrice, actualPrice,0.01f);
+        assertEquals(expectedPrice, actualPrice, 0.01f);
     }
 
 
-    @Test // Изолированный юнит-тест метода getReceipt.
-    // Проверяет, что метод корректно формирует строку чека с булочкой, ингредиентами и итоговой ценой.
-    // Используются фиктивные данные и моки для полного контроля над зависимостями.
+    @Test // Isolated unit test for the getReceipt method.
+          // Verifies that the method correctly generates a receipt string with the bun, ingredients, and total price.
+          // Uses mock data and mocks for full control over dependencies.
+
     public void testGetReceipt() {
-        // Подготовка
+
         Burger burger = new Burger();
         Mockito.when(bun.getName()).thenReturn("Fake Bun");
         Mockito.when(bun.getPrice()).thenReturn(44f);

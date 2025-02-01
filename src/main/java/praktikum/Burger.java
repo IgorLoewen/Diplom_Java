@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Модель бургера.
- * Бургер состоит из булочек и ингредиентов (начинка или соус).
- * Ингредиенты можно перемещать и удалять.
- * Можно распечать чек с информацией о бургере.
+ * Burger model.
+ * A burger consists of buns and ingredients (filling or sauce).
+ * Ingredients can be moved and removed.
+ * A receipt with burger information can be printed.
  */
 public class Burger {
 

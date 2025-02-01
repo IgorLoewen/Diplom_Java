@@ -5,19 +5,19 @@ import java.util.List;
 public class Praktikum {
 
     public static void main(String[] args) {
-        // Инициализируем базу данных
+        // Initializing the database
         Database database = new Database();
 
-        // Создадим новый бургер
+        // Create a new burger
         Burger burger = new Burger();
 
-        // Считаем список доступных булок из базы данных
+        // Retrieve the list of available buns from the database
         List<Bun> buns = database.availableBuns();
 
-        // Считаем список доступных ингредиентов из базы данных
+        // Retrieve the list of available ingredients from the database
         List<Ingredient> ingredients = database.availableIngredients();
 
-        // Соберём бургер
+        // Assemble the burger
         burger.setBuns(buns.get(0));
 
         burger.addIngredient(ingredients.get(1));
@@ -25,13 +25,13 @@ public class Praktikum {
         burger.addIngredient(ingredients.get(3));
         burger.addIngredient(ingredients.get(5));
 
-        // Переместим слой с ингредиентом
+        // Move the ingredient layer
         burger.moveIngredient(2, 1);
 
-        // Удалим ингредиент
+        // Remove the ingredient
         burger.removeIngredient(3);
 
-        // Распечатаем рецепт бургера
+        // Print the burger recipe
         System.out.println(burger.getReceipt());
     }
 

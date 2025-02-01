@@ -1,9 +1,9 @@
 package praktikum;
 
 /**
- * Перечисление с типами ингредиентов.
- * SAUCE – соус
- * FILLING – начинка
+ * Enumeration of ingredient types.
+ * SAUCE – sauce
+ * FILLING – filling
  */
 public enum IngredientType {
     SAUCE,

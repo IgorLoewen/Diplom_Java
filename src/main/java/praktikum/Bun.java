@@ -1,8 +1,8 @@
 package praktikum;
 
 /**
- * Модель булочки для бургера.
- * Булочке можно дать название и назначить цену.
+ * Burger bun model.
+ * A bun can be given a name and assigned a price.
  */
 public class Bun {
 

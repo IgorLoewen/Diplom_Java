@@ -1,9 +1,9 @@
 package praktikum;
 
 /**
- * Модель ингредиента.
- * Ингредиент: начинка или соус.
- * У ингредиента есть тип (начинка или соус), название и цена.
+ * Ingredient model.
+ * An ingredient can be a filling or a sauce.
+ * An ingredient has a type (filling or sauce), a name, and a price.
  */
 public class Ingredient {
 

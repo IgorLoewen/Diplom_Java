@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BunTest {
 
-    @Test // Изолированный юнит тест метода getName с фиктивными аргументами
+    @Test // Isolated unit test for the getName method with mock arguments
     public void testGetName(){
         Bun bun = new Bun("Fake bun",777);
         String expectedName = "Fake bun";
@@ -17,7 +17,7 @@ public class BunTest {
         assertEquals(expectedName,actualName);
     }
 
-    @Test // Изолированный юнит тест метода getPrice с фиктивными аргументами
+    @Test // Isolated unit test for the getPrice method with mock arguments
     public void testGetPrice(){
         Bun bun = new Bun("Fake bun",777);
         float expectedPrice = 777;

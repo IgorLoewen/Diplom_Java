@@ -33,8 +33,8 @@ public class AvailableIngredientsTest {
         };
     }
 
-    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
-          // проверяющий, что тип ингредиента соответствует ожидаемому значению
+    @Test // Isolated parameterized unit test for the availableIngredients() method,
+          // verifying that the ingredient type matches the expected value
     public void testAvailableIngredientType() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);
@@ -44,8 +44,8 @@ public class AvailableIngredientsTest {
         assertEquals(expectedType, actualType);
     }
 
-    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
-          // проверяющий, что имя ингредиента соответствует ожидаемому значению
+    @Test // Isolated parameterized unit test for the availableIngredients() method,
+          // verifying that the ingredient name matches the expected value
     public void testAvailableIngredientName() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);
@@ -55,8 +55,8 @@ public class AvailableIngredientsTest {
         assertEquals(expectedName, actualName);
     }
 
-    @Test // Изолированный параметризированный юнит-тест метода availableIngredients(),
-          // проверяющий, что цена ингредиента соответствует ожидаемому значению
+    @Test // Isolated parameterized unit test for the availableIngredients() method,
+          // verifying that the ingredient price matches the expected value
     public void testAvailableIngredientPrice() {
         Database database = new Database();
         Ingredient actualIngredient = database.availableIngredients().get(index);

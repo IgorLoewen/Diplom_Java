@@ -28,7 +28,7 @@ public class AvailableBunsTest {
         };
     }
 
-    @Test // Изолированный юнит-тест метода availableBuns(), проверяющий имя булочки из предопределённого списка по индексу
+    @Test // Isolated unit test for the availableBuns() method, checking the bun name from the predefined list by index
     public void testAvailableBunName() {
         Database database = new Database();
         Bun actualBun = database.availableBuns().get(index);
@@ -38,7 +38,7 @@ public class AvailableBunsTest {
         assertEquals(expectedName, actualName);
     }
 
-    @Test // Изолированный юнит-тест метода availableBuns(), проверяющий имя цену из предопределённого списка по индексу
+    @Test // Isolated unit test for the availableBuns() method, checking the bun price from the predefined list by index
     public void testAvailableBunPrice() {
         Database database = new Database();
         Bun actualBun = database.availableBuns().get(index);
