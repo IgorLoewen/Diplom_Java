@@ -14,8 +14,7 @@ public class OrderData {
     public static final String AUTH_URL = BASE_URL + "/api/auth/user";
 
 
-   /**         Список тел заказов с ингредиентами.
-    Больше тел, чем по заданию — это просто практика для меня    */
+    //        List of order bodies with ingredients
     public static List<OrderModel> getOrderBodies() {
         return Arrays.asList(
                 new OrderModel(List.of("61c0c5a71d1f82001bdaaa6d")),
@@ -27,12 +26,12 @@ public class OrderData {
         );
     }
 
-    // Переменная для заказа без ингредиентов
+    // Variable for an order without ingredients
     public static OrderModel getEmptyIngredients() {
         return new OrderModel(List.of());
     }
 
-    // Переменная с невалидным Hash ингредиента
+    // Variable with an invalid ingredient hash
     public static OrderModel getInvalidHashIngredient() {
         return new OrderModel(List.of("60d3b41abdacasdb0026a733c6"));
     }

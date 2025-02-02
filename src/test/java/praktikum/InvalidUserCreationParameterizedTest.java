@@ -17,7 +17,7 @@ import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.apache.http.HttpStatus.*;
 
-@Epic("Создание пользователя")
+@Epic("User Creation")
 @RunWith(Parameterized.class)
 public class InvalidUserCreationParameterizedTest {
 
@@ -30,7 +30,7 @@ public class InvalidUserCreationParameterizedTest {
         this.index = index;
     }
 
-    @Parameterized.Parameters(name = "Тест - создать пользователя и не заполнить одно из обязательных полей, индекс: {0}")
+    @Parameterized.Parameters(name = "Test - create a user without filling in one of the required fields, index: {0}")
     public static Object[] invalidUserIndices() {
 
         return new Object[]{0, 1, 2};
@@ -44,8 +44,8 @@ public class InvalidUserCreationParameterizedTest {
     }
 
     @Test
-    @DisplayName("Создание пользователя с отсутствующим обязательным полем")
-    @Description("Этот тест проверяет, что при попытке создать пользователя с отсутствующим email, паролем или именем возвращается ошибка")
+    @DisplayName("Creating a user with a missing required field")
+    @Description("This test verifies that attempting to create a user without an email, password, or name returns an error.")
     public void shouldReturnErrorForInvalidUser() {
 
         response = userSteps.createUser(UserData.getInvalidUserRequests().get(index));

@@ -16,7 +16,7 @@ import static data.OrderData.BASE_URL;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-@Epic("Логин пользователя")
+@Epic("User Login")
 public class LoginUserTest {
 
     private UserSteps userSteps;
@@ -33,8 +33,8 @@ public class LoginUserTest {
     }
 
     @Test
-    @DisplayName("Логин под существующим пользователем")
-    @Description("Этот тест проверяет возможность логина с корректными данными существующего пользователя")
+    @DisplayName("Login with an existing user")
+    @Description("This test verifies the ability to log in with the correct credentials of an existing user.")
     public void userLogin() {
 
         response = userSteps.loginUser(new UserModel(fixedUser.getEmail(), fixedUser.getPassword(), null));

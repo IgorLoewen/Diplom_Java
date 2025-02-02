@@ -16,7 +16,7 @@ import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.apache.http.HttpStatus.*;
 
-@Epic("Создание пользователя")
+@Epic("User Creation")
 public class CreateUserTest {
 
     public UserSteps userSteps;
@@ -30,8 +30,8 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Создание уникального пользователя")
-    @Description("Этот тест проверяет возможность создания пользователя с валидными данными")
+    @DisplayName("Creating a unique user")
+    @Description("This test verifies the ability to create a user with valid data.")
     public void uniqueUserCreating() {
 
         response = userSteps.createUser(UserData.getValidUser());
@@ -42,8 +42,8 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Создание дублирующегося пользователя")
-    @Description("Этот тест проверяет, что при повторной регистрации одного и того же пользователя возвращается ошибка")
+    @DisplayName("Creating a duplicate user")
+    @Description("This test verifies that registering the same user again returns an error.")
     public void duplicateUserCreationReturnsError() {
         UserModel fixedUser = UserData.getValidUser();
 

@@ -2,24 +2,24 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) // Исключаем null-поля из JSON
+@JsonInclude(JsonInclude.Include.NON_NULL) // Exclude null fields from JSON
 public class UserModel {
     private String email;
     private String password;
     private String name;
 
-    // Конструктор без параметров (нужен для Jackson)
+    // No-args constructor (required for Jackson)
     public UserModel() {
     }
 
-    // Конструктор с основными параметрами
+    // Constructor with parameters
     public UserModel(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
     }
 
-    // Геттеры и сеттеры
+    // Getters and setters
     public String getEmail() {
         return email;
     }

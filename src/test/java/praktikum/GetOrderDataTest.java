@@ -18,7 +18,7 @@ import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-@Epic("Получение данных заказов")
+@Epic("Retrieving Order Data")
 public class GetOrderDataTest {
 
     public UserSteps userSteps;
@@ -37,8 +37,8 @@ public class GetOrderDataTest {
     }
 
     @Test
-    @DisplayName("Получение заказов авторизованного пользователя")
-    @Description("Этот тест проверяет возможность получения списка заказов конкретного пользователя с авторизацией")
+    @DisplayName("Retrieving orders of an authorized user")
+    @Description("This test verifies the ability to retrieve the list of orders for a specific user with authorization.")
     public void getOrderListForAuthorizedUser() {
 
         orderSteps.getOrderListAuthorizedUser(token)
@@ -51,8 +51,8 @@ public class GetOrderDataTest {
     }
 
     @Test
-    @DisplayName("Попытка получения заказов конкретного пользователя неавторизованным пользователем")
-    @Description("Этот тест проверяет, что неавторизованный пользователь не может получить заказы конкретного пользователя и получает ошибку 401")
+    @DisplayName("Attempt to retrieve orders of a specific user by an unauthorized user")
+    @Description("This test verifies that an unauthorized user cannot retrieve orders of a specific user and receives a 401 error.")
     public void getFullOrderListForNotAuthorizedUser() {
 
         orderSteps.getFullOrderListNotAuthorizedUser()

@@ -17,7 +17,7 @@ import static data.OrderData.BASE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.apache.http.HttpStatus.*;
 
-@Epic("Логин пользователя")
+@Epic("User Login")
 @RunWith(Parameterized.class)
 public class InvalidUserLoginParameterizedTest {
 
@@ -30,7 +30,7 @@ public class InvalidUserLoginParameterizedTest {
         this.index = index;
     }
 
-    @Parameterized.Parameters(name = "Тест - логин с неверным логином и паролем, индекс: {0}")
+    @Parameterized.Parameters(name = "Test - login with incorrect username and password, index: {0}")
     public static Object[] invalidUserIndices() {
 
         return new Object[]{0, 1, 2};
@@ -44,8 +44,8 @@ public class InvalidUserLoginParameterizedTest {
     }
 
     @Test
-    @DisplayName("Попытка логина с некорректными данными")
-    @Description("Этот тест проверяет, что при логине с пустым email, паролем или именем возвращается ошибка")
+    @DisplayName("Attempt to log in with incorrect credentials")
+    @Description("This test verifies that logging in with an empty email, password, or name returns an error.")
     public void userLoginWithInvalidData() {
 
         response = userSteps.loginUser(UserData.getInvalidLoginRequests().get(index));

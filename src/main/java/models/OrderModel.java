@@ -4,20 +4,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) // Исключаем null-поля из JSON
+@JsonInclude(JsonInclude.Include.NON_NULL) // Exclude null fields from JSON
 public class OrderModel {
     private List<String> ingredients;
 
-    // Конструктор без параметров (нужен для Jackson)
+    // No-args constructor (required for Jackson)
     public OrderModel() {
     }
 
-    // Конструктор с параметрами
+    // Constructor with parameters
     public OrderModel(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
-    // Геттеры и сеттеры
+    // Getters and setters
     public List<String> getIngredients() {
         return ingredients;
     }

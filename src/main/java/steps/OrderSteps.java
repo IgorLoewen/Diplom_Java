@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class OrderSteps {
 
-    @Step("Создание заказа с авторизацией")
+    @Step("Creating an order with authorization")
     public Response createOrderWithAuthorization(String accessToken, OrderModel orderModel) {
         return given()
                 .header("Authorization", accessToken)
@@ -19,7 +19,7 @@ public class OrderSteps {
                 .post(ORDER_URL);
     }
 
-    @Step("Создание заказа без авторизации")
+    @Step("Creating an order without authorization")
     public Response createOrderWithoutAuthorization(OrderModel orderModel) {
         return given()
                 .header("Content-Type", "application/json")
@@ -28,7 +28,7 @@ public class OrderSteps {
                 .post(ORDER_URL);
     }
 
-    @Step("Получение списка заказов c авторизацией")
+    @Step("Retrieving the list of orders with authorization")
     public Response getOrderListAuthorizedUser(String token) {
         return given()
                 .header("Authorization", token)
@@ -37,7 +37,7 @@ public class OrderSteps {
 
     }
 
-    @Step("Получение списка заказов без авторизации")
+    @Step("Retrieving the list of orders without authorization")
     public Response getFullOrderListNotAuthorizedUser() {
         return given()
                 .when()

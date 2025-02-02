@@ -16,7 +16,7 @@ import static data.OrderData.BASE_URL;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-@Epic("Изменение данных пользователя")
+@Epic("User Data Modification")
 public class EditUserDataWithAuthorizationTest {
 
     private UserSteps userSteps;
@@ -35,31 +35,31 @@ public class EditUserDataWithAuthorizationTest {
     }
 
     @Test
-    @DisplayName("Изменение email с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить email пользователя с авторизацией")
+    @DisplayName("Updating email with authorization")
+    @Description("This test verifies that the user's email can be updated with authorization.")
     public void editUserDataWithAuthorizationEmailChange() {
-        UserModel emailUpdate = new UserModel("pomenyali@pomenyalkin.ru", null, null);
+        UserModel emailUpdate = new UserModel("change@chanched.com", null, null);
 
         userSteps.editUserDataWithAuthorization(token, emailUpdate)
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
-                .body("user.email", equalTo("pomenyali@pomenyalkin.ru"))
+                .body("user.email", equalTo("change@chanched.com"))
                 .body("user.name", equalTo(fixedUser.getName()));
     }
 
     @Test
-    @DisplayName("Изменение имени с авторизацией")
-    @Description("Этот тест проверяет, что можно изменить имя пользователя с авторизацией")
+    @DisplayName("Updating name with authorization")
+    @Description("This test verifies that the user's name can be updated with authorization.")
     public void editUserDataWithAuthorizationNameChange() {
-        UserModel nameUpdate = new UserModel(null, null, "Pomenyalkin");
+        UserModel nameUpdate = new UserModel(null, null, "ChangeMan");
 
         userSteps.editUserDataWithAuthorization(token, nameUpdate)
                 .then()
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
                 .body("user.email", equalTo(fixedUser.getEmail()))
-                .body("user.name", equalTo("Pomenyalkin"));
+                .body("user.name", equalTo("ChangeMan"));
     }
 
     @After

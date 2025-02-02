@@ -11,7 +11,7 @@ public class UserSteps {
 
     public String accessToken;
 
-    @Step("Создание уникального пользователя с заданным телом запроса")
+    @Step("Creating a unique user with the specified request body")
     public Response createUser(UserModel userModel) {
         return given()
                 .header("Content-type", "application/json")
@@ -20,7 +20,7 @@ public class UserSteps {
                 .post(REGISTER_URL);
     }
 
-    @Step("Логин пользователя с заданным телом запроса")
+    @Step("User login with the specified request body")
     public Response loginUser(UserModel userModel) {
         return given()
                 .header("Content-type", "application/json")
@@ -29,7 +29,7 @@ public class UserSteps {
                 .post(LOGIN_URL);
     }
 
-    @Step("Удаление пользователя по accessToken")
+    @Step("Deleting the user by accessToken")
     public Response deleteUser() {
         return given()
                 .header("Authorization",accessToken)
@@ -38,12 +38,12 @@ public class UserSteps {
                 .delete(AUTH_URL);
     }
 
-    @Step("Извлечение accessToken ")
+    @Step("Extracting accessToken")
     public void getAccessToken(Response response) {
         this.accessToken = response.jsonPath().getString("accessToken");
     }
 
-    @Step("Изменение данных пользователя с авторизацией")
+    @Step("Updating user data with authorization")
     public Response editUserDataWithAuthorization(String accessToken, UserModel userModel) {
         return given()
                 .header("Authorization",accessToken)
@@ -53,7 +53,7 @@ public class UserSteps {
                 .patch(AUTH_URL);
     }
 
-    @Step("Изменение данных пользователя без авторизации")
+    @Step("Updating user data without authorization")
     public Response editUserDataWithoutAuthorization(UserModel userModel) {
         return given()
                 .header("Content-Type", "application/json")

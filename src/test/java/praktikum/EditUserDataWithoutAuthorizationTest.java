@@ -19,7 +19,7 @@ import static data.OrderData.BASE_URL;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-@Epic("Изменение данных пользователя")
+@Epic("User Data Modification")
 @RunWith(Parameterized.class)
 public class EditUserDataWithoutAuthorizationTest {
 
@@ -30,7 +30,7 @@ public class EditUserDataWithoutAuthorizationTest {
         this.userData = userData;
     }
 
-    @Parameterized.Parameters(name = "Тест с набором данных для изменения данных пользователя без авторизации: {0}")
+    @Parameterized.Parameters(name = "Test with dataset for updating user data without authorization: {0}")
     public static List<UserModel> userData() {
 
         return UserData.getUserDataUpdateBodies();
@@ -43,8 +43,8 @@ public class EditUserDataWithoutAuthorizationTest {
     }
 
     @Test
-    @DisplayName("Изменение данных пользователя без авторизации")
-    @Description("Этот тест проверяет, что при попытке изменить данные пользователя без авторизации возвращается ошибка")
+    @DisplayName("Updating user data without authorization")
+    @Description("This test verifies that attempting to update user data without authorization returns an error.")
     public void shouldReturnErrorWhenEditingWithoutAuthorization() {
 
         Response response = userSteps.editUserDataWithoutAuthorization(userData);

@@ -13,7 +13,7 @@ public class UserData {
 
     public static final String ORDER_URL = BASE_URL + "/api/orders";
 
-    // Генерация уникального пользователя
+    // Generating a unique user
     public static UserModel getValidUser() {
         return new UserModel(
                 faker.internet().emailAddress(),
@@ -22,7 +22,7 @@ public class UserData {
         );
     }
 
-    // Список тел для параметризованных тестов, где одно из полей пустое
+    // List of bodies for parameterized tests where one of the fields is empty
     public static List<UserModel> getInvalidUserRequests() {
         return Arrays.asList(
                 new UserModel("", faker.internet().password(8, 16), faker.name().firstName()),
@@ -31,7 +31,7 @@ public class UserData {
         );
     }
 
-    // Список тел для проверки логина с неверными данными
+    // List of bodies for login verification with incorrect data
     public static List<UserModel> getInvalidLoginRequests() {
         return Arrays.asList(
                 new UserModel("wrongemail@test.com", faker.internet().password(8, 16), null),
@@ -40,7 +40,7 @@ public class UserData {
         );
     }
 
-    // Список тел для обновления данных пользователя
+    // List of bodies for updating user data
     public static List<UserModel> getUserDataUpdateBodies() {
         return Arrays.asList(
                 new UserModel(faker.internet().emailAddress(), null, null),

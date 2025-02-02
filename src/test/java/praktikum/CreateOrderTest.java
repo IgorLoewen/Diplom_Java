@@ -18,7 +18,7 @@ import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-@Epic("Создание заказа")
+@Epic("Order Creation")
 public class CreateOrderTest {
 
     public UserSteps userSteps;
@@ -37,8 +37,8 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("Создание заказа с авторизацией и с ингредиентами")
-    @Description("Этот тест проверяет возможность создания заказа с авторизацией. Проверяются все основные поля ответа, включая ID, статус и цену.")
+    @DisplayName("Creating an order with authorization and ingredients")
+    @Description("This test verifies the ability to create an order with authorization. All key response fields are checked, including ID, status, and price.")
     public void createOrderWithAuthorization() {
 
         orderSteps.createOrderWithAuthorization(token, OrderData.getOrderBodies().get(5))
@@ -59,8 +59,8 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("Создание заказа без авторизации")
-    @Description("Этот тест проверяет возможность создания заказа без авторизации. Проверяется успешный ответ с полями name и order.")
+    @DisplayName("Creating an order with authorization and ingredients")
+    @Description("This test verifies the ability to create an order with authorization. All key response fields are checked, including ID, status, and price.")
     public void createOrderWithoutAuthorization() {
 
         orderSteps.createOrderWithoutAuthorization(OrderData.getOrderBodies().get(4))
@@ -73,8 +73,8 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("Создание заказа без ингредиентов")
-    @Description("Этот тест проверяет, что создание заказа без указания ингредиентов возвращает ошибку с кодом 400.")
+    @DisplayName("Creating an order without ingredients")
+    @Description("This test verifies that creating an order without specifying ingredients returns an error with code 400.")
     public void createOrderWithoutIngredients() {
 
         orderSteps.createOrderWithAuthorization(token, OrderData.getEmptyIngredients())
@@ -86,8 +86,8 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("Создание заказа с неверным Hash ингредиента")
-    @Description("Этот тест проверяет, что создание заказа с неверным Hash ингредиента возвращает ошибку с кодом 500. Это серый случай, так как 500 обычно не ожидается.")
+    @DisplayName("Creating an order with an invalid ingredient hash")
+    @Description("This test verifies that creating an order with an invalid ingredient hash returns an error with code 500. This is an edge case, as a 500 error is usually not expected.")
     public void createOrderWithWrongHashForIngredients() {
 
         orderSteps.createOrderWithAuthorization(token, OrderData.getInvalidHashIngredient())
