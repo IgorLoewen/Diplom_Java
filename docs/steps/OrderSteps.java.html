@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderSteps.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QA-java-diplom</a> &gt; <a href="index.source.html" class="el_package">steps</a> &gt; <span class="el_source">OrderSteps.java</span></div><h1>OrderSteps.java</h1><pre class="source lang-java linenums">package steps;
+
+import io.qameta.allure.Step;
+import io.restassured.response.Response;
+import models.OrderModel;
+
+import static data.UserData.ORDER_URL;
+import static io.restassured.RestAssured.given;
+
+<span class="fc" id="L10">public class OrderSteps {</span>
+
+    @Step(&quot;Creating an order with authorization&quot;)
+    public Response createOrderWithAuthorization(String accessToken, OrderModel orderModel) {
+<span class="fc" id="L14">        return given()</span>
+<span class="fc" id="L15">                .header(&quot;Authorization&quot;, accessToken)</span>
+<span class="fc" id="L16">                .header(&quot;Content-Type&quot;, &quot;application/json&quot;)</span>
+<span class="fc" id="L17">                .body(orderModel)</span>
+<span class="fc" id="L18">                .when()</span>
+<span class="fc" id="L19">                .post(ORDER_URL);</span>
+    }
+
+    @Step(&quot;Creating an order without authorization&quot;)
+    public Response createOrderWithoutAuthorization(OrderModel orderModel) {
+<span class="fc" id="L24">        return given()</span>
+<span class="fc" id="L25">                .header(&quot;Content-Type&quot;, &quot;application/json&quot;)</span>
+<span class="fc" id="L26">                .body(orderModel)</span>
+<span class="fc" id="L27">                .when()</span>
+<span class="fc" id="L28">                .post(ORDER_URL);</span>
+    }
+
+    @Step(&quot;Retrieving the list of orders with authorization&quot;)
+    public Response getOrderListAuthorizedUser(String token) {
+<span class="fc" id="L33">        return given()</span>
+<span class="fc" id="L34">                .header(&quot;Authorization&quot;, token)</span>
+<span class="fc" id="L35">                .when()</span>
+<span class="fc" id="L36">                .get(ORDER_URL);</span>
+
+    }
+
+    @Step(&quot;Retrieving the list of orders without authorization&quot;)
+    public Response getFullOrderListNotAuthorizedUser() {
+<span class="fc" id="L42">        return given()</span>
+<span class="fc" id="L43">                .when()</span>
+<span class="fc" id="L44">                .get(ORDER_URL);</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

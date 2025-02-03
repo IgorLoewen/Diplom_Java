@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QA-java-diplom</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">OrderData.java</span></div><h1>OrderData.java</h1><pre class="source lang-java linenums">package data;
+
+import models.OrderModel;
+
+import java.util.Arrays;
+import java.util.List;
+
+<span class="nc" id="L8">public class OrderData {</span>
+
+
+    public static final String BASE_URL = &quot;https://stellarburgers.nomoreparties.site&quot;;
+    public static final String REGISTER_URL = BASE_URL + &quot;/api/auth/register&quot;;
+    public static final String LOGIN_URL = BASE_URL + &quot;/api/auth/login&quot;;
+    public static final String AUTH_URL = BASE_URL + &quot;/api/auth/user&quot;;
+
+
+    //        List of order bodies with ingredients
+    public static List&lt;OrderModel&gt; getOrderBodies() {
+<span class="fc" id="L19">        return Arrays.asList(</span>
+<span class="fc" id="L20">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa6d&quot;)),</span>
+<span class="fc" id="L21">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa6f&quot;, &quot;61c0c5a71d1f82001bdaaa70&quot;)),</span>
+<span class="fc" id="L22">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa71&quot;, &quot;61c0c5a71d1f82001bdaaa72&quot;, &quot;61c0c5a71d1f82001bdaaa73&quot;)),</span>
+<span class="fc" id="L23">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa74&quot;, &quot;61c0c5a71d1f82001bdaaa75&quot;, &quot;61c0c5a71d1f82001bdaaa6c&quot;, &quot;61c0c5a71d1f82001bdaaa76&quot;, &quot;61c0c5a71d1f82001bdaaa77&quot;)),</span>
+<span class="fc" id="L24">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa78&quot;)),</span>
+<span class="fc" id="L25">                new OrderModel(List.of(&quot;61c0c5a71d1f82001bdaaa79&quot;, &quot;61c0c5a71d1f82001bdaaa7a&quot;, &quot;61c0c5a71d1f82001bdaaa6e&quot;))</span>
+        );
+    }
+
+    // Variable for an order without ingredients
+    public static OrderModel getEmptyIngredients() {
+<span class="fc" id="L31">        return new OrderModel(List.of());</span>
+    }
+
+    // Variable with an invalid ingredient hash
+    public static OrderModel getInvalidHashIngredient() {
+<span class="fc" id="L36">        return new OrderModel(List.of(&quot;60d3b41abdacasdb0026a733c6&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

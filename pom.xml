@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>QA-java-diplom-3</artifactId>
+    <artifactId>QA-java-diplom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,7 +13,7 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 4 -->
+        <!-- JUnit 4 for unit testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -21,7 +21,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Selenium -->
+        <!-- Selenium for UI automation -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -33,21 +33,21 @@
             <version>4.13.0</version>
         </dependency>
 
-        <!-- WebDriverManager -->
+        <!-- WebDriverManager for browser driver management -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.4.0</version>
         </dependency>
 
-        <!-- SLF4J NOP Logger -->
+        <!-- SLF4J NOP Logger to suppress logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>2.0.7</version>
         </dependency>
 
-        <!-- Allure -->
+        <!-- Allure for reporting -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
@@ -64,14 +64,14 @@
             <version>2.21.0</version>
         </dependency>
 
-        <!-- RestAssured -->
+        <!-- RestAssured for API testing -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.3.0</version>
         </dependency>
 
-        <!-- Hamcrest -->
+        <!-- Hamcrest for assertions -->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
@@ -79,23 +79,40 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson for JSON handling -->
+        <!-- Jackson for JSON processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.15.0</version>
         </dependency>
 
-        <!-- JavaFaker для генерации тестовых данных -->
+        <!-- JavaFaker for generating test data -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
+
+        <!-- Mockito for mocking in unit tests -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JaCoCo agent for code coverage -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>org.jacoco.agent</artifactId>
+            <version>0.8.10</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Surefire Plugin for running unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -114,7 +131,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Allure Maven Plugin -->
+            <!-- Allure Maven Plugin for generating reports -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -123,6 +140,31 @@
                     <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                     <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
                 </configuration>
+            </plugin>
+
+            <!-- JaCoCo Plugin for code coverage reports -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/docs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

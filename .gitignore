@@ -25,6 +25,14 @@
 # Игнорируем всю папку target
 /target/
 .allure
+# Exclude temporary JaCoCo files but allow reports
+**/jacoco.exec
+
+# Keep everything in `src/` and `docs/`
+!src/com/main/
+!src/com/test/
+!docs/jacoco-resources
+docs/jacoco.csv
 
 # Temporary files
 *.tmp

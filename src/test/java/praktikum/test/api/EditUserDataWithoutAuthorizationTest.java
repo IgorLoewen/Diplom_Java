@@ -1,4 +1,4 @@
-package praktikum;
+package praktikum.test.api;
 
 import data.UserData;
 import io.qameta.allure.Description;

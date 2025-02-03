@@ -1,4 +1,4 @@
-package praktikum;
+package praktikum.test.api;
 
 import data.OrderData;
 import data.UserData;

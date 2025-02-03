@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfilePage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QA-java-diplom</a> &gt; <a href="index.source.html" class="el_package">pages</a> &gt; <span class="el_source">ProfilePage.java</span></div><h1>ProfilePage.java</h1><pre class="source lang-java linenums">package pages;
+
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class ProfilePage {
+
+    // ========================= Constants =========================
+    public static final String PROFILE_URL = MainPage.BASE_URL + &quot;account/profile&quot;;
+    public static final String LOGIN_PAGE_URL = MainPage.BASE_URL + &quot;login&quot;;
+
+    // ========================= Locators =========================
+<span class="fc" id="L18">    private static final By CONSTRUCTOR_BUTTON = By.xpath(&quot;//p[contains(@class, 'AppHeader_header__linkText__3q_va') and contains(@class, 'ml-2') and text()='Конструктор']&quot;);</span>
+<span class="fc" id="L19">    private static final By LOGOUT_BUTTON = By.xpath(&quot;//button[contains(@class, 'Account_button__14Yp3') and text()='Выход']&quot;);</span>
+<span class="fc" id="L20">    private static final By STELLAR_BURGER_LOGO = By.xpath(&quot;//div[contains(@class, 'AppHeader_header__logo__2D0X2')]&quot;);</span>
+
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+
+    // ========================= Constructor =========================
+<span class="fc" id="L26">    public ProfilePage(WebDriver driver) {</span>
+<span class="fc" id="L27">        this.driver = driver;</span>
+<span class="fc" id="L28">        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));</span>
+<span class="fc" id="L29">    }</span>
+
+    // ========================= Methods =========================
+    @Step(&quot;Clicking the 'Constructor' button and waiting for navigation to the main page&quot;)
+    public void clickToConstructorButton() {
+<span class="nc" id="L34">        driver.findElement(CONSTRUCTOR_BUTTON).click();</span>
+<span class="nc" id="L35">        wait.until(ExpectedConditions.urlToBe(MainPage.BASE_URL));</span>
+<span class="nc" id="L36">    }</span>
+
+    @Step(&quot;Clicking the Stellar Burgers logo and waiting for navigation to the main page&quot;)
+    public void clickToLogoButton() {
+<span class="nc" id="L40">        driver.findElement(STELLAR_BURGER_LOGO).click();</span>
+<span class="nc" id="L41">        wait.until(ExpectedConditions.urlToBe(MainPage.BASE_URL));</span>
+<span class="nc" id="L42">    }</span>
+
+    @Step(&quot;Clicking the 'Logout' button and waiting for navigation to the login page&quot;)
+    public void clickLogoutButton() {
+<span class="fc" id="L46">        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_BUTTON)).click();</span>
+<span class="fc" id="L47">        wait.until(ExpectedConditions.urlToBe(LOGIN_PAGE_URL));</span>
+<span class="fc" id="L48">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
