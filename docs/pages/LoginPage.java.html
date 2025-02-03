@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginPage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QA-java-diplom</a> &gt; <a href="index.source.html" class="el_package">pages</a> &gt; <span class="el_source">LoginPage.java</span></div><h1>LoginPage.java</h1><pre class="source lang-java linenums">package pages;
+
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static pages.RegisterPage.LOGIN_HEADER;
+
+public class LoginPage {
+
+    // ========================= Constants =========================
+    public static final String LOGIN_URL = MainPage.BASE_URL + &quot;login&quot;;
+    public static final String EXPECTED_LOGIN_TEXT = &quot;Вход&quot;;
+
+    // ========================= Locators =========================
+<span class="fc" id="L20">    private static final By EMAIL_INPUT = By.xpath(&quot;//input[@name='name' and @type='text']&quot;);</span>
+<span class="fc" id="L21">    private static final By PASSWORD_INPUT = By.xpath(&quot;//input[@name='Пароль' and @type='password']&quot;);</span>
+<span class="fc" id="L22">    private static final By LOGIN_BUTTON = By.xpath(&quot;//button[contains(@class, 'button_button__33qZ0') and text()='Войти']&quot;);</span>
+<span class="fc" id="L23">    private static final By REGISTER_LINK = By.xpath(&quot;//a[contains(@class, 'Auth_link__1fOlj') and @href='/register']&quot;);</span>
+<span class="fc" id="L24">    private static final By FORGOT_PASSWORD_BUTTON = By.xpath(&quot;//a[contains(@class, 'Auth_link__1fOlj') and @href='/forgot-password']&quot;);</span>
+
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+
+    // ========================= Constructor =========================
+<span class="fc" id="L30">    public LoginPage(WebDriver driver) {</span>
+<span class="fc" id="L31">        this.driver = driver;</span>
+<span class="fc" id="L32">        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));</span>
+<span class="fc" id="L33">    }</span>
+
+    // ========================= Methods =========================
+    @Step(&quot;Entering email: {email}&quot;)
+    public void enterEmail(String email) {
+<span class="fc" id="L38">        driver.findElement(EMAIL_INPUT).sendKeys(email);</span>
+<span class="fc" id="L39">    }</span>
+
+    @Step(&quot;Entering password: {password}&quot;)
+    public void enterPassword(String password) {
+<span class="fc" id="L43">        driver.findElement(PASSWORD_INPUT).sendKeys(password);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Step(&quot;Clicking the 'Login' button&quot;)
+    public void clickLoginButton() {
+<span class="fc" id="L48">        driver.findElement(LOGIN_BUTTON).click();</span>
+<span class="fc" id="L49">        wait.until(ExpectedConditions.urlToBe(MainPage.BASE_URL));</span>
+<span class="fc" id="L50">    }</span>
+
+    @Step(&quot;Clicking the 'Register' link&quot;)
+    public void clickRegisterButton() {
+<span class="fc" id="L54">        driver.findElement(REGISTER_LINK).click();</span>
+<span class="fc" id="L55">    }</span>
+
+    @Step(&quot;Clicking the 'Reset Password' button&quot;)
+    public void clickRecoveryPasswordButton() {
+<span class="fc" id="L59">        driver.findElement(FORGOT_PASSWORD_BUTTON).click();</span>
+<span class="fc" id="L60">    }</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

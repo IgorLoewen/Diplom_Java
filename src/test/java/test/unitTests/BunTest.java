@@ -1,7 +1,8 @@
-package praktikum;
+package test.unitTests;
 
 
 import org.junit.Test;
+import praktikum.Bun;
 
 import static org.junit.Assert.assertEquals;
 

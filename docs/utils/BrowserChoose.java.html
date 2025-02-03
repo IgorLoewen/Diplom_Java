@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BrowserChoose.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QA-java-diplom</a> &gt; <a href="index.source.html" class="el_package">utils</a> &gt; <span class="el_source">BrowserChoose.java</span></div><h1>BrowserChoose.java</h1><pre class="source lang-java linenums">package utils;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+<span class="nc" id="L7">public class BrowserChoose {</span>
+
+    public static WebDriver createDriver() {
+<span class="fc" id="L10">        String browser = System.getProperty(&quot;browser&quot;, &quot;chrome&quot;).toLowerCase();</span>
+
+<span class="fc" id="L12">        ChromeOptions options = new ChromeOptions();</span>
+<span class="fc" id="L13">        addCommonArguments(options);</span>
+
+<span class="pc bpc" id="L15" title="2 of 3 branches missed.">        switch (browser) {</span>
+            case &quot;chrome&quot;:
+<span class="fc" id="L17">                configureChromeDriver();</span>
+<span class="fc" id="L18">                break;</span>
+            case &quot;yandex&quot;:
+<span class="nc" id="L20">                configureYandexDriver(options);</span>
+<span class="nc" id="L21">                break;</span>
+            default:
+<span class="nc" id="L23">                throw new IllegalArgumentException(&quot;Unsupported browser: &quot; + browser);</span>
+        }
+
+<span class="fc" id="L26">        return new ChromeDriver(options);</span>
+    }
+
+    private static void configureChromeDriver() {
+<span class="fc" id="L30">        System.setProperty(&quot;webdriver.chrome.driver&quot;, &quot;/usr/local/bin/chromedriver&quot;);</span>
+<span class="fc" id="L31">    }</span>
+
+    private static void configureYandexDriver(ChromeOptions options) {
+<span class="nc" id="L34">        System.setProperty(&quot;webdriver.chrome.driver&quot;, &quot;/usr/local/bin/chromedriver-yandex&quot;);</span>
+<span class="nc" id="L35">        options.setBinary(&quot;/Applications/Yandex.app/Contents/MacOS/Yandex&quot;);</span>
+<span class="nc" id="L36">    }</span>
+
+    private static void addCommonArguments(ChromeOptions options) {
+<span class="fc" id="L39">        options.addArguments(&quot;--remote-allow-origins=*&quot;);</span>
+<span class="fc" id="L40">        options.addArguments(&quot;--disable-blink-features=AutomationControlled&quot;);</span>
+<span class="fc" id="L41">        options.addArguments(&quot;--no-sandbox&quot;);</span>
+<span class="fc" id="L42">        options.addArguments(&quot;--disable-dev-shm-usage&quot;);</span>
+<span class="fc" id="L43">        options.addArguments(&quot;--disable-gpu&quot;);</span>
+<span class="fc" id="L44">        options.addArguments(&quot;--disable-extensions&quot;);</span>
+<span class="fc" id="L45">        options.addArguments(&quot;--start-maximized&quot;);</span>
+<span class="fc" id="L46">        options.addArguments(&quot;--enable-automation&quot;);</span>
+<span class="fc" id="L47">        options.addArguments(&quot;--disable-popup-blocking&quot;);</span>
+<span class="fc" id="L48">        options.addArguments(&quot;--disable-notifications&quot;);</span>
+<span class="fc" id="L49">        options.addArguments(&quot;--incognito&quot;);</span>
+<span class="fc" id="L50">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
