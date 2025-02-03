@@ -15,7 +15,7 @@ import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
 
-@Epic("Регистрация пользователя")
+@Epic("User Registration")
 public class RegistrationTest extends TestsSetUp {
 
     private UserSteps userSteps;
@@ -27,8 +27,8 @@ public class RegistrationTest extends TestsSetUp {
 
 
     @Before
-    @Step("Подготовка окружения для теста")
-    @Description("Создаёт окружение, открывает страницу регистрации и инициализирует UserSteps")
+    @Step("Preparing the test environment")
+    @Description("Sets up the environment, opens the registration page, and initializes UserSteps")
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
@@ -42,8 +42,8 @@ public class RegistrationTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что пользователь может успешно зарегистрироваться и попасть на страницу логина")
-    @DisplayName("Успешная регистрация пользователя")
+    @Description("The test verifies that a user can successfully register and be redirected to the login page")
+    @DisplayName("Successful user registration")
     public void testSuccessfulRegistration() {
 
         registerPage.enterName(name);
@@ -54,12 +54,12 @@ public class RegistrationTest extends TestsSetUp {
         String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
         String actualText = driver.findElement(RegisterPage.LOGIN_HEADER).getText();
 
-        assertEquals("Текст на странице логина после регистрации не совпадает с ожидаемым значением", expectedText, actualText);
+        assertEquals("The text on the login page after registration does not match the expected value", expectedText, actualText);
     }
 
     @Test
-    @Description("Тест проверяет сообщения об ошибке при вводе некорректного пароля")
-    @DisplayName("Проверка ошибки для некорректного пароля")
+    @Description("The test verifies error messages when entering an incorrect password")
+    @DisplayName("Error validation for incorrect password")
     public void testErrorsForInvalidPasswords() {
 
         registerPage.enterName(name);
@@ -73,8 +73,8 @@ public class RegistrationTest extends TestsSetUp {
     }
 
     @After
-    @Step("Очистка данных после теста")
-    @Description("Удаляет пользователя, созданного в ходе теста")
+    @Step("Clearing data after the test")
+    @Description("Deletes the user created during the test")
     public void cleanUpAfterUserRegistration() {
         Response loginResponse = userSteps.loginUser(new models.UserModel(email, password, null));
         userSteps.getAccessToken(loginResponse);

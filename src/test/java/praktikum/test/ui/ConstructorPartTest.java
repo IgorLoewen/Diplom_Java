@@ -11,14 +11,14 @@ import pages.MainPage;
 
 import static org.junit.Assert.assertTrue;
 
-@Epic("Переходы в разделе конструктора")
+@Epic("Navigation in the constructor section")
 public class ConstructorPartTest extends TestsSetUp {
 
     private MainPage mainPage;
 
     @Before
-    @Step("Инициализация тестового окружения")
-    @Description("Выполняет инициализацию окружения для теста")
+    @Step("Initializing the test environment")
+    @Description("Performs environment initialization for the test")
     public void setUp() {
         super.setUp();
         mainPage = new MainPage(driver);
@@ -26,40 +26,40 @@ public class ConstructorPartTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что по клику на раздел «Соусы» активируется соответствующий таб, а остальные не активны")
-    @DisplayName("Активация таба «Соусы»")
+    @Description("The test verifies that clicking on the 'Sauces' section activates the corresponding tab while the others remain inactive")
+    @DisplayName("Activation of the 'Sauces' tab")
     public void testActivateSaucesTab() {
 
         mainPage.clickSaucesTab();
 
-        assertTrue("Таб «Соусы» не активировался корректно", mainPage.isCorrectTabActive(1));
+        assertTrue("The 'Sauces' tab did not activate correctly", mainPage.isCorrectTabActive(1));
     }
 
 
     @Test
-    @Description("Тест проверяет, что по клику на раздел «Начинки» активируется соответствующий таб, а остальные не активны")
-    @DisplayName("Активация таба «Начинки»")
+    @Description("The test verifies that clicking on the 'Fillings' section activates the corresponding tab while the others remain inactive")
+    @DisplayName("Activation of the 'Fillings' tab")
     public void testActivateFillingsTab() {
 
         mainPage.clickFillingsTab();
 
-        assertTrue("Таб «Начинки» не активировался корректно", mainPage.isCorrectTabActive(2));
+        assertTrue("The 'Fillings' tab did not activate correctly", mainPage.isCorrectTabActive(2));
     }
 
     @Test
-    @Description("Тест проверяет, что по клику на раздел «Булки» активируется соответствующий таб, а остальные не активны")
-    @DisplayName("Активация таба «Булки»")
+    @Description("The test verifies that clicking on the 'Buns' section activates the corresponding tab while the others remain inactive")
+    @DisplayName("Activation of the 'Buns' tab")
     public void testActivateBunsTab() {
 
         mainPage.clickBunsTab();
 
-        assertTrue("Таб «Булки» не активировался корректно", mainPage.isCorrectTabActive(0));
+        assertTrue("The 'Buns' tab did not activate correctly", mainPage.isCorrectTabActive(0));
     }
 
 
     @After
-    @Step("Очистка данных после теста")
-    @Description("Закрываем браузер")
+    @Step("Clearing data after the test")
+    @Description("Closing the browser")
     public void tearDown() {
         super.tearDown();
     }

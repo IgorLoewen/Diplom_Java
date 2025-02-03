@@ -11,9 +11,12 @@ import java.time.Duration;
 import static pages.RegisterPage.LOGIN_HEADER;
 
 public class LoginPage {
+
+    // ========================= Constants =========================
     public static final String LOGIN_URL = MainPage.BASE_URL + "login";
     public static final String EXPECTED_LOGIN_TEXT = "Вход";
 
+    // ========================= Locators =========================
     private static final By EMAIL_INPUT = By.xpath("//input[@name='name' and @type='text']");
     private static final By PASSWORD_INPUT = By.xpath("//input[@name='Пароль' and @type='password']");
     private static final By LOGIN_BUTTON = By.xpath("//button[contains(@class, 'button_button__33qZ0') and text()='Войти']");
@@ -23,33 +26,35 @@ public class LoginPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
+    // ========================= Constructor =========================
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Step("Ввод email: {email}")
+    // ========================= Methods =========================
+    @Step("Entering email: {email}")
     public void enterEmail(String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
-    @Step("Ввод пароля: {password}")
+    @Step("Entering password: {password}")
     public void enterPassword(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
-    @Step("Клик на кнопку «Войти»")
+    @Step("Clicking the 'Login' button")
     public void clickLoginButton() {
         driver.findElement(LOGIN_BUTTON).click();
         wait.until(ExpectedConditions.urlToBe(MainPage.BASE_URL));
     }
 
-    @Step("Клик на ссылку «Зарегистрироваться»")
+    @Step("Clicking the 'Register' link")
     public void clickRegisterButton() {
         driver.findElement(REGISTER_LINK).click();
     }
 
-    @Step("Клик на кнопку «Восстановить пароль»")
+    @Step("Clicking the 'Reset Password' button")
     public void clickRecoveryPasswordButton() {
         driver.findElement(FORGOT_PASSWORD_BUTTON).click();
     }

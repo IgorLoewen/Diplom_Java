@@ -9,9 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegisterPage {
+
+    // ========================= Constants =========================
     public static final String REGISTER_URL = MainPage.BASE_URL + "register";
     public static final By LOGIN_HEADER = By.xpath("//h2[contains(text(), 'Вход')]");
 
+    // ========================= Locators =========================
     private static final By NAME_INPUT = By.xpath("//input[@name='name' and @type='text']");
     private static final By EMAIL_INPUT = By.xpath("(//input[@type='text'])[2]");
     private static final By PASSWORD_INPUT = By.xpath("//input[@name='Пароль' and @type='password']");
@@ -22,48 +25,50 @@ public class RegisterPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
+    // ========================= Constructor =========================
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Step("Открытие страницы регистрации")
+    // ========================= Methods =========================
+    @Step("Opening the registration page")
     public void open() {
         driver.get(REGISTER_URL);
     }
 
-    @Step("Ввод имени: {name}")
+    @Step("Entering name: {name}")
     public void enterName(String name) {
         driver.findElement(NAME_INPUT).sendKeys(name);
     }
 
-    @Step("Ввод email: {email}")
+    @Step("Entering email: {email}")
     public void enterEmail(String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
 
-    @Step("Ввод пароля: {password}")
+    @Step("Entering password: {password}")
     public void enterPassword(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
-    @Step("Клик на кнопку «Зарегистрироваться» и ожидание перехода на страницу логина")
+    @Step("Clicking the 'Register' button and waiting for navigation to the login page")
     public void clickRegisterButton() {
         driver.findElement(REGISTER_BUTTON).click();
         wait.until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
-    @Step("Клик на кнопку «Зарегистрироваться» без ожидания перехода")
+    @Step("Clicking the 'Register' button without waiting for navigation")
     public void clickRegisterButtonWithoutWait() {
         driver.findElement(REGISTER_BUTTON).click();
     }
 
-    @Step("Получение сообщения об ошибке для пароля")
+    @Step("Retrieving the error message for the password")
     public String getPasswordErrorMessage() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR_TEXT)).getText();
     }
 
-    @Step("Клик на ссылку «Войти»")
+    @Step("Clicking the 'Login' link")
     public void clickEnterButton() {
         driver.findElement(LOGIN_LINK).click();
     }

@@ -16,17 +16,16 @@ public abstract class TestsSetUp {
     protected WebDriverWait wait;
 
     @Before
-    @Description("Настройка драйвера и базового URL для тестов")
-    @DisplayName("Настройка тестового окружения")
+    @Description("Configuring the driver and base URL for tests")
+    @DisplayName("Setting up the test environment")
     public void setUp() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
         driver = BrowserChoose.createDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @After
-    @Description("Закрытие браузера после выполнения тестов")
-    @DisplayName("Завершение тестового окружения")
+    @Description("Closing the browser after test execution")
+    @DisplayName("Shutting down the test environment")
     public void tearDown() {
         if (driver != null) {
             driver.quit();

@@ -13,11 +13,10 @@ import java.util.List;
 
 public class MainPage {
 
-    // ========================= Константы =========================
-
+    // ========================= Constants =========================
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site/";
 
-    // ========================= Локаторы =========================
+    // ========================= Locators =========================
     private static final By BUNS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Булки']]");
     private static final By SAUCES_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Соусы']]");
     private static final By FILLINGS_TAB = By.xpath("//div[contains(@class, 'tab_tab__1SPyG') and .//span[text()='Начинки']]");
@@ -27,60 +26,59 @@ public class MainPage {
     private static final By CONSTRUCTOR_BUTTON = By.xpath("//p[contains(@class, 'AppHeader_header__linkText__3q_va') and contains(@class, 'ml-2') and text()='Конструктор']");
     private static final By LOGO = By.xpath("//div[contains(@class, 'AppHeader_header__logo__2D0X2')]");
 
-    // ========================= Атрибуты =========================
+    // ========================= Attributes =========================
     private static final String ACTIVE_TAB_CLASS = "tab_tab_type_current__2BEPc";
     private static final String ATTRIBUTE_CLASS = "class";
 
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    // ========================= Конструктор =========================
+    // ========================= Constructor =========================
     public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // ========================= Методы =========================
-
-    @Step("Открытие главной страницы")
+    // ========================= Methods =========================
+    @Step("Opening the main page")
     public void open() {
         driver.get(BASE_URL);
     }
 
-    @Step("Клик на кнопку 'Войти'")
+    @Step("Clicking the 'Login' button")
     public void clickLoginButton() {
         driver.findElement(LOGIN_BUTTON).click();
         wait.until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
-    @Step("Клик на ссылку 'Личный кабинет' для перехода на страницу логина")
+    @Step("Clicking the 'Personal Account' link to navigate to the login page")
     public void clickToLoginFromPersonalAccount() {
         driver.findElement(PERSONAL_ACCOUNT_LINK).click();
         wait.until(ExpectedConditions.urlToBe(LoginPage.LOGIN_URL));
     }
 
-    @Step("Клик на ссылку 'Личный кабинет' с главной страницы для перехода в профиль")
+    @Step("Clicking the 'Personal Account' link from the main page to navigate to the profile")
     public void clickToPersonalAccountFromMainPage() {
         driver.findElement(PERSONAL_ACCOUNT_LINK).click();
         wait.until(ExpectedConditions.urlToBe(ProfilePage.PROFILE_URL));
     }
 
-    @Step("Клик на таб 'Булки'")
+    @Step("Clicking the 'Buns' tab")
     public void clickBunsTab() {
         clickWithOverlayHandling(BUNS_TAB);
     }
 
-    @Step("Клик на таб 'Соусы'")
+    @Step("Clicking the 'Sauces' tab")
     public void clickSaucesTab() {
         clickWithOverlayHandling(SAUCES_TAB);
     }
 
-    @Step("Клик на таб 'Начинки'")
+    @Step("Clicking the 'Fillings' tab")
     public void clickFillingsTab() {
         clickWithOverlayHandling(FILLINGS_TAB);
     }
 
-    @Step("Проверка, что активен только ожидаемый таб с индексом: {expectedIndex}")
+    @Step("Verifying that only the expected tab with index: {expectedIndex} is active")
     public boolean isCorrectTabActive(int expectedIndex) {
         List<WebElement> tabs = driver.findElements(TABS);
 
@@ -100,7 +98,7 @@ public class MainPage {
         return true;
     }
 
-    @Step("Клик по элементу с обработкой перекрытия")
+    @Step("Clicking on the element with overlay handling")
     private void clickWithOverlayHandling(By locator) {
         WebElement element = driver.findElement(locator);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);

@@ -17,7 +17,7 @@ import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
 
-@Epic("Навигация авторизированного пользователя по сайту")
+@Epic("Navigation of an authorized user on the website")
 public class NaviTest extends TestsSetUp {
 
     private UserSteps userSteps;
@@ -30,8 +30,8 @@ public class NaviTest extends TestsSetUp {
     private RegisterPage registerPage;
 
     @Before
-    @Step("Инициализация тестового окружения, создание пользователя и установка токена")
-    @Description("Создаёт уникального пользователя через API, авторизует его, извлекает accessToken и refreshToken, передаёт токены в localStorage браузера и обновляет сессию для тестов.")
+    @Step("Initializing the test environment, creating a user, and setting the token")
+    @Description("Creates a unique user via API, authorizes them, extracts accessToken and refreshToken, stores tokens in the browser's localStorage, and refreshes the session for tests.")
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
@@ -52,8 +52,8 @@ public class NaviTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что по клику на кнопку «Личный кабинет» осуществляется переход в личный кабинет")
-    @DisplayName("Переход в личный кабинет через кнопку «Личный кабинет» для авторизованного пользователя")
+    @Description("The test verifies that clicking the 'Personal Account' button navigates to the personal account")
+    @DisplayName("Navigation to the personal account via the 'Personal Account' button for an authorized user")
     public void testNavigateToPersonalCabinet() {
 
         mainPage.clickToPersonalAccountFromMainPage();
@@ -63,8 +63,8 @@ public class NaviTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что по клику на кнопку «Конструктор» осуществляется переход из личного кабинета в конструктор")
-    @DisplayName("Переход из личного кабинета в конструктор через кнопку «Конструктор» для авторизованного пользователя")
+    @Description("The test verifies that clicking the 'Constructor' button navigates from the personal account to the constructor")
+    @DisplayName("Navigation from the personal account to the constructor via the 'Constructor' button for an authorized user")
     public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
         mainPage.clickToPersonalAccountFromMainPage();
 
@@ -75,8 +75,8 @@ public class NaviTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что по клику на логотип Stellar Burgers осуществляется переход из личного кабинета в конструктор")
-    @DisplayName("Переход из личного кабинета в конструктор через логотип Stellar Burgers для авторизованного пользователя")
+    @Description("The test verifies that clicking the Stellar Burgers logo navigates from the personal account to the constructor")
+    @DisplayName("Navigation from the personal account to the constructor via the Stellar Burgers logo for an authorized user")
     public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
         mainPage.clickToPersonalAccountFromMainPage();
 
@@ -87,8 +87,8 @@ public class NaviTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет, что по кнопке «Выйти» в личном кабинете осуществляется выход из аккаунта")
-    @DisplayName("Выход из аккаунта через кнопку «Выйти»")
+    @Description("The test verifies that clicking the 'Logout' button in the personal account logs the user out")
+    @DisplayName("Logging out via the 'Logout' button")
     public void testLogoutFromPersonalCabinet() {
         mainPage.clickToPersonalAccountFromMainPage();
         profilePage.clickLogoutButton();
@@ -96,12 +96,12 @@ public class NaviTest extends TestsSetUp {
         String expectedText = LoginPage.EXPECTED_LOGIN_TEXT;
         String actualText = driver.findElement(RegisterPage.LOGIN_HEADER).getText();
 
-        assertEquals("Текст на странице логина после выхода не совпадает с ожидаемым значением", expectedText, actualText);
+        assertEquals("The text on the login page after logout does not match the expected value", expectedText, actualText);
     }
 
     @After
-    @Step("Очистка данных после теста")
-    @Description("Удаляет пользователя, созданного перед началом теста")
+    @Step("Clearing data after the test")
+    @Description("Deletes the user created before the test")
     public void tearDown() {
         super.tearDown();
         if (loginResponse != null) {

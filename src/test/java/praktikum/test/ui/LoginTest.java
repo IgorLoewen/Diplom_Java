@@ -16,7 +16,7 @@ import steps.UserSteps;
 
 import static org.junit.Assert.assertEquals;
 
-@Epic("Логин пользователя")
+@Epic("User Login")
 public class LoginTest extends TestsSetUp {
 
     private UserSteps userSteps;
@@ -29,8 +29,8 @@ public class LoginTest extends TestsSetUp {
 
 
     @Before
-    @Step("Подготовка окружения для теста")
-    @Description("Создаёт окружение, открывает страницу логина, инициализирует UserSteps и создается новый пользователь")
+    @Step("Preparing the test environment")
+    @Description("Sets up the environment, opens the login page, initializes UserSteps, and creates a new user")
     public void setUp() {
         super.setUp();
         userSteps = new UserSteps();
@@ -45,8 +45,8 @@ public class LoginTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет вход по кнопке «Войти в аккаунт» через главную страницу")
-    @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной и так же проверка логина")
+    @Description("The test verifies login via the 'Log in to account' button on the main page and also checks the login process")
+    @DisplayName("Login verification via the 'Log in to account' button on the main page and login check")
     public void testLoginFromEnterToAccountButton() {
         mainPage.clickLoginButton();
 
@@ -57,8 +57,8 @@ public class LoginTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет вход через кнопку «Личный кабинет» на главной странице и сразу проверяет переход с главной страницы в кабинет")
-    @DisplayName("Проверка входа через кнопку «Личный кабинет» и так же проверка логина")
+    @Description("The test verifies login via the 'Personal Account' button on the main page and immediately checks the transition from the main page to the account")
+    @DisplayName("Login verification via the 'Personal Account' button and login check")
     public void testLoginWithPersonalCabinetButton() {
         mainPage.clickToLoginFromPersonalAccount();
 
@@ -69,8 +69,8 @@ public class LoginTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет успешность входа через кнопку в форме регистрации")
-    @DisplayName("Проверка входа через регистрацию и так же проверка логина")
+    @Description("The test verifies successful login via the button in the registration form")
+    @DisplayName("Login verification via registration and login check")
     public void testLoginThroughRegistrationButton() {
 
         mainPage.clickLoginButton();
@@ -83,8 +83,8 @@ public class LoginTest extends TestsSetUp {
     }
 
     @Test
-    @Description("Тест проверяет успешность входа в систему через кнопку, расположенную в форме восстановления пароля. Сценарий включает проверку корректности работы кнопки, переходов и ввода учетных данных")
-    @DisplayName("Проверка входа через кнопку в форме восстановления пароля и так же проверка логина")
+    @Description("The test verifies successful login via the button in the password recovery form. The scenario includes checking the button functionality, navigation, and credential input.")
+    @DisplayName("Login verification via the button in the password recovery form and login check")
     public void testLoginThroughRecoveryPasswordTemplate() {
         mainPage.clickLoginButton();
         loginPage.clickRecoveryPasswordButton();
@@ -96,8 +96,8 @@ public class LoginTest extends TestsSetUp {
     }
 
     @After
-    @Step("Очистка данных после теста")
-    @Description("Удаляет пользователя, созданного перед началом теста")
+    @Step("Clearing data after the test")
+    @Description("Deletes the user created before the test")
     public void tearDown() {
         super.tearDown();
         if (loginResponse != null) {
@@ -106,7 +106,7 @@ public class LoginTest extends TestsSetUp {
         }
     }
 
-    @Step("Ввод email и пароля, затем клик на кнопку «Войти»")
+    @Step("Entering email and password, then clicking the 'Login' button")
     private void enterEmailPasswordAndClickLoginButton() {
         loginPage.enterEmail(email);
         loginPage.enterPassword(password);
