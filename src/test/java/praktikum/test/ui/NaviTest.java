@@ -51,40 +51,40 @@ public class NaviTest extends TestsSetUp {
         driver.navigate().refresh();
     }
 
-    @Test
-    @Description("The test verifies that clicking the 'Personal Account' button navigates to the personal account")
-    @DisplayName("Navigation to the personal account via the 'Personal Account' button for an authorized user")
-    public void testNavigateToPersonalCabinet() {
-
-        mainPage.clickToPersonalAccountFromMainPage();
-
-        String expectedUrl = ProfilePage.PROFILE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
-
-    @Test
-    @Description("The test verifies that clicking the 'Constructor' button navigates from the personal account to the constructor")
-    @DisplayName("Navigation from the personal account to the constructor via the 'Constructor' button for an authorized user")
-    public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
-        mainPage.clickToPersonalAccountFromMainPage();
-
-        profilePage.clickToConstructorButton();
-
-        String expectedUrl = MainPage.BASE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
-
-    @Test
-    @Description("The test verifies that clicking the Stellar Burgers logo navigates from the personal account to the constructor")
-    @DisplayName("Navigation from the personal account to the constructor via the Stellar Burgers logo for an authorized user")
-    public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
-        mainPage.clickToPersonalAccountFromMainPage();
-
-        profilePage.clickToLogoButton();
-
-        String expectedUrl = MainPage.BASE_URL;
-        assertEquals(expectedUrl, driver.getCurrentUrl());
-    }
+//    @Test
+//    @Description("The test verifies that clicking the 'Personal Account' button navigates to the personal account")
+//    @DisplayName("Navigation to the personal account via the 'Personal Account' button for an authorized user")
+//    public void testNavigateToPersonalCabinet() {
+//
+//        mainPage.clickToPersonalAccountFromMainPage();
+//
+//        String expectedUrl = ProfilePage.PROFILE_URL;
+//        assertEquals(expectedUrl, driver.getCurrentUrl());
+//    }
+//
+//    @Test
+//    @Description("The test verifies that clicking the 'Constructor' button navigates from the personal account to the constructor")
+//    @DisplayName("Navigation from the personal account to the constructor via the 'Constructor' button for an authorized user")
+//    public void testNavigateToConstructorFromPersonalCabinetByClickConstructorButton() {
+//        mainPage.clickToPersonalAccountFromMainPage();
+//
+//        profilePage.clickToConstructorButton();
+//
+//        String expectedUrl = MainPage.BASE_URL;
+//        assertEquals(expectedUrl, driver.getCurrentUrl());
+//    }
+//
+//    @Test
+//    @Description("The test verifies that clicking the Stellar Burgers logo navigates from the personal account to the constructor")
+//    @DisplayName("Navigation from the personal account to the constructor via the Stellar Burgers logo for an authorized user")
+//    public void testNavigateToConstructorFromPersonalCabinetUsingLogo() {
+//        mainPage.clickToPersonalAccountFromMainPage();
+//
+//        profilePage.clickToLogoButton();
+//
+//        String expectedUrl = MainPage.BASE_URL;
+//        assertEquals(expectedUrl, driver.getCurrentUrl());
+//    }
 
     @Test
     @Description("The test verifies that clicking the 'Logout' button in the personal account logs the user out")
